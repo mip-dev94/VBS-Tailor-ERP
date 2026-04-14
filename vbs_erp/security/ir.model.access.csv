@@ -1,0 +1,53 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vbs_garment_admin,vbs.garment admin,model_vbs_garment,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_garment_accountant,vbs.garment accountant,model_vbs_garment,vbs_erp.group_vbs_accountant,1,0,0,0
+access_vbs_garment_sale,vbs.garment sale,model_vbs_garment,vbs_erp.group_vbs_sale,1,1,1,0
+access_vbs_garment_warehouse,vbs.garment warehouse,model_vbs_garment,vbs_erp.group_vbs_warehouse,1,0,0,0
+access_vbs_garment_workshop,vbs.garment workshop,model_vbs_garment,vbs_erp.group_vbs_workshop,1,1,0,0
+access_vbs_garment_office,vbs.garment office,model_vbs_garment,vbs_erp.group_vbs_office,1,0,0,0
+access_vbs_garment_move_admin,vbs.garment.move admin,model_vbs_garment_move,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_garment_move_sale,vbs.garment.move sale,model_vbs_garment_move,vbs_erp.group_vbs_sale,1,1,1,0
+access_vbs_garment_move_workshop,vbs.garment.move workshop,model_vbs_garment_move,vbs_erp.group_vbs_workshop,1,1,1,0
+access_vbs_garment_move_accountant,vbs.garment.move accountant,model_vbs_garment_move,vbs_erp.group_vbs_accountant,1,0,0,0
+access_vbs_garment_move_office,vbs.garment.move office,model_vbs_garment_move,vbs_erp.group_vbs_office,1,0,0,0
+access_vbs_garment_move_warehouse,vbs.garment.move warehouse,model_vbs_garment_move,vbs_erp.group_vbs_warehouse,1,0,0,0
+access_vbs_garment_step_admin,vbs.garment.step admin,model_vbs_garment_step,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_garment_step_sale,vbs.garment.step sale,model_vbs_garment_step,vbs_erp.group_vbs_sale,1,1,1,0
+access_vbs_garment_step_workshop,vbs.garment.step workshop,model_vbs_garment_step,vbs_erp.group_vbs_workshop,1,1,1,0
+access_vbs_garment_step_office,vbs.garment.step office,model_vbs_garment_step,vbs_erp.group_vbs_office,1,1,0,0
+access_vbs_garment_step_accountant,vbs.garment.step accountant,model_vbs_garment_step,vbs_erp.group_vbs_accountant,1,0,0,0
+access_vbs_fabric_order_admin,vbs.fabric.order admin,model_vbs_fabric_order,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_fabric_order_accountant,vbs.fabric.order accountant,model_vbs_fabric_order,vbs_erp.group_vbs_accountant,1,0,0,0
+access_vbs_fabric_order_sale,vbs.fabric.order sale,model_vbs_fabric_order,vbs_erp.group_vbs_sale,1,0,0,0
+access_vbs_fabric_order_warehouse,vbs.fabric.order warehouse,model_vbs_fabric_order,vbs_erp.group_vbs_warehouse,1,1,1,0
+access_vbs_fabric_order_workshop,vbs.fabric.order workshop,model_vbs_fabric_order,vbs_erp.group_vbs_workshop,1,0,0,0
+access_vbs_fabric_order_office,vbs.fabric.order office,model_vbs_fabric_order,vbs_erp.group_vbs_office,1,0,0,0
+access_vbs_fabric_stock_admin,vbs.fabric.stock admin,model_vbs_fabric_stock,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_fabric_stock_accountant,vbs.fabric.stock accountant,model_vbs_fabric_stock,vbs_erp.group_vbs_accountant,1,0,0,0
+access_vbs_fabric_stock_sale,vbs.fabric.stock sale,model_vbs_fabric_stock,vbs_erp.group_vbs_sale,1,0,0,0
+access_vbs_fabric_stock_warehouse,vbs.fabric.stock warehouse,model_vbs_fabric_stock,vbs_erp.group_vbs_warehouse,1,1,1,0
+access_vbs_fabric_stock_office,vbs.fabric.stock office,model_vbs_fabric_stock,vbs_erp.group_vbs_office,1,0,0,0
+access_vbs_fabric_type_admin,vbs.fabric.type admin,model_vbs_fabric_type,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_fabric_type_accountant,vbs.fabric.type accountant,model_vbs_fabric_type,vbs_erp.group_vbs_accountant,1,0,0,0
+access_vbs_fabric_type_sale,vbs.fabric.type sale,model_vbs_fabric_type,vbs_erp.group_vbs_sale,1,0,0,0
+access_vbs_fabric_type_workshop,vbs.fabric.type workshop,model_vbs_fabric_type,vbs_erp.group_vbs_workshop,1,0,0,0
+access_vbs_pricing_product_admin,vbs.pricing.product admin,model_vbs_pricing_product,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_pricing_product_accountant,vbs.pricing.product accountant,model_vbs_pricing_product,vbs_erp.group_vbs_accountant,1,0,0,0
+access_vbs_sla_config_admin,vbs.sla.config admin,model_vbs_sla_config,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_contact_log_admin,vbs.contact.log admin,model_vbs_contact_log,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_contact_log_sale,vbs.contact.log sale,model_vbs_contact_log,vbs_erp.group_vbs_sale,1,1,1,0
+access_vbs_contact_log_office,vbs.contact.log office,model_vbs_contact_log,vbs_erp.group_vbs_office,1,1,1,0
+access_vbs_contact_log_accountant,vbs.contact.log accountant,model_vbs_contact_log,vbs_erp.group_vbs_accountant,1,0,0,0
+access_planning_slot_sale,planning.slot sale,vbs_planning.model_planning_slot,vbs_erp.group_vbs_sale,1,0,0,0
+access_planning_slot_workshop_erp,planning.slot workshop erp,vbs_planning.model_planning_slot,vbs_erp.group_vbs_workshop,1,1,1,0
+access_planning_slot_office_erp,planning.slot office erp,vbs_planning.model_planning_slot,vbs_erp.group_vbs_office,1,1,1,0
+access_planning_role_sale,planning.role sale,vbs_planning.model_planning_role,vbs_erp.group_vbs_sale,1,0,0,0
+access_planning_role_workshop_erp,planning.role workshop erp,vbs_planning.model_planning_role,vbs_erp.group_vbs_workshop,1,0,0,0
+access_planning_role_office_erp,planning.role office erp,vbs_planning.model_planning_role,vbs_erp.group_vbs_office,1,0,0,0
+access_vbs_pattern_admin,vbs.pattern admin,model_vbs_pattern,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_pattern_accountant,vbs.pattern accountant,model_vbs_pattern,vbs_erp.group_vbs_accountant,1,0,0,0
+access_vbs_pattern_sale,vbs.pattern sale,model_vbs_pattern,vbs_erp.group_vbs_sale,1,0,0,0
+access_vbs_pattern_workshop,vbs.pattern workshop,model_vbs_pattern,vbs_erp.group_vbs_workshop,1,1,1,0
+access_vbs_pattern_office,vbs.pattern office,model_vbs_pattern,vbs_erp.group_vbs_office,1,1,1,0
+access_vbs_stage_template_admin,vbs.stage.template admin,model_vbs_stage_template,vbs_erp.group_vbs_admin,1,1,1,1
+access_vbs_stage_template_workshop,vbs.stage.template workshop,model_vbs_stage_template,vbs_erp.group_vbs_workshop,1,1,0,0

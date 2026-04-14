@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="planning_role_production" model="planning.role">
+            <field name="name">Sản xuất</field>
+            <field name="color">1</field>
+        </record>
+        <record id="planning_role_quality" model="planning.role">
+            <field name="name">Kiểm tra chất lượng</field>
+            <field name="color">2</field>
+        </record>
+        <record id="planning_role_design" model="planning.role">
+            <field name="name">Thiết kế</field>
+            <field name="color">4</field>
+        </record>
+        <record id="planning_role_warehouse" model="planning.role">
+            <field name="name">Kho vận</field>
+            <field name="color">6</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_planning_slot_form" model="ir.ui.view">
+        <field name="name">planning.slot.form</field>
+        <field name="model">planning.slot</field>
+        <field name="arch" type="xml">
+            <form string="Ca làm việc">
+                <header>
+                    <button name="action_confirm" string="Xác nhận" type="object"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_done" string="Hoàn thành" type="object"
+                            class="oe_highlight" invisible="state != 'confirmed'"/>
+                    <button name="action_cancel" string="Huỷ" type="object"
+                            invisible="state in ('cancelled', 'done')"/>
+                    <button name="action_reset_draft" string="Đặt lại nháp" type="object"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Thông tin chung">
+                            <field name="employee_id"/>
+                            <field name="role_id"/>
+                            <field name="department_id"/>
+                        </group>
+                        <group string="Thời gian">
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="duration" widget="float_time"/>
+                        </group>
+                    </group>
+                    <group string="Ghi chú">
+                        <field name="note" nolabel="1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_planning_slot_list" model="ir.ui.view">
+        <field name="name">planning.slot.list</field>
+        <field name="model">planning.slot</field>
+        <field name="arch" type="xml">
+            <list string="Ca làm việc" decoration-muted="state == 'cancelled'"
+                  decoration-success="state == 'done'">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="role_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="duration" widget="float_time"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'confirmed'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_planning_slot_calendar" model="ir.ui.view">
+        <field name="name">planning.slot.calendar</field>
+        <field name="model">planning.slot</field>
+        <field name="arch" type="xml">
+            <calendar string="Lịch ca làm việc"
+                      date_start="start_datetime"
+                      date_stop="end_datetime"
+                      color="color"
+                      mode="week"
+                      quick_create="false">
+                <field name="employee_id" filters="1" avatar_field="avatar_128"/>
+                <field name="role_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_planning_slot_search" model="ir.ui.view">
+        <field name="name">planning.slot.search</field>
+        <field name="model">planning.slot</field>
+        <field name="arch" type="xml">
+            <search string="Tìm ca làm việc">
+                <field name="employee_id"/>
+                <field name="role_id"/>
+                <field name="department_id"/>
+                <separator/>
+                <filter string="Nháp" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Đã xác nhận" name="confirmed" domain="[('state','=','confirmed')]"/>
+                <filter string="Hoàn thành" name="done" domain="[('state','=','done')]"/>
+                <separator/>
+                <group>
+                    <filter string="Nhân viên" name="group_employee" domain="[]" context="{'group_by': 'employee_id'}"/>
+                    <filter string="Vai trò" name="group_role" domain="[]" context="{'group_by': 'role_id'}"/>
+                    <filter string="Phòng ban" name="group_department" domain="[]" context="{'group_by': 'department_id'}"/>
+                    <filter string="Trạng thái" name="group_state" domain="[]" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_planning_slot" model="ir.actions.act_window">
+        <field name="name">Ca làm việc</field>
+        <field name="res_model">planning.slot</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="search_view_id" ref="view_planning_slot_search"/>
+        <field name="context">{'search_default_this_week': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo ca làm việc đầu tiên
+            </p>
+            <p>Phân công ca làm việc cho nhân viên theo vai trò và thời gian.</p>
+        </field>
+    </record>
+
+    <!-- Role List View -->
+    <record id="view_planning_role_list" model="ir.ui.view">
+        <field name="name">planning.role.list</field>
+        <field name="model">planning.role</field>
+        <field name="arch" type="xml">
+            <list string="Vai trò" editable="bottom">
+                <field name="name"/>
+                <field name="color" widget="color_picker"/>
+                <field name="slot_count" string="Số ca"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Role Form View -->
+    <record id="view_planning_role_form" model="ir.ui.view">
+        <field name="name">planning.role.form</field>
+        <field name="model">planning.role</field>
+        <field name="arch" type="xml">
+            <form string="Vai trò">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="color" widget="color_picker"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Role Action -->
+    <record id="action_planning_role" model="ir.actions.act_window">
+        <field name="name">Vai trò</field>
+        <field name="res_model">planning.role</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

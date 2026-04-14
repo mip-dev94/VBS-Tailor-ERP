@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Kế thừa form planning.slot: thêm trường đồ may -->
+    <record id="view_planning_slot_form_vbs" model="ir.ui.view">
+        <field name="name">planning.slot.form.vbs</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="vbs_planning.view_planning_slot_form"/>
+        <field name="arch" type="xml">
+            <field name="department_id" position="after">
+                <field name="garment_id"/>
+                <field name="garment_partner_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Kế thừa list planning.slot: thêm cột đồ may -->
+    <record id="view_planning_slot_list_vbs" model="ir.ui.view">
+        <field name="name">planning.slot.list.vbs</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="vbs_planning.view_planning_slot_list"/>
+        <field name="arch" type="xml">
+            <field name="role_id" position="after">
+                <field name="garment_id" optional="show"/>
+                <field name="garment_partner_id" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Kế thừa search planning.slot: thêm tìm theo đồ may -->
+    <record id="view_planning_slot_search_vbs" model="ir.ui.view">
+        <field name="name">planning.slot.search.vbs</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="vbs_planning.view_planning_slot_search"/>
+        <field name="arch" type="xml">
+            <field name="department_id" position="after">
+                <field name="garment_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

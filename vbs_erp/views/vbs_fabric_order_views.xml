@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vbs_fabric_order_form" model="ir.ui.view">
+        <field name="name">vbs.fabric.order.form</field>
+        <field name="model">vbs.fabric.order</field>
+        <field name="arch" type="xml">
+            <form string="Đặt vải">
+                <header>
+                    <button name="action_mark_arrived" type="object"
+                            string="Vải đã về" class="oe_highlight"
+                            invisible="state == 'da_ve'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Thông tin đơn">
+                            <field name="sapo_code"/>
+                            <field name="partner_id"/>
+                            <field name="fabric_type_id"/>
+                            <field name="fabric_brand"/>
+                            <field name="fabric_type"/>
+                            <field name="quantity"/>
+                        </group>
+                        <group string="Thời gian">
+                            <field name="date_order"/>
+                            <field name="date_arrived"/>
+                            <field name="lead_time" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Ghi chú (bắt buộc)">
+                        <field name="note" nolabel="1" placeholder="Nhập ghi chú cho đơn vải này..."/>
+                    </group>
+                    <field name="stock_ids" string="Tồn kho từ đơn này"
+                           widget="one2many" readonly="1">
+                        <list>
+                            <field name="partner_id"/>
+                            <field name="fabric_type"/>
+                            <field name="quantity_available" string="Tồn (m)"/>
+                        </list>
+                    </field>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_vbs_fabric_order_list" model="ir.ui.view">
+        <field name="name">vbs.fabric.order.list</field>
+        <field name="model">vbs.fabric.order</field>
+        <field name="arch" type="xml">
+            <list string="Đặt vải"
+                  decoration-success="state == 'da_ve'"
+                  decoration-warning="state == 'chua_ve'">
+                <field name="sapo_code"/>
+                <field name="partner_id"/>
+                <field name="fabric_brand"/>
+                <field name="fabric_type"/>
+                <field name="quantity"/>
+                <field name="date_order"/>
+                <field name="date_arrived"/>
+                <field name="lead_time" string="Lead time (ngày)"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state == 'chua_ve'"
+                       decoration-success="state == 'da_ve'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_vbs_fabric_order_search" model="ir.ui.view">
+        <field name="name">vbs.fabric.order.search</field>
+        <field name="model">vbs.fabric.order</field>
+        <field name="arch" type="xml">
+            <search string="Tìm đơn vải">
+                <field name="sapo_code"/>
+                <field name="partner_id"/>
+                <field name="fabric_brand"/>
+                <field name="fabric_type"/>
+                <separator/>
+                <filter string="Chưa về" name="chua_ve"
+                        domain="[('state', '=', 'chua_ve')]"/>
+                <filter string="Đã về" name="da_ve"
+                        domain="[('state', '=', 'da_ve')]"/>
+                <separator/>
+                <group>
+                    <filter string="Khách hàng" name="group_partner" domain="[]"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter string="Hãng vải" name="group_brand" domain="[]"
+                            context="{'group_by': 'fabric_brand'}"/>
+                    <filter string="Trạng thái" name="group_state" domain="[]"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vbs_fabric_order" model="ir.actions.act_window">
+        <field name="name">Đặt vải</field>
+        <field name="res_model">vbs.fabric.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vbs_fabric_order_search"/>
+        <field name="context">{'search_default_chua_ve': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có đơn đặt vải nào</p>
+        </field>
+    </record>
+
+</odoo>

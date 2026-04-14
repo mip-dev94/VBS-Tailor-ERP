@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_planning_root"
+              name="Lập lịch"
+              sequence="60"
+              web_icon="vbs_planning,static/description/icon.png"/>
+
+    <!-- Main menu -->
+    <menuitem id="menu_planning_main"
+              name="Lịch làm việc"
+              parent="menu_planning_root"
+              action="action_planning_slot"
+              sequence="10"/>
+
+    <!-- Configuration menu -->
+    <menuitem id="menu_planning_config"
+              name="Cấu hình"
+              parent="menu_planning_root"
+              sequence="100"/>
+
+    <menuitem id="menu_planning_role"
+              name="Vai trò"
+              parent="menu_planning_config"
+              action="action_planning_role"
+              sequence="10"/>
+
+</odoo>
