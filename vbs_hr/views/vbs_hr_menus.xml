@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_root_employees"
+              name="Nhân viên"
+              sequence="13"
+              groups="vbs_base.group_vbs_admin"/>
+
+    <menuitem id="menu_employees_list"
+              name="Danh sách nhân viên"
+              parent="menu_root_employees"
+              action="hr.open_view_employee_list_my"
+              sequence="10"
+              groups="vbs_base.group_vbs_admin"/>
+
+</odoo>

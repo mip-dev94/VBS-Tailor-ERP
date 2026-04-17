@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_root_contact"
+              name="Liên hệ khách hàng"
+              sequence="11"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+    <menuitem id="menu_contact_orders"
+              name="Đơn hàng"
+              parent="menu_root_contact"
+              action="vbs_garment.action_vbs_sale_order"
+              sequence="10"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_accountant"/>
+
+    <menuitem id="menu_contact_log"
+              name="Lịch sử liên hệ"
+              parent="menu_root_contact"
+              action="action_vbs_contact_log"
+              sequence="20"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+</odoo>

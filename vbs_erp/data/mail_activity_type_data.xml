@@ -28,15 +28,6 @@
 
     <!-- Automation: tạo activity khi garment state thay đổi -->
     <data noupdate="0">
-        <record id="automation_garment_state_change" model="base.automation">
-            <field name="name">VBS: Nhắc liên hệ khách khi tình trạng đồ thay đổi</field>
-            <field name="model_id" ref="model_vbs_garment"/>
-            <field name="trigger">on_write</field>
-            <field name="filter_pre_domain">[]</field>
-            <field name="filter_domain">[('state', '!=', 'nhap')]</field>
-            <field name="active">True</field>
-        </record>
-
         <record id="automation_fabric_arrived" model="base.automation">
             <field name="name">VBS: Báo vải đã về</field>
             <field name="model_id" ref="model_vbs_fabric_order"/>

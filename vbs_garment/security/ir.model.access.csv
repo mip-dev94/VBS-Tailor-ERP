@@ -1,0 +1,30 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vbs_garment_admin,vbs.garment admin,model_vbs_garment,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_garment_accountant,vbs.garment accountant,model_vbs_garment,vbs_base.group_vbs_accountant,1,0,0,0
+access_vbs_garment_sale,vbs.garment sale,model_vbs_garment,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_garment_warehouse,vbs.garment warehouse,model_vbs_garment,vbs_base.group_vbs_warehouse,1,0,0,0
+access_vbs_garment_workshop,vbs.garment workshop,model_vbs_garment,vbs_base.group_vbs_workshop,1,1,0,0
+access_vbs_garment_office,vbs.garment office,model_vbs_garment,vbs_base.group_vbs_office,1,0,0,0
+access_vbs_garment_move_admin,vbs.garment.move admin,model_vbs_garment_move,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_garment_move_sale,vbs.garment.move sale,model_vbs_garment_move,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_garment_move_workshop,vbs.garment.move workshop,model_vbs_garment_move,vbs_base.group_vbs_workshop,1,1,1,0
+access_vbs_garment_move_accountant,vbs.garment.move accountant,model_vbs_garment_move,vbs_base.group_vbs_accountant,1,0,0,0
+access_vbs_garment_move_office,vbs.garment.move office,model_vbs_garment_move,vbs_base.group_vbs_office,1,0,0,0
+access_vbs_garment_move_warehouse,vbs.garment.move warehouse,model_vbs_garment_move,vbs_base.group_vbs_warehouse,1,0,0,0
+access_vbs_garment_step_admin,vbs.garment.step admin,model_vbs_garment_step,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_garment_step_sale,vbs.garment.step sale,model_vbs_garment_step,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_garment_step_workshop,vbs.garment.step workshop,model_vbs_garment_step,vbs_base.group_vbs_workshop,1,1,1,0
+access_vbs_garment_step_office,vbs.garment.step office,model_vbs_garment_step,vbs_base.group_vbs_office,1,1,0,0
+access_vbs_garment_step_accountant,vbs.garment.step accountant,model_vbs_garment_step,vbs_base.group_vbs_accountant,1,0,0,0
+access_vbs_payment_record_admin,vbs.payment.record admin,model_vbs_payment_record,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_payment_record_accountant,vbs.payment.record accountant,model_vbs_payment_record,vbs_base.group_vbs_accountant,1,1,1,0
+access_vbs_payment_record_sale,vbs.payment.record sale,model_vbs_payment_record,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_payment_record_warehouse,vbs.payment.record warehouse,model_vbs_payment_record,vbs_base.group_vbs_warehouse,1,0,0,0
+access_vbs_payment_record_workshop,vbs.payment.record workshop,model_vbs_payment_record,vbs_base.group_vbs_workshop,1,0,0,0
+access_vbs_payment_record_office,vbs.payment.record office,model_vbs_payment_record,vbs_base.group_vbs_office,1,0,0,0
+access_planning_slot_sale,planning.slot sale,vbs_planning.model_planning_slot,vbs_base.group_vbs_sale,1,0,0,0
+access_planning_slot_workshop_erp,planning.slot workshop erp,vbs_planning.model_planning_slot,vbs_base.group_vbs_workshop,1,1,1,0
+access_planning_slot_office_erp,planning.slot office erp,vbs_planning.model_planning_slot,vbs_base.group_vbs_office,1,1,1,0
+access_planning_role_sale,planning.role sale,vbs_planning.model_planning_role,vbs_base.group_vbs_sale,1,0,0,0
+access_planning_role_workshop_erp,planning.role workshop erp,vbs_planning.model_planning_role,vbs_base.group_vbs_workshop,1,0,0,0
+access_planning_role_office_erp,planning.role office erp,vbs_planning.model_planning_role,vbs_base.group_vbs_office,1,0,0,0

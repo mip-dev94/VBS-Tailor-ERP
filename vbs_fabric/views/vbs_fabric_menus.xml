@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_root_fabric"
+              name="Kho vải"
+              sequence="14"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_warehouse,vbs_base.group_vbs_sale"/>
+
+    <menuitem id="menu_fabric_order"
+              name="Đặt vải"
+              parent="menu_root_fabric"
+              action="action_vbs_fabric_order"
+              sequence="10"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_warehouse,vbs_base.group_vbs_sale"/>
+
+    <menuitem id="menu_fabric_stock"
+              name="Tồn kho"
+              parent="menu_root_fabric"
+              action="action_vbs_fabric_stock"
+              sequence="20"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_warehouse,vbs_base.group_vbs_sale"/>
+
+    <menuitem id="menu_fabric_arrived_today"
+              name="Vải về hôm nay"
+              parent="menu_root_fabric"
+              action="action_vbs_fabric_arrived_today"
+              sequence="25"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_warehouse,vbs_base.group_vbs_sale"/>
+
+    <menuitem id="menu_fabric_type"
+              name="Danh mục vải"
+              parent="menu_root_fabric"
+              action="action_vbs_fabric_type"
+              sequence="30"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+
+</odoo>

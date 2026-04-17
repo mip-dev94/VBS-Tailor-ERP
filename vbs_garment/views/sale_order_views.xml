@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action đơn hàng VBS -->
+    <record id="action_vbs_sale_order" model="ir.actions.act_window">
+        <field name="name">Đơn hàng</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'default_order_type': 'b2c'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Tạo đơn hàng đầu tiên</p>
+            <p>Quản lý đơn hàng may đo khách hàng VBS.</p>
+        </field>
+    </record>
+
+    <!-- Inherit sale.order form -->
+    <record id="view_sale_order_form_vbs" model="ir.ui.view">
+        <field name="name">sale.order.form.vbs</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Smart buttons -->
+            <div name="button_box" position="inside">
+                <button name="action_view_garments" type="object"
+                        class="oe_stat_button" icon="fa-tshirt"
+                        invisible="garment_count == 0">
+                    <field name="garment_count" widget="statinfo" string="Đồ may"/>
+                </button>
+                <button name="action_view_patterns" type="object"
+                        class="oe_stat_button" icon="fa-cut"
+                        invisible="pattern_count == 0 or not partner_id">
+                    <field name="pattern_count" widget="statinfo" string="Rập khách"/>
+                </button>
+            </div>
+
+            <!-- Fashion state buttons + statusbar in header -->
+            <field name="state" position="before">
+                <button name="action_fashion_confirm_payment" type="object"
+                        string="Xác nhận thanh toán" class="oe_highlight"
+                        invisible="fashion_state != 'dat_hang'"
+                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+                <button name="action_fashion_start_production" type="object"
+                        string="Bắt đầu sản xuất" class="oe_highlight"
+                        invisible="fashion_state != 'da_thanh_toan'"
+                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+                <button name="action_fashion_complete" type="object"
+                        string="Hoàn thành" class="oe_highlight"
+                        invisible="fashion_state != 'dang_lam'"
+                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+                <field name="fashion_state" widget="statusbar"
+                       statusbar_visible="dat_hang,da_thanh_toan,dang_lam,hoan_thanh"/>
+            </field>
+
+            <!-- Loại đơn + thanh toán info -->
+            <field name="partner_id" position="after">
+                <field name="order_type"/>
+                <field name="payment_state" widget="badge"
+                       decoration-danger="payment_state == 'chua_tt'"
+                       decoration-warning="payment_state == 'tt_1_phan'"
+                       decoration-success="payment_state == 'tt_toan_bo'"/>
+                <field name="amount_paid" widget="monetary"
+                       options="{'currency_field': 'currency_id'}"/>
+            </field>
+
+            <!-- Bỏ Payment Terms — VBS Tailor quản lý thanh toán theo record -->
+            <field name="payment_term_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <!-- Loại khỏi dropdown partner các internal user (staff/admin) -->
+            <field name="partner_id" position="attributes">
+                <attribute name="domain">[('user_ids', '=', False)]</attribute>
+            </field>
+
+            <!-- Tab đồ may + Tab thanh toán -->
+            <page name="order_lines" position="after">
+                <page string="Đồ may" name="vbs_garments">
+                    <field name="garment_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="garment_type"/>
+                            <field name="detail"/>
+                            <field name="set_type" optional="show"/>
+                            <field name="set_code" optional="hide"/>
+                            <field name="state" widget="badge"
+                                   decoration-info="state == 'nhap'"
+                                   decoration-warning="state == 'lan_2'"
+                                   decoration-primary="state == 'luoc'"
+                                   decoration-success="state == 'hoan_thien'"/>
+                            <field name="location" widget="badge"
+                                   decoration-warning="location == 've_xuong'"
+                                   decoration-success="location == 'da_tra'"/>
+                            <field name="days_in_current_state" string="Ngày"/>
+                            <field name="sla_overdue" invisible="1"/>
+                        </list>
+                    </field>
+                </page>
+                <page string="Thanh toán" name="vbs_payments">
+                    <field name="payment_ids">
+                        <list editable="bottom">
+                            <field name="date"/>
+                            <field name="amount"/>
+                            <field name="method"/>
+                            <field name="note"/>
+                        </list>
+                    </field>
+                </page>
+            </page>
+
+        </field>
+    </record>
+
+    <!-- Inherit sale.order list: thêm fashion_state + payment_state -->
+    <record id="view_sale_order_list_vbs" model="ir.ui.view">
+        <field name="name">sale.order.list.vbs</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="fashion_state" widget="badge"
+                       decoration-info="fashion_state == 'dat_hang'"
+                       decoration-warning="fashion_state == 'da_thanh_toan'"
+                       decoration-primary="fashion_state == 'dang_lam'"
+                       decoration-success="fashion_state == 'hoan_thanh'"
+                       decoration-danger="fashion_state == 'huy'"
+                       optional="show"/>
+                <field name="payment_state" widget="badge"
+                       decoration-danger="payment_state == 'chua_tt'"
+                       decoration-warning="payment_state == 'tt_1_phan'"
+                       decoration-success="payment_state == 'tt_toan_bo'"
+                       optional="show"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

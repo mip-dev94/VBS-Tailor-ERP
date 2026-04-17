@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit employee FORM: thêm tab phân quyền VBS -->
+    <record id="view_employee_form_vbs_roles" model="ir.ui.view">
+        <field name="name">hr.employee.form.vbs.roles</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Phân quyền VBS" name="vbs_roles"
+                      groups="vbs_base.group_vbs_admin">
+                    <div class="alert alert-info" role="alert"
+                         invisible="user_id">
+                        <strong>Chưa liên kết tài khoản.</strong>
+                        Nhân viên này cần được gán User (trường "Related User" ở tab Work Information) trước khi phân quyền.
+                    </div>
+                    <group invisible="not user_id">
+                        <group string="Tài khoản">
+                            <field name="user_id" readonly="1" string="User"/>
+                        </group>
+                        <group string="Vai trò VBS">
+                            <field name="vbs_role_admin" widget="boolean_toggle"/>
+                            <field name="vbs_role_accountant" widget="boolean_toggle"/>
+                            <field name="vbs_role_sale" widget="boolean_toggle"/>
+                            <field name="vbs_role_warehouse" widget="boolean_toggle"/>
+                            <field name="vbs_role_workshop" widget="boolean_toggle"/>
+                            <field name="vbs_role_office" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <group invisible="not user_id" string="Lưu ý phân quyền">
+                        <div class="text-muted">
+                            <ul>
+                                <li><strong>Quản trị VBS:</strong> Toàn quyền — quản lý user, huỷ đơn, cấu hình hệ thống</li>
+                                <li><strong>Kế toán:</strong> Duyệt đặt vải (DV01→DV02), xem pricing, quản lý thanh toán</li>
+                                <li><strong>Sale:</strong> Tạo đơn hàng, tạo đặt vải, xem planning (không sửa), liên hệ khách</li>
+                                <li><strong>Kho:</strong> Quản lý tồn kho vải, đánh dấu vải về (DV03→DV04)</li>
+                                <li><strong>Xưởng:</strong> Cập nhật tiến độ sản xuất, sửa planning, cập nhật bước công đoạn</li>
+                                <li><strong>Văn phòng:</strong> Sửa planning, liên hệ khách, theo dõi đồ</li>
+                            </ul>
+                        </div>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit employee KANBAN: hiển thị vai trò VBS dưới tên -->
+    <record id="view_employee_kanban_vbs" model="ir.ui.view">
+        <field name="name">hr.employee.kanban.vbs</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="vbs_role_display"/>
+            </xpath>
+            <xpath expr="//div[hasclass('text-truncate')][.//field[@name='job_title']]" position="after">
+                <div t-if="record.vbs_role_display.raw_value" class="text-truncate">
+                    <i class="fa fa-fw me-2 fa-shield text-primary" title="VBS Roles"/>
+                    <span class="text-primary"><t t-out="record.vbs_role_display.value"/></span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit employee LIST: thêm cột vai trò VBS -->
+    <record id="view_employee_list_vbs" model="ir.ui.view">
+        <field name="name">hr.employee.list.vbs</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='department_id']" position="after">
+                <field name="vbs_role_display" string="Vai trò VBS" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vbs_contact_log_admin,vbs.contact.log admin,model_vbs_contact_log,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_contact_log_sale,vbs.contact.log sale,model_vbs_contact_log,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_contact_log_office,vbs.contact.log office,model_vbs_contact_log,vbs_base.group_vbs_office,1,1,1,0
+access_vbs_contact_log_accountant,vbs.contact.log accountant,model_vbs_contact_log,vbs_base.group_vbs_accountant,1,0,0,0

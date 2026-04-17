@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vbs_fabric_order_form" model="ir.ui.view">
+        <field name="name">vbs.fabric.order.form</field>
+        <field name="model">vbs.fabric.order</field>
+        <field name="arch" type="xml">
+            <form string="Phiếu đặt vải">
+                <header>
+                    <!-- DV01 → DV02: Kế toán duyệt -->
+                    <button name="action_approve" type="object"
+                            string="Duyệt đơn" class="oe_highlight"
+                            invisible="state != 'draft'"
+                            groups="vbs_base.group_vbs_accountant,vbs_base.group_vbs_admin"/>
+                    <!-- DV02 → DV03: Kế toán xác nhận đã đặt -->
+                    <button name="action_confirm_ordered" type="object"
+                            string="Xác nhận đã đặt" class="oe_highlight"
+                            invisible="state != 'cho_dat'"
+                            groups="vbs_base.group_vbs_accountant,vbs_base.group_vbs_admin"/>
+                    <!-- DV03 → DV04: Vải đã về -->
+                    <button name="action_mark_arrived" type="object"
+                            string="Vải đã về" class="oe_highlight"
+                            invisible="state != 'cho_ve'"
+                            groups="vbs_base.group_vbs_warehouse,vbs_base.group_vbs_admin"/>
+                    <!-- Reset (admin only) -->
+                    <button name="action_reset_draft" type="object"
+                            string="Đặt lại DV01" class="btn-secondary"
+                            invisible="state == 'draft'"
+                            groups="vbs_base.group_vbs_admin"
+                            confirm="Bạn có chắc muốn đặt lại về DV01?"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,cho_dat,cho_ve,da_ve"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-calendar"
+                                invisible="days_since_approved == 0">
+                            <field name="days_since_approved" widget="statinfo"
+                                   string="Ngày chờ vải"/>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-list">
+                            <field name="line_count" widget="statinfo"
+                                   string="Dòng vải"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin phiếu">
+                            <field name="date_order" readonly="state != 'draft'"/>
+                            <field name="branch_summary" readonly="1"/>
+                            <field name="partner_ids" widget="many2many_tags" readonly="1"/>
+                            <field name="total_quantity" readonly="1"/>
+                        </group>
+                        <group string="Thời gian">
+                            <field name="date_approved"/>
+                            <field name="approved_by"/>
+                            <field name="date_arrived"/>
+                            <field name="lead_time" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Danh sách vải" name="fabric_lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="branch"/>
+                                    <field name="sapo_code"/>
+                                    <field name="partner_id"/>
+                                    <field name="garment_ref" optional="show"/>
+                                    <field name="garment_desc" optional="show"/>
+                                    <field name="fabric_brand"/>
+                                    <field name="fabric_code"/>
+                                    <field name="pattern" optional="show"/>
+                                    <field name="quantity" sum="Tổng (m)"/>
+                                    <field name="inspection_state" widget="badge"
+                                           decoration-success="inspection_state == 'da_kt'"
+                                           decoration-warning="inspection_state == 'chua_kt'"
+                                           optional="show"/>
+                                    <field name="lining" optional="hide"/>
+                                    <field name="button_row" optional="hide"/>
+                                    <field name="pocket" optional="hide"/>
+                                    <field name="cuff" optional="hide"/>
+                                    <field name="note" optional="hide"/>
+                                    <field name="state" column_invisible="1"/>
+                                </list>
+                                <form string="Dòng vải">
+                                    <sheet>
+                                        <group>
+                                            <group string="Khách &amp; chi nhánh">
+                                                <field name="branch"/>
+                                                <field name="sapo_code"/>
+                                                <field name="partner_id"/>
+                                                <field name="garment_ref"/>
+                                                <field name="inspection_state" widget="badge"
+                                                       decoration-success="inspection_state == 'da_kt'"
+                                                       decoration-warning="inspection_state == 'chua_kt'"/>
+                                            </group>
+                                            <group string="Vải">
+                                                <field name="fabric_type_id"/>
+                                                <field name="fabric_brand"/>
+                                                <field name="fabric_code"/>
+                                                <field name="pattern"/>
+                                                <field name="quantity"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <group string="Đồ đặt">
+                                                <field name="garment_desc"/>
+                                                <field name="dai_ao"
+                                                       invisible="garment_desc not in ('so_mi','ao_khoac_le','ao_khoac_tao_kieu','bo_comple_2','bo_comple_3','gile','lot_ao_khoac')"/>
+                                                <field name="dai_tay_ao"
+                                                       invisible="garment_desc not in ('so_mi','ao_khoac_le','ao_khoac_tao_kieu','bo_comple_2','bo_comple_3','lot_ao_khoac')"/>
+                                                <field name="dai_quan"
+                                                       invisible="garment_desc not in ('quan_le','bo_comple_2','bo_comple_3')"/>
+                                            </group>
+                                        </group>
+                                        <group string="Chi tiết áo"
+                                               invisible="garment_desc not in ('ao_khoac_le','ao_khoac_tao_kieu','bo_comple_2','bo_comple_3','gile','lot_ao_khoac')">
+                                            <group>
+                                                <field name="button_row"/>
+                                                <field name="pocket"/>
+                                            </group>
+                                            <group>
+                                                <field name="lining"/>
+                                            </group>
+                                        </group>
+                                        <group string="Chi tiết quần"
+                                               invisible="garment_desc not in ('quan_le','bo_comple_2','bo_comple_3')">
+                                            <field name="cuff"/>
+                                        </group>
+                                        <group string="Ghi chú">
+                                            <field name="note" nolabel="1"
+                                                   placeholder="Ghi chú riêng cho dòng này..."/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Tồn kho" name="stock">
+                            <field name="stock_ids" readonly="1">
+                                <list>
+                                    <field name="partner_id"/>
+                                    <field name="fabric_type"/>
+                                    <field name="quantity_received" string="Đã nhập (m)"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Ghi chú" name="notes">
+                            <field name="note" nolabel="1"
+                                   placeholder="Nhập ghi chú cho phiếu này..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_vbs_fabric_order_list" model="ir.ui.view">
+        <field name="name">vbs.fabric.order.list</field>
+        <field name="model">vbs.fabric.order</field>
+        <field name="arch" type="xml">
+            <list string="Phiếu đặt vải"
+                  decoration-success="state == 'da_ve'"
+                  decoration-warning="state in ('draft', 'cho_dat')"
+                  decoration-info="state == 'cho_ve'">
+                <field name="name"/>
+                <field name="date_order"/>
+                <field name="branch_summary" string="Chi nhánh"/>
+                <field name="partner_ids" widget="many2many_tags" string="Khách hàng"/>
+                <field name="line_count" string="Số dòng"/>
+                <field name="total_quantity" string="Tổng (m)" sum="Tổng (m)"/>
+                <field name="date_approved" optional="hide"/>
+                <field name="date_arrived" optional="hide"/>
+                <field name="lead_time" string="Lead time" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state in ('draft', 'cho_dat')"
+                       decoration-info="state == 'cho_ve'"
+                       decoration-success="state == 'da_ve'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_vbs_fabric_order_search" model="ir.ui.view">
+        <field name="name">vbs.fabric.order.search</field>
+        <field name="model">vbs.fabric.order</field>
+        <field name="arch" type="xml">
+            <search string="Tìm phiếu đặt vải">
+                <field name="name"/>
+                <field name="line_ids" string="Mã Sapo"
+                       filter_domain="[('line_ids.sapo_code', 'ilike', self)]"/>
+                <field name="line_ids" string="Mã đồ"
+                       filter_domain="[('line_ids.garment_ref', 'ilike', self)]"/>
+                <field name="partner_ids"/>
+                <field name="line_ids" string="Hãng vải"
+                       filter_domain="[('line_ids.fabric_brand', 'ilike', self)]"/>
+                <separator/>
+                <filter string="VBS HN" name="br_vbs_hn"
+                        domain="[('line_ids.branch', '=', 'vbs_hn')]"/>
+                <filter string="VBS SG" name="br_vbs_sg"
+                        domain="[('line_ids.branch', '=', 'vbs_sg')]"/>
+                <filter string="TFC HN" name="br_tfc_hn"
+                        domain="[('line_ids.branch', '=', 'tfc_hn')]"/>
+                <filter string="TFC SG" name="br_tfc_sg"
+                        domain="[('line_ids.branch', '=', 'tfc_sg')]"/>
+                <separator/>
+                <filter string="Có dòng chưa kiểm tra" name="chua_kt"
+                        domain="[('line_ids.inspection_state', '=', 'chua_kt')]"/>
+                <separator/>
+                <filter string="DV01 — Chờ duyệt" name="draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter string="DV02 — Chờ đặt" name="cho_dat"
+                        domain="[('state', '=', 'cho_dat')]"/>
+                <filter string="DV03 — Chờ vải về" name="cho_ve"
+                        domain="[('state', '=', 'cho_ve')]"/>
+                <filter string="DV04 — Vải đã về" name="da_ve"
+                        domain="[('state', '=', 'da_ve')]"/>
+                <separator/>
+                <filter string="Vải về hôm nay" name="arrived_today"
+                        domain="[('date_arrived', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <separator/>
+                <group>
+                    <filter string="Trạng thái" name="group_state" domain="[]"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Ngày lập" name="group_date" domain="[]"
+                            context="{'group_by': 'date_order'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vbs_fabric_order" model="ir.actions.act_window">
+        <field name="name">Đặt vải</field>
+        <field name="res_model">vbs.fabric.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vbs_fabric_order_search"/>
+        <field name="context">{'search_default_draft': 1, 'search_default_cho_dat': 1, 'search_default_cho_ve': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có phiếu đặt vải nào</p>
+        </field>
+    </record>
+
+    <!-- Dashboard: Vải về hôm nay -->
+    <record id="action_vbs_fabric_arrived_today" model="ir.actions.act_window">
+        <field name="name">Vải về hôm nay</field>
+        <field name="res_model">vbs.fabric.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vbs_fabric_order_search"/>
+        <field name="context">{'search_default_arrived_today': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Hôm nay chưa có vải về</p>
+        </field>
+    </record>
+
+</odoo>

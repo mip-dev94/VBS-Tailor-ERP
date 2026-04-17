@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ GARMENT STEP inline list ============ -->
+    <record id="view_vbs_garment_step_list_inline" model="ir.ui.view">
+        <field name="name">vbs.garment.step.list.inline</field>
+        <field name="model">vbs.garment.step</field>
+        <field name="arch" type="xml">
+            <list string="Công đoạn" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="step_type"/>
+                <field name="employee_id"/>
+                <field name="date_planned"/>
+                <field name="date_done"/>
+                <field name="duration_days" readonly="1" string="Ngày lệch"/>
+                <field name="state" widget="badge"
+                       decoration-muted="state == 'todo'"
+                       decoration-warning="state == 'doing'"
+                       decoration-success="state == 'done'"/>
+                <field name="slot_id" readonly="1" optional="show" string="Ca SX"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============ GARMENT MOVE inline list ============ -->
+    <record id="view_vbs_garment_move_list_inline" model="ir.ui.view">
+        <field name="name">vbs.garment.move.list.inline</field>
+        <field name="model">vbs.garment.move</field>
+        <field name="arch" type="xml">
+            <list string="Lịch sử vận chuyển" editable="bottom">
+                <field name="trip_number" string="#" readonly="1"/>
+                <field name="move_type"/>
+                <field name="move_date"/>
+                <field name="duration_hours" string="Giờ tại trạm" readonly="1"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============ PLANNING SLOT inline list (for garment form) ============ -->
+    <record id="view_planning_slot_list_inline_garment" model="ir.ui.view">
+        <field name="name">planning.slot.list.inline.garment</field>
+        <field name="model">planning.slot</field>
+        <field name="arch" type="xml">
+            <list string="Lịch sản xuất" editable="bottom">
+                <field name="employee_id"/>
+                <field name="role_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="duration" widget="float_time" string="Giờ"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'confirmed'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============ GARMENT FORM ============ -->
+    <record id="view_vbs_garment_form" model="ir.ui.view">
+        <field name="name">vbs.garment.form</field>
+        <field name="model">vbs.garment</field>
+        <field name="arch" type="xml">
+            <form string="Đồ may">
+                <header>
+                    <!-- Quick-move buttons: contextual theo location -->
+                    <button name="action_quick_lch" type="object"
+                            string="→ Về xưởng"
+                            class="btn-warning"
+                            invisible="location in ('ve_xuong', 'da_tra', 'huy')"/>
+                    <button name="action_quick_lx" type="object"
+                            string="→ Cửa hàng"
+                            class="btn-info"
+                            invisible="location not in ('ve_xuong', 'qc', 'van_phong')"/>
+                    <button name="action_quick_qc" type="object"
+                            string="→ QC"
+                            invisible="location in ('qc', 'da_tra', 'huy')"/>
+                    <button name="action_quick_van_phong" type="object"
+                            string="→ Văn phòng"
+                            invisible="location in ('van_phong', 'da_tra', 'huy')"/>
+                    <button name="action_quick_da_tra" type="object"
+                            string="✓ Đã trả khách"
+                            class="btn-success"
+                            invisible="location in ('da_tra', 'huy')"/>
+                    <button name="action_confirm_cs" type="object"
+                            string="CS duyệt"
+                            class="btn-secondary"
+                            groups="vbs_base.group_vbs_office,vbs_base.group_vbs_admin"
+                            invisible="confirmed_cs or state != 'nhap'"/>
+                    <button name="action_confirm_qa" type="object"
+                            string="QA duyệt"
+                            class="btn-secondary"
+                            groups="vbs_base.group_vbs_workshop,vbs_base.group_vbs_admin"
+                            invisible="confirmed_qa or state != 'lan_2'"/>
+                    <button name="action_confirm_sale" type="object"
+                            string="Sale duyệt"
+                            class="btn-secondary"
+                            groups="vbs_base.group_vbs_sale,vbs_base.group_vbs_admin"
+                            invisible="confirmed_sale or state != 'hoan_thien' or location in ('da_tra', 'huy')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="nhap,sua,luoc,lan_2,hoan_thien"/>
+                    <field name="location" widget="statusbar"
+                           statusbar_visible="cua_hang,ve_xuong,qc,van_phong,da_tra"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_moves" type="object"
+                                class="oe_stat_button" icon="fa-exchange">
+                            <field name="move_count" widget="statinfo" string="Chuyến"/>
+                        </button>
+                        <button name="action_view_slots" type="object"
+                                class="oe_stat_button" icon="fa-calendar">
+                            <field name="slot_count" widget="statinfo" string="Ca sx"/>
+                        </button>
+                        <button name="action_view_fabric_line" type="object"
+                                class="oe_stat_button" icon="fa-cube"
+                                invisible="not fabric_line_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Phiếu vải</span>
+                                <span class="o_stat_value" invisible="not fabric_arrived">Đã về</span>
+                                <span class="o_stat_value" invisible="fabric_arrived">Đang đặt</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <span class="text-muted me-2">
+                            <field name="ref" readonly="1"/>
+                        </span>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin đồ">
+                            <field name="order_id"/>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="garment_type"/>
+                            <field name="detail"/>
+                            <field name="set_type"/>
+                            <field name="set_code"
+                                   invisible="set_type == 'none'"/>
+                            <field name="sapo_code"/>
+                            <field name="date_entry"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <group string="Trạng thái &amp; Thời gian">
+                            <field name="state"/>
+                            <field name="location"/>
+                            <field name="date_return"/>
+                            <field name="planned_date"
+                                   decoration-danger="overdue_planned"/>
+                            <field name="days_in_current_state"
+                                   decoration-danger="sla_overdue"
+                                   widget="integer"/>
+                            <field name="total_duration_days"/>
+                            <field name="sla_overdue" invisible="1"/>
+                            <field name="overdue_planned" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Vải">
+                        <group>
+                            <field name="pattern_id"/>
+                            <button name="action_create_pattern" type="object"
+                                    string="+ Tạo rập mới cho khách"
+                                    class="btn-link"
+                                    icon="fa-plus"
+                                    invisible="pattern_id or not partner_id or not garment_type"/>
+                            <field name="fabric_id"/>
+                            <field name="fabric_meters"/>
+                            <field name="fabric_note"/>
+                        </group>
+                        <group>
+                            <field name="fabric_line_id" readonly="1"/>
+                            <field name="fabric_arrived" invisible="1"/>
+                            <button name="action_request_fabric" type="object"
+                                    string="Yêu cầu vải"
+                                    class="btn-primary"
+                                    icon="fa-shopping-cart"
+                                    invisible="fabric_line_id or not fabric_id or not fabric_meters"/>
+                            <field name="fabric_order_id"/>
+                            <field name="ma_pkc"/>
+                        </group>
+                    </group>
+                    <group string="Giá" groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant">
+                        <group>
+                            <field name="computed_price" string="Đề giá"/>
+                            <field name="price_surcharge"/>
+                        </group>
+                        <group>
+                            <button name="action_compute_price" type="object"
+                                    string="Tính đề giá" icon="fa-calculator"
+                                    class="btn-primary"
+                                    help="Đề giá = (Giá vải/m × Số mét) + Phí gia công + Phụ phí"
+                                    groups="vbs_base.group_vbs_admin"/>
+                        </group>
+                    </group>
+                    <group string="Ghi chú">
+                        <field name="note" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Công đoạn" name="steps">
+                            <field name="step_ids"
+                                   widget="one2many"
+                                   view_id="view_vbs_garment_step_list_inline"/>
+                        </page>
+                        <page string="Lịch sử vận chuyển" name="moves">
+                            <field name="move_ids"
+                                   widget="one2many"
+                                   view_id="view_vbs_garment_move_list_inline"/>
+                        </page>
+                        <page string="Lịch sản xuất" name="slots">
+                            <field name="slot_ids"
+                                   widget="one2many"
+                                   view_id="view_planning_slot_list_inline_garment"/>
+                        </page>
+                        <page string="Xác nhận" name="approvals">
+                            <group>
+                                <field name="confirmed_cs" readonly="1"/>
+                                <field name="confirmed_qa" readonly="1"/>
+                                <field name="confirmed_sale" readonly="1"/>
+                            </group>
+                            <div class="text-muted small">
+                                <p>Dùng nút "CS/QA/Sale duyệt" ở đầu form để đặt cờ. Lịch sử thay đổi xem ở Chatter.</p>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ GARMENT LIST ============ -->
+    <record id="view_vbs_garment_list" model="ir.ui.view">
+        <field name="name">vbs.garment.list</field>
+        <field name="model">vbs.garment</field>
+        <field name="arch" type="xml">
+            <list string="Đồ may"
+                  editable="top"
+                  decoration-danger="sla_overdue == True or overdue_planned == True"
+                  decoration-muted="location in ('da_tra', 'huy')">
+                <field name="partner_id" readonly="1"/>
+                <field name="garment_type"/>
+                <field name="detail"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'nhap'"
+                       decoration-warning="state == 'lan_2'"
+                       decoration-primary="state == 'luoc'"
+                       decoration-success="state == 'hoan_thien'"/>
+                <field name="location" widget="badge"
+                       decoration-warning="location == 've_xuong'"
+                       decoration-info="location == 'qc'"
+                       decoration-primary="location == 'van_phong'"
+                       decoration-success="location == 'da_tra'"/>
+                <field name="responsible_id" optional="show"/>
+                <field name="planned_date" optional="show"/>
+                <field name="days_in_current_state" string="Ngày hiện tại" readonly="1"/>
+                <field name="total_duration_days" string="Tổng (ngày)" readonly="1"/>
+                <field name="sla_overdue" invisible="1"/>
+                <field name="overdue_planned" invisible="1"/>
+                <field name="order_id" optional="show" readonly="1"/>
+                <field name="date_return" optional="show"/>
+                <field name="pattern_id" optional="hide"/>
+                <field name="fabric_note" optional="hide"/>
+                <button name="action_quick_lch" type="object"
+                        icon="fa-arrow-right" title="→ Về xưởng"
+                        class="btn-warning btn-sm"
+                        invisible="location in ('ve_xuong', 'da_tra', 'huy')"/>
+                <button name="action_quick_lx" type="object"
+                        icon="fa-arrow-left" title="→ Cửa hàng"
+                        class="btn-info btn-sm"
+                        invisible="location not in ('ve_xuong', 'qc', 'van_phong')"/>
+                <button name="action_quick_da_tra" type="object"
+                        icon="fa-check" title="✓ Đã trả khách"
+                        class="btn-success btn-sm"
+                        invisible="location in ('da_tra', 'huy')"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============ GARMENT KANBAN ============ -->
+    <record id="view_vbs_garment_kanban" model="ir.ui.view">
+        <field name="name">vbs.garment.kanban</field>
+        <field name="model">vbs.garment</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" quick_create="false">
+                <field name="state"/>
+                <field name="location"/>
+                <field name="sla_overdue"/>
+                <field name="overdue_planned"/>
+                <field name="days_in_current_state"/>
+                <field name="partner_id"/>
+                <field name="garment_type"/>
+                <field name="responsible_id"/>
+                <field name="planned_date"/>
+                <field name="fabric_note"/>
+                <templates>
+                    <t t-name="card">
+                        <div t-attf-class="oe_kanban_card #{(record.sla_overdue.raw_value or record.overdue_planned.raw_value) ? 'border border-danger' : ''}">
+                            <div class="oe_kanban_content">
+                                <strong><field name="partner_id"/></strong>
+                                <div><field name="garment_type"/></div>
+                                <div class="text-muted small"><field name="detail"/></div>
+                                <div t-if="record.fabric_note.raw_value"
+                                     class="text-muted small">
+                                    <field name="fabric_note"/>
+                                </div>
+                                <div class="mt-1 d-flex align-items-center gap-1 flex-wrap">
+                                    <span t-attf-class="badge rounded-pill #{record.location.raw_value == 've_xuong' ? 'bg-warning text-dark' : record.location.raw_value == 'qc' ? 'bg-info text-dark' : record.location.raw_value == 'van_phong' ? 'bg-primary' : record.location.raw_value == 'da_tra' ? 'bg-success' : 'bg-secondary'}">
+                                        <field name="location"/>
+                                    </span>
+                                    <span t-if="record.responsible_id.raw_value"
+                                          class="badge rounded-pill bg-light text-dark">
+                                        <field name="responsible_id"/>
+                                    </span>
+                                </div>
+                                <div class="mt-1">
+                                    <span t-if="record.sla_overdue.raw_value"
+                                          class="badge rounded-pill bg-danger">
+                                        SLA <field name="days_in_current_state"/> ngày
+                                    </span>
+                                    <span t-elif="record.overdue_planned.raw_value"
+                                          class="badge rounded-pill bg-warning text-dark">
+                                        Trễ kế hoạch
+                                    </span>
+                                </div>
+                                <!-- Quick-move buttons: 1 click không cần mở form -->
+                                <div class="mt-2 d-flex gap-1 flex-wrap"
+                                     t-if="record.location.raw_value != 'da_tra' and record.location.raw_value != 'huy'">
+                                    <button name="action_quick_lch" type="object"
+                                            class="btn btn-sm btn-warning px-2 py-1"
+                                            t-if="record.location.raw_value != 've_xuong'">
+                                        Xưởng
+                                    </button>
+                                    <button name="action_quick_lx" type="object"
+                                            class="btn btn-sm btn-info px-2 py-1"
+                                            t-if="record.location.raw_value == 've_xuong' or record.location.raw_value == 'qc' or record.location.raw_value == 'van_phong'">
+                                        Cửa hàng
+                                    </button>
+                                    <button name="action_quick_da_tra" type="object"
+                                            class="btn btn-sm btn-success px-2 py-1">
+                                        Trả
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ============ GARMENT SEARCH ============ -->
+    <record id="view_vbs_garment_search" model="ir.ui.view">
+        <field name="name">vbs.garment.search</field>
+        <field name="model">vbs.garment</field>
+        <field name="arch" type="xml">
+            <search string="Tìm đồ may">
+                <field name="partner_id"/>
+                <field name="garment_type"/>
+                <field name="order_id"/>
+                <field name="responsible_id"/>
+                <field name="fabric_note"/>
+                <field name="set_code"/>
+                <separator/>
+                <!-- Dashboard shortcuts (thay cho 4 submenu cũ) -->
+                <filter string="Sẵn sàng VP" name="ready_vp"
+                        domain="[('location', '=', 'van_phong')]"/>
+                <filter string="Chờ thử đồ" name="fitting"
+                        domain="[('state', 'in', ['luoc', 'lan_2']), ('location', '=', 'cua_hang')]"/>
+                <filter string="Hoàn thiện" name="done"
+                        domain="[('state', '=', 'hoan_thien'), ('location', '!=', 'da_tra')]"/>
+                <filter string="Quá hạn SLA" name="overdue"
+                        domain="[('sla_overdue', '=', True), ('location', 'not in', ['da_tra', 'huy'])]"/>
+                <separator/>
+                <filter string="Đang sản xuất" name="active"
+                        domain="[('location', 'not in', ['da_tra', 'huy'])]"/>
+                <filter string="Trễ kế hoạch" name="overdue_planned"
+                        domain="[('overdue_planned', '=', True)]"/>
+                <filter string="Cửa hàng" name="cua_hang"
+                        domain="[('location', '=', 'cua_hang')]"/>
+                <filter string="Về xưởng" name="ve_xuong"
+                        domain="[('location', '=', 've_xuong')]"/>
+                <filter string="QC" name="qc"
+                        domain="[('location', '=', 'qc')]"/>
+                <filter string="Văn phòng" name="van_phong"
+                        domain="[('location', '=', 'van_phong')]"/>
+                <separator/>
+                <filter string="Nháp" name="nhap" domain="[('state', '=', 'nhap')]"/>
+                <filter string="Lược" name="luoc" domain="[('state', '=', 'luoc')]"/>
+                <filter string="Lần 2" name="lan_2" domain="[('state', '=', 'lan_2')]"/>
+                <filter string="Hoàn thiện" name="hoan_thien"
+                        domain="[('state', '=', 'hoan_thien')]"/>
+                <separator/>
+                <group>
+                    <filter string="Khách hàng" name="group_partner" domain="[]"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter string="Người phụ trách" name="group_responsible" domain="[]"
+                            context="{'group_by': 'responsible_id'}"/>
+                    <filter string="Tình trạng" name="group_state" domain="[]"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Vị trí" name="group_location" domain="[]"
+                            context="{'group_by': 'location'}"/>
+                    <filter string="Mã bộ" name="group_set" domain="[]"
+                            context="{'group_by': 'set_code'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ GARMENT CALENDAR ============ -->
+    <record id="view_vbs_garment_calendar" model="ir.ui.view">
+        <field name="name">vbs.garment.calendar</field>
+        <field name="model">vbs.garment</field>
+        <field name="arch" type="xml">
+            <calendar string="Lịch đồ may"
+                      date_start="planned_date"
+                      color="responsible_id"
+                      mode="month"
+                      quick_create="false">
+                <field name="ref"/>
+                <field name="partner_id" filters="1"/>
+                <field name="garment_type"/>
+                <field name="state"/>
+                <field name="responsible_id" filters="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- ============ GARMENT ACTION ============ -->
+    <record id="action_vbs_garment" model="ir.actions.act_window">
+        <field name="name">Theo dõi đồ may</field>
+        <field name="res_model">vbs.garment</field>
+        <field name="view_mode">kanban,list,calendar,form</field>
+        <field name="search_view_id" ref="view_vbs_garment_search"/>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có đồ nào</p>
+            <p>Thêm đồ may từ đơn hàng của khách.</p>
+        </field>
+    </record>
+
+    <!-- Dashboard submenus consolidated into search filters on action_vbs_garment -->
+
+</odoo>

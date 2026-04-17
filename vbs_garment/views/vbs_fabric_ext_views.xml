@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Show garment_id + pattern_id on fabric order lines -->
+    <record id="view_vbs_fabric_order_form_garment" model="ir.ui.view">
+        <field name="name">vbs.fabric.order.form.garment</field>
+        <field name="model">vbs.fabric.order</field>
+        <field name="inherit_id" ref="vbs_fabric.view_vbs_fabric_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/list/field[@name='garment_ref']" position="before">
+                <field name="garment_id" optional="show"/>
+                <field name="pattern_id" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/form//field[@name='garment_ref']" position="before">
+                <field name="garment_id"/>
+                <field name="pattern_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Stock list: show consumed + available -->
+    <record id="view_vbs_fabric_stock_list_garment" model="ir.ui.view">
+        <field name="name">vbs.fabric.stock.list.garment</field>
+        <field name="model">vbs.fabric.stock</field>
+        <field name="inherit_id" ref="vbs_fabric.view_vbs_fabric_stock_list"/>
+        <field name="arch" type="xml">
+            <list position="attributes">
+                <attribute name="decoration-danger">quantity_available &lt;= 0</attribute>
+            </list>
+            <field name="quantity_received" position="after">
+                <field name="quantity_consumed" string="Đã dùng (m)"/>
+                <field name="quantity_available" string="Còn lại (m)"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Stock form: show consumed + available -->
+    <record id="view_vbs_fabric_stock_form_garment" model="ir.ui.view">
+        <field name="name">vbs.fabric.stock.form.garment</field>
+        <field name="model">vbs.fabric.stock</field>
+        <field name="inherit_id" ref="vbs_fabric.view_vbs_fabric_stock_form"/>
+        <field name="arch" type="xml">
+            <field name="quantity_received" position="after">
+                <field name="quantity_consumed" readonly="1"/>
+                <field name="quantity_available" readonly="1"
+                       decoration-danger="quantity_available &lt;= 0"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Stock search: out of stock filter -->
+    <record id="view_vbs_fabric_stock_search_garment" model="ir.ui.view">
+        <field name="name">vbs.fabric.stock.search.garment</field>
+        <field name="model">vbs.fabric.stock</field>
+        <field name="inherit_id" ref="vbs_fabric.view_vbs_fabric_stock_search"/>
+        <field name="arch" type="xml">
+            <field name="fabric_type" position="after">
+                <separator/>
+                <filter string="Hết hàng" name="out_of_stock"
+                        domain="[('quantity_available', '&lt;=', 0)]"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

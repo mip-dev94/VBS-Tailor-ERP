@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vbs_fabric_stock_form" model="ir.ui.view">
+        <field name="name">vbs.fabric.stock.form</field>
+        <field name="model">vbs.fabric.stock</field>
+        <field name="arch" type="xml">
+            <form string="Tồn kho vải">
+                <sheet>
+                    <group>
+                        <group string="Thông tin vải">
+                            <field name="partner_id"/>
+                            <field name="fabric_order_id"/>
+                            <field name="fabric_type_id"/>
+                            <field name="fabric_brand"/>
+                            <field name="fabric_type"/>
+                            <field name="quantity_received"/>
+                        </group>
+                    </group>
+                    <group string="Ghi chú (bắt buộc)">
+                        <field name="note" nolabel="1" placeholder="Nhập ghi chú..."/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_vbs_fabric_stock_list" model="ir.ui.view">
+        <field name="name">vbs.fabric.stock.list</field>
+        <field name="model">vbs.fabric.stock</field>
+        <field name="arch" type="xml">
+            <list string="Tồn kho vải">
+                <field name="partner_id"/>
+                <field name="fabric_type_id" optional="show"/>
+                <field name="fabric_order_id" optional="hide"/>
+                <field name="fabric_brand"/>
+                <field name="fabric_type"/>
+                <field name="quantity_received" string="Đã nhập (m)"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_vbs_fabric_stock_search" model="ir.ui.view">
+        <field name="name">vbs.fabric.stock.search</field>
+        <field name="model">vbs.fabric.stock</field>
+        <field name="arch" type="xml">
+            <search string="Tìm tồn kho vải">
+                <field name="partner_id"/>
+                <field name="fabric_brand"/>
+                <field name="fabric_type"/>
+                <separator/>
+                <group>
+                    <filter string="Khách hàng" name="group_partner" domain="[]"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter string="Hãng vải" name="group_brand" domain="[]"
+                            context="{'group_by': 'fabric_brand'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vbs_fabric_stock" model="ir.actions.act_window">
+        <field name="name">Tồn kho vải</field>
+        <field name="res_model">vbs.fabric.stock</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vbs_fabric_stock_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có tồn kho vải nào</p>
+        </field>
+    </record>
+
+</odoo>

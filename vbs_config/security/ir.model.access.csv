@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vbs_pricing_product_admin,vbs.pricing.product admin,model_vbs_pricing_product,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_pricing_product_accountant,vbs.pricing.product accountant,model_vbs_pricing_product,vbs_base.group_vbs_accountant,1,0,0,0
+access_vbs_sla_config_admin,vbs.sla.config admin,model_vbs_sla_config,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_pattern_admin,vbs.pattern admin,model_vbs_pattern,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_pattern_accountant,vbs.pattern accountant,model_vbs_pattern,vbs_base.group_vbs_accountant,1,0,0,0
+access_vbs_pattern_sale,vbs.pattern sale,model_vbs_pattern,vbs_base.group_vbs_sale,1,0,0,0
+access_vbs_pattern_workshop,vbs.pattern workshop,model_vbs_pattern,vbs_base.group_vbs_workshop,1,1,1,0
+access_vbs_pattern_office,vbs.pattern office,model_vbs_pattern,vbs_base.group_vbs_office,1,1,1,0
+access_vbs_stage_template_admin,vbs.stage.template admin,model_vbs_stage_template,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_stage_template_workshop,vbs.stage.template workshop,model_vbs_stage_template,vbs_base.group_vbs_workshop,1,1,0,0

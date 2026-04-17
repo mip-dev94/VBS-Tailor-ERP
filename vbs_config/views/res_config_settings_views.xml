@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_vbs" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.vbs</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="VBS Tailor" string="VBS Tailor"
+                     data-key="vbs_config"
+                     groups="vbs_base.group_vbs_admin">
+
+                    <block title="Thông tin cửa hàng" name="vbs_shop_info">
+                        <setting string="Thông tin liên hệ"
+                                 help="Cập nhật thông tin cửa hàng hiển thị trên đơn hàng và báo cáo.">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="vbs_company_phone" class="col-lg-3 o_light_label"/>
+                                    <field name="vbs_company_phone" class="oe_inline"/>
+                                </div>
+                                <div class="row">
+                                    <label for="vbs_company_email" class="col-lg-3 o_light_label"/>
+                                    <field name="vbs_company_email" class="oe_inline"/>
+                                </div>
+                                <div class="row">
+                                    <label for="vbs_company_street" class="col-lg-3 o_light_label"/>
+                                    <field name="vbs_company_street" class="oe_inline"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="SLA &amp; Sản xuất" name="vbs_sla_settings">
+                        <setting string="SLA mặc định"
+                                 help="Số ngày tối đa mặc định cho mỗi công đoạn sản xuất. Có thể tuỳ chỉnh riêng từng loại đồ trong Cấu hình SLA.">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="vbs_sla_default_days" class="col-lg-3 o_light_label"/>
+                                    <field name="vbs_sla_default_days" class="oe_inline"/>
+                                    <span class="ms-2 text-muted">ngày</span>
+                                </div>
+                            </div>
+                            <div class="mt8">
+                                <button name="%(vbs_config.action_vbs_sla_config)d"
+                                        type="action" string="→ Cấu hình SLA chi tiết"
+                                        class="btn-link" icon="fa-cog"/>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Tự động hoá (CRM)" name="vbs_crm_settings">
+                        <setting string="Contact Log tự động"
+                                 help="Tự động tạo ghi chú liên hệ khi trạng thái đồ may hoặc vải thay đổi.">
+                            <field name="vbs_auto_contact_log"/>
+                        </setting>
+                        <setting string="Thông báo Sale khi đồ về VP"
+                                 help="Tự động tạo activity nhắc Sale liên hệ khách khi đồ được chuyển về văn phòng.">
+                            <field name="vbs_auto_notify_sale"/>
+                        </setting>
+                        <setting string="Nhắc thử đồ hàng ngày"
+                                 help="Cron chạy mỗi ngày, tạo activity nhắc thử đồ cho khách có đồ đang chờ fitting.">
+                            <field name="vbs_fitting_reminder"/>
+                        </setting>
+                    </block>
+
+                    <block title="Quản lý nhanh" name="vbs_quick_links">
+                        <setting string="Truy cập nhanh các cấu hình VBS">
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <button name="%(vbs_config.action_vbs_pricing_product)d"
+                                            type="action" string="→ Bảng giá gia công"
+                                            class="btn-link" icon="fa-money"/>
+                                </div>
+                                <div class="mt4">
+                                    <button name="%(vbs_config.action_vbs_stage_template)d"
+                                            type="action" string="→ Template công đoạn"
+                                            class="btn-link" icon="fa-list-ol"/>
+                                </div>
+                                <div class="mt4">
+                                    <button name="%(vbs_config.action_vbs_pattern)d"
+                                            type="action" string="→ Mã rập"
+                                            class="btn-link" icon="fa-scissors"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

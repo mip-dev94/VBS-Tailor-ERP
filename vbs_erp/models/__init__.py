@@ -1,13 +1,2 @@
-from . import sale_order
-from . import vbs_garment
-from . import vbs_garment_move
-from . import vbs_garment_step
-from . import vbs_fabric_type
-from . import vbs_fabric_order
-from . import vbs_fabric_stock
-from . import vbs_pricing
-from . import vbs_sla_config
-from . import vbs_contact_log
-from . import planning_slot_ext
-from . import vbs_pattern
-from . import vbs_stage_template
+# -*- coding: utf-8 -*-
+# Hollow bridge — all models live in split modules (vbs_base, vbs_fabric, etc.)

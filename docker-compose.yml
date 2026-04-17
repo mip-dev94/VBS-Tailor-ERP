@@ -33,6 +33,12 @@ services:
       - ./odoo.conf.docker:/etc/odoo/odoo.conf:ro
       - ./vbs_erp:/mnt/extra-addons/vbs_erp:ro
       - ./vbs_planning:/mnt/extra-addons/vbs_planning:ro
+      - ./vbs_base:/mnt/extra-addons/vbs_base:ro
+      - ./vbs_fabric:/mnt/extra-addons/vbs_fabric:ro
+      - ./vbs_config:/mnt/extra-addons/vbs_config:ro
+      - ./vbs_garment:/mnt/extra-addons/vbs_garment:ro
+      - ./vbs_contact:/mnt/extra-addons/vbs_contact:ro
+      - ./vbs_hr:/mnt/extra-addons/vbs_hr:ro
     restart: unless-stopped
 
 volumes:

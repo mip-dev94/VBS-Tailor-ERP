@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vbs_sla_config_list" model="ir.ui.view">
+        <field name="name">vbs.sla.config.list</field>
+        <field name="model">vbs.sla.config</field>
+        <field name="arch" type="xml">
+            <list string="Cấu hình SLA" editable="bottom">
+                <field name="garment_type"/>
+                <field name="state"/>
+                <field name="max_days"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_vbs_sla_config" model="ir.actions.act_window">
+        <field name="name">Cấu hình SLA</field>
+        <field name="res_model">vbs.sla.config</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có cấu hình SLA</p>
+            <p>Thiết lập số ngày tối đa cho từng loại đồ ở mỗi tình trạng.</p>
+        </field>
+    </record>
+
+</odoo>

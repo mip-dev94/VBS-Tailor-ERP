@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_root_config"
+              name="Cấu hình"
+              sequence="99"
+              groups="vbs_base.group_vbs_admin"/>
+
+    <menuitem id="menu_config_pricing"
+              name="Bảng giá gia công"
+              parent="menu_root_config"
+              action="action_vbs_pricing_product"
+              sequence="10"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+
+    <menuitem id="menu_config_sla"
+              name="Cấu hình SLA"
+              parent="menu_root_config"
+              action="action_vbs_sla_config"
+              sequence="20"
+              groups="vbs_base.group_vbs_admin"/>
+
+    <menuitem id="menu_config_stage_template"
+              name="Template công đoạn"
+              parent="menu_root_config"
+              action="action_vbs_stage_template"
+              sequence="25"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop"/>
+
+    <menuitem id="menu_config_pattern"
+              name="Mã rập"
+              parent="menu_root_config"
+              action="action_vbs_pattern"
+              sequence="30"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+
+</odoo>

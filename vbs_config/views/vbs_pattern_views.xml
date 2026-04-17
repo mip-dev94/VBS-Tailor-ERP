@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ PATTERN LIST ============ -->
+    <record id="view_vbs_pattern_list" model="ir.ui.view">
+        <field name="name">vbs.pattern.list</field>
+        <field name="model">vbs.pattern</field>
+        <field name="arch" type="xml">
+            <list string="Mã rập" decoration-muted="active == False">
+                <field name="code" string="Mã rập"/>
+                <field name="pattern_type" widget="badge"
+                       decoration-info="pattern_type == 'template'"
+                       decoration-warning="pattern_type == 'custom'"/>
+                <field name="partner_id"/>
+                <field name="garment_type"/>
+                <field name="fabric_meters_std" optional="show"/>
+                <field name="storage_location" optional="hide"/>
+                <field name="based_on_id" optional="hide"/>
+                <field name="active" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============ PATTERN FORM ============ -->
+    <record id="view_vbs_pattern_form" model="ir.ui.view">
+        <field name="name">vbs.pattern.form</field>
+        <field name="model">vbs.pattern</field>
+        <field name="arch" type="xml">
+            <form string="Mã rập">
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <widget name="web_ribbon" title="Lưu trữ" bg_color="bg-danger"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <span class="text-muted me-2">
+                            <field name="code" readonly="1"/>
+                        </span>
+                        <h1><field name="name" placeholder="Tên rập (tuỳ chọn)"/></h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin rập">
+                            <field name="pattern_type"/>
+                            <field name="partner_id"
+                                   invisible="pattern_type == 'template'"
+                                   required="pattern_type == 'custom'"/>
+                            <field name="garment_type"/>
+                            <field name="based_on_id"
+                                   invisible="pattern_type == 'template'"/>
+                        </group>
+                        <group string="Lưu kho &amp; Định mức">
+                            <field name="storage_location"/>
+                            <field name="fabric_meters_std"/>
+                            <field name="date_created"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Số đo" name="measurements">
+                            <field name="measurements" nolabel="1"
+                                   placeholder="Dài áo: ... cm&#10;Dài tay: ... cm&#10;Ngực: ... cm&#10;Eo: ... cm&#10;Hông: ... cm&#10;Dài quần: ... cm"/>
+                        </page>
+                        <page string="Ghi chú" name="notes">
+                            <field name="note" nolabel="1" placeholder="Số đo đặc biệt, lưu ý khi may, yêu cầu riêng của khách..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ PATTERN SEARCH ============ -->
+    <record id="view_vbs_pattern_search" model="ir.ui.view">
+        <field name="name">vbs.pattern.search</field>
+        <field name="model">vbs.pattern</field>
+        <field name="arch" type="xml">
+            <search string="Tìm mã rập">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter string="Rập template" name="template"
+                        domain="[('pattern_type','=','template')]"/>
+                <filter string="Rập khách" name="custom"
+                        domain="[('pattern_type','=','custom')]"/>
+                <separator/>
+                <filter string="Đã lưu trữ" name="archived"
+                        domain="[('active','=',False)]"/>
+                <group>
+                    <filter string="Loại rập" name="group_pattern_type" domain="[]"
+                            context="{'group_by':'pattern_type'}"/>
+                    <filter string="Khách hàng" name="group_partner" domain="[]"
+                            context="{'group_by':'partner_id'}"/>
+                    <filter string="Loại đồ" name="group_garment_type" domain="[]"
+                            context="{'group_by':'garment_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ ACTION ============ -->
+    <record id="action_vbs_pattern" model="ir.actions.act_window">
+        <field name="name">Mã rập</field>
+        <field name="res_model">vbs.pattern</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vbs_pattern_search"/>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo mã rập đầu tiên
+            </p>
+            <p>
+                Quản lý rập template chuẩn và rập khách, kèm vị trí lưu kho và định mức vải.
+            </p>
+        </field>
+    </record>
+
+</odoo>

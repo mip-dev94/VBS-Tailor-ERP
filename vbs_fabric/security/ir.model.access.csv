@@ -1,0 +1,22 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vbs_fabric_order_admin,vbs.fabric.order admin,model_vbs_fabric_order,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_fabric_order_accountant,vbs.fabric.order accountant,model_vbs_fabric_order,vbs_base.group_vbs_accountant,1,1,0,0
+access_vbs_fabric_order_sale,vbs.fabric.order sale,model_vbs_fabric_order,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_fabric_order_warehouse,vbs.fabric.order warehouse,model_vbs_fabric_order,vbs_base.group_vbs_warehouse,1,1,1,0
+access_vbs_fabric_order_workshop,vbs.fabric.order workshop,model_vbs_fabric_order,vbs_base.group_vbs_workshop,1,0,0,0
+access_vbs_fabric_order_office,vbs.fabric.order office,model_vbs_fabric_order,vbs_base.group_vbs_office,1,0,0,0
+access_vbs_fabric_order_line_admin,vbs.fabric.order.line admin,model_vbs_fabric_order_line,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_fabric_order_line_accountant,vbs.fabric.order.line accountant,model_vbs_fabric_order_line,vbs_base.group_vbs_accountant,1,1,1,0
+access_vbs_fabric_order_line_sale,vbs.fabric.order.line sale,model_vbs_fabric_order_line,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_fabric_order_line_warehouse,vbs.fabric.order.line warehouse,model_vbs_fabric_order_line,vbs_base.group_vbs_warehouse,1,1,1,0
+access_vbs_fabric_order_line_workshop,vbs.fabric.order.line workshop,model_vbs_fabric_order_line,vbs_base.group_vbs_workshop,1,0,0,0
+access_vbs_fabric_order_line_office,vbs.fabric.order.line office,model_vbs_fabric_order_line,vbs_base.group_vbs_office,1,0,0,0
+access_vbs_fabric_stock_admin,vbs.fabric.stock admin,model_vbs_fabric_stock,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_fabric_stock_accountant,vbs.fabric.stock accountant,model_vbs_fabric_stock,vbs_base.group_vbs_accountant,1,0,0,0
+access_vbs_fabric_stock_sale,vbs.fabric.stock sale,model_vbs_fabric_stock,vbs_base.group_vbs_sale,1,0,0,0
+access_vbs_fabric_stock_warehouse,vbs.fabric.stock warehouse,model_vbs_fabric_stock,vbs_base.group_vbs_warehouse,1,1,1,0
+access_vbs_fabric_stock_office,vbs.fabric.stock office,model_vbs_fabric_stock,vbs_base.group_vbs_office,1,0,0,0
+access_vbs_fabric_type_admin,vbs.fabric.type admin,model_vbs_fabric_type,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_fabric_type_accountant,vbs.fabric.type accountant,model_vbs_fabric_type,vbs_base.group_vbs_accountant,1,0,0,0
+access_vbs_fabric_type_sale,vbs.fabric.type sale,model_vbs_fabric_type,vbs_base.group_vbs_sale,1,0,0,0
+access_vbs_fabric_type_workshop,vbs.fabric.type workshop,model_vbs_fabric_type,vbs_base.group_vbs_workshop,1,0,0,0

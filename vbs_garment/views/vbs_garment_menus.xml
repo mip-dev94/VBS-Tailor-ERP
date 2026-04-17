@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_root_production"
+              name="Sản xuất"
+              sequence="12"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office,vbs_base.group_vbs_sale"/>
+
+    <menuitem id="menu_production_garments"
+              name="Theo dõi đồ"
+              parent="menu_root_production"
+              action="action_vbs_garment"
+              sequence="10"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+
+    <menuitem id="menu_production_planning"
+              name="Lịch làm việc"
+              parent="menu_root_production"
+              action="vbs_planning.action_planning_slot"
+              sequence="20"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+
+    <!-- Dashboard submenus removed — use search filters (Sẵn sàng VP / Chờ thử / Hoàn thiện / Quá hạn SLA) on Theo dõi đồ. -->
+
+</odoo>

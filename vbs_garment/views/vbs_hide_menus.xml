@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ ẨN CÁC APP GỐC KHÔNG CẦN THIẾT ============ -->
+
+    <record id="vbs_planning.menu_planning_root" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+
+    <record id="hr.menu_hr_root" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+
+    <record id="account.menu_finance" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+
+    <record id="utm.menu_link_tracker_root" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+
+    <record id="base.menu_tests" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+
+</odoo>
