@@ -16,6 +16,13 @@ EOF
     echo
 fi
 
+# Sync odoo.conf.docker với .env (Odoo conf không interpolate env vars)
+PG_PASS=$(grep '^POSTGRES_PASSWORD=' .env | cut -d= -f2-)
+MASTER_PASS=$(grep '^ODOO_MASTER_PASSWORD=' .env | cut -d= -f2-)
+sed -i "s|^db_password *=.*|db_password = $PG_PASS|" odoo.conf.docker
+sed -i "s|^admin_passwd *=.*|admin_passwd = $MASTER_PASS|" odoo.conf.docker
+echo ">>> Đã sync odoo.conf.docker với .env"
+
 docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml pull || true
 docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml up -d --build
 

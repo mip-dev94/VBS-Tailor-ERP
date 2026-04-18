@@ -20,11 +20,13 @@ fi
 apt-get install -y docker-compose-plugin || true
 systemctl enable --now docker
 
-echo "[3/5] Tạo user 'vbs' và thêm vào group docker..."
+echo "[3/5] Tạo user 'vbs' + group docker + sudo NOPASSWD..."
 if ! id vbs >/dev/null 2>&1; then
     adduser --disabled-password --gecos "" vbs
 fi
 usermod -aG docker vbs
+echo 'vbs ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/vbs
+chmod 440 /etc/sudoers.d/vbs
 
 echo "[4/5] Bật swap 2GB (VM 2GB RAM hay OOM khi import lớn)..."
 if ! swapon --show | grep -q '/swapfile'; then
@@ -53,7 +55,7 @@ systemctl enable --now fail2ban
 echo
 echo "=== Bootstrap xong ==="
 echo "Tiếp theo:"
-echo "  1. su - vbs"
+echo "  1. sudo su - vbs       # user vbs disabled-password, dùng sudo để switch"
 echo "  2. git clone <repo-url> ~/ERP_Fashion"
 echo "  3. cd ~/ERP_Fashion/odoo/custom_addons"
 echo "  4. bash deploy/02-app-up.sh"
