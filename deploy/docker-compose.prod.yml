@@ -1,0 +1,9 @@
+# Override cho production: bind Odoo chỉ vào 127.0.0.1 (nginx proxy ra ngoài).
+# Dùng: docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml up -d
+services:
+  odoo:
+    ports: !override
+      - "127.0.0.1:8069:8069"
+    restart: always
+  db:
+    restart: always
