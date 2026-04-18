@@ -74,16 +74,31 @@
                 <attribute name="domain">[('user_ids', '=', False)]</attribute>
             </field>
 
-            <!-- Tab guard: ẩn Order Lines khi order_type là B2B/Sửa (chỉ may đo) -->
+            <!-- Rename tab "Order Lines" → "Thành phẩm" (áp dụng cho mọi order_type) -->
             <xpath expr="//page[@name='order_lines']" position="attributes">
-                <attribute name="invisible">order_type in ('b2b', 'sua')</attribute>
+                <attribute name="string">Thành phẩm</attribute>
             </xpath>
 
-            <!-- Tab đồ may + Tab thanh toán -->
+            <!-- Thêm cột set_type, garment_type, garment_count + nút tạo LSX -->
+            <xpath expr="//page[@name='order_lines']//list//field[@name='product_template_id']" position="after">
+                <field name="set_type" optional="show"/>
+                <field name="garment_type" optional="show"/>
+                <field name="garment_count" string="LSX" optional="show"/>
+                <button name="action_create_garments" type="object"
+                        string="Tạo LSX" icon="fa-industry"
+                        class="btn-link" title="Tạo lệnh sản xuất từ dòng này"
+                        invisible="garment_count &gt; 0 or not garment_type"/>
+                <button name="action_view_line_garments" type="object"
+                        string="Xem LSX" icon="fa-tshirt"
+                        class="btn-link"
+                        invisible="garment_count == 0"/>
+            </xpath>
+
+            <!-- Tab đồ may (read-only aggregate) + Tab thanh toán -->
             <page name="order_lines" position="after">
-                <page string="Đồ may" name="vbs_garments"
-                      invisible="order_type == 'b2c'">
-                    <field name="garment_ids">
+                <page string="Đồ may (tổng hợp)" name="vbs_garments"
+                      invisible="garment_count == 0">
+                    <field name="garment_ids" readonly="1">
                         <list editable="bottom">
                             <field name="sequence" widget="handle"/>
                             <field name="garment_type"/>

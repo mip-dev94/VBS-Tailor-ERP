@@ -9,6 +9,7 @@
     'depends': ['base'],
     'data': [
         'security/res_groups.xml',
+        'data/menu_overrides.xml',
     ],
     'installable': True,
     'application': False,

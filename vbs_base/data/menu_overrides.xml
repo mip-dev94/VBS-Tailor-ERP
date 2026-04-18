@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ẩn menu Dashboards (board module) — không dùng trong VBS ERP -->
+    <record id="board.menu_reporting_dashboard" model="ir.ui.menu">
+        <field name="active" eval="False"/>
+    </record>
+
+    <!-- Đổi tên 3 menu gốc sang tiếng Việt -->
+    <record id="mail.mail_menu_root_discuss" model="ir.ui.menu">
+        <field name="name">Thảo luận</field>
+    </record>
+
+    <record id="base.menu_management" model="ir.ui.menu">
+        <field name="name">Ứng dụng</field>
+    </record>
+
+    <record id="base.menu_administration" model="ir.ui.menu">
+        <field name="name">Cài đặt</field>
+    </record>
+</odoo>

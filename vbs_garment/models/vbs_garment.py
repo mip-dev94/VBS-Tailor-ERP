@@ -38,6 +38,14 @@ class VbsGarment(models.Model):
         index=True,
     )
 
+    order_line_id = fields.Many2one(
+        'sale.order.line',
+        string='Dòng đơn hàng',
+        ondelete='cascade',
+        index=True,
+        help='Dòng sale.order.line đã sinh ra LSX này. Xoá line → cascade xoá LSX.',
+    )
+
     partner_id = fields.Many2one(
         related='order_id.partner_id',
         string='Khách hàng',

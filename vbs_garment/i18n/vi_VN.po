@@ -1524,3 +1524,78 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_list
 msgid "✓ Đã trả khách"
 msgstr ""
+
+# ─────────────────────────────────────────────────────────────────────────
+# Bổ sung: sale.order.line extension — Thành phẩm + auto-create LSX (2026-04-18)
+# ─────────────────────────────────────────────────────────────────────────
+
+#. module: vbs_garment
+#: model:ir.model.fields,field_description:vbs_garment.field_sale_order_line__set_type
+msgid "Loại bộ"
+msgstr "Loại bộ"
+
+#. module: vbs_garment
+#: model:ir.model.fields,field_description:vbs_garment.field_sale_order_line__garment_type
+msgid "Loại đồ"
+msgstr "Loại đồ"
+
+#. module: vbs_garment
+#: model:ir.model.fields,field_description:vbs_garment.field_sale_order_line__garment_ids
+#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__order_line_id
+msgid "Lệnh sản xuất"
+msgstr "Lệnh sản xuất"
+
+#. module: vbs_garment
+#: model:ir.model.fields,field_description:vbs_garment.field_sale_order_line__garment_count
+msgid "Số LSX"
+msgstr "Số lệnh sản xuất"
+
+#. module: vbs_garment
+#: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order_line__set_type__le
+msgid "Lẻ"
+msgstr "Lẻ"
+
+#. module: vbs_garment
+#: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order_line__set_type__bo_2
+msgid "Bộ 2 mảnh"
+msgstr "Bộ 2 mảnh"
+
+#. module: vbs_garment
+#: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order_line__set_type__bo_3
+msgid "Bộ 3 mảnh"
+msgstr "Bộ 3 mảnh"
+
+#. module: vbs_garment
+#: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
+msgid "Thành phẩm"
+msgstr "Thành phẩm"
+
+#. module: vbs_garment
+#: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
+msgid "Đồ may (tổng hợp)"
+msgstr "Đồ may (tổng hợp)"
+
+#. module: vbs_garment
+#: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
+msgid "Tạo LSX"
+msgstr "Tạo lệnh sản xuất"
+
+#. module: vbs_garment
+#: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
+msgid "Xem LSX"
+msgstr "Xem lệnh sản xuất"
+
+#. module: vbs_garment
+#: code:addons/vbs_garment/models/sale_order.py:0
+msgid "Dòng \"%s\" chưa chọn Loại đồ — không thể tạo lệnh sản xuất."
+msgstr "Dòng \"%s\" chưa chọn Loại đồ — không thể tạo lệnh sản xuất."
+
+#. module: vbs_garment
+#: code:addons/vbs_garment/models/sale_order.py:0
+msgid "Dòng \"%s\" đã có %d lệnh sản xuất. Xoá lệnh cũ trước khi tạo mới."
+msgstr "Dòng \"%s\" đã có %d lệnh sản xuất. Xoá lệnh cũ trước khi tạo mới."
+
+#. module: vbs_garment
+#: code:addons/vbs_garment/models/sale_order.py:0
+msgid "Lệnh sản xuất vừa tạo"
+msgstr "Lệnh sản xuất vừa tạo"
