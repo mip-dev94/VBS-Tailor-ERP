@@ -30,8 +30,6 @@ GARMENT_TYPE = [
     # ── Legacy (data cũ) ───────────────────────────
     ('ao_khoac', 'Áo khoác (cũ)'),
     ('gile', 'Gile (cũ)'),
-    ('bo_comple', 'Bộ comple 2 mảnh (cũ)'),
-    ('bo_3_manh', 'Bộ 3 mảnh (cũ)'),
 ]
 
 GARMENT_STATE = [
@@ -39,6 +37,37 @@ GARMENT_STATE = [
     ('luoc', 'Lược'),
     ('lan_2', 'Lần 2'),
     ('hoan_thien', 'Hoàn thiện'),
+    ('huy', 'Huỷ'),
+]
+
+# ── Thuộc tính kỹ thuật đồ may (ánh xạ sheet "Thuộc tính phụ" file DV01A) ──
+HOA_TIET_VAI = [
+    ('tron', 'Trơn'),
+    ('ke_o_vua', 'Kẻ ô vừa'),
+    ('ke_o_to', 'Kẻ ô to (trên 10cm)'),
+    ('ke_doc', 'Kẻ dọc'),
+    ('ke_doc_to', 'Kẻ dọc to'),
+]
+
+SO_HANG_CUC = [
+    ('mot_hang', 'Một hàng cúc'),
+    ('hai_hang', 'Hai hàng cúc'),
+]
+
+TUI_AO = [
+    ('op', 'Ốp'),
+    ('nap', 'Nắp'),
+]
+
+LOT_AO = [
+    ('lot_ca', 'Lót cả'),
+    ('lot_nua', 'Lót nửa'),
+    ('khong_lot', 'Không lót'),
+]
+
+LO_VE = [
+    ('co_lv', 'Có lơ vê'),
+    ('khong_lv', 'Không lơ vê'),
 ]
 
 GARMENT_LOCATION = [

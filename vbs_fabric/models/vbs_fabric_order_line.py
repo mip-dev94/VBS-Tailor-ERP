@@ -2,13 +2,6 @@
 from odoo import api, fields, models
 
 
-BRANCH = [
-    ('vbs_hn', 'VBS HN'),
-    ('vbs_sg', 'VBS SG'),
-    ('tfc_hn', 'TFC HN'),
-    ('tfc_sg', 'TFC SG'),
-]
-
 INSPECTION_STATE = [
     ('chua_kt', 'Chưa kiểm tra'),
     ('da_kt', 'Đã kiểm tra'),
@@ -69,11 +62,7 @@ class VbsFabricOrderLine(models.Model):
 
     sequence = fields.Integer(string='STT', default=10)
 
-    # ── Khách & chi nhánh (mỗi dòng độc lập) ──────────────────────
-    branch = fields.Selection(
-        BRANCH, string='Chi nhánh',
-        required=True, default='vbs_hn', index=True,
-    )
+    # ── Khách (mỗi dòng độc lập) ──────────────────────
     partner_id = fields.Many2one(
         'res.partner', string='Khách hàng',
         required=True, index=True,

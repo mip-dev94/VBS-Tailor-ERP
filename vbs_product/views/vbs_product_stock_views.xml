@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vbs_product_stock_form" model="ir.ui.view">
+        <field name="name">vbs.product.stock.form</field>
+        <field name="model">vbs.product.stock</field>
+        <field name="arch" type="xml">
+            <form string="Tồn kho sản phẩm">
+                <sheet>
+                    <group>
+                        <group string="Sản phẩm &amp; cửa hàng">
+                            <field name="product_id"/>
+                            <field name="partner_store_id"/>
+                            <field name="date_received"/>
+                        </group>
+                        <group string="Số lượng">
+                            <field name="quantity_on_hand"/>
+                            <field name="quantity_reserved" readonly="1"/>
+                            <field name="quantity_available" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Ghi chú">
+                        <field name="note" nolabel="1" placeholder="Ghi chú..."/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_vbs_product_stock_list" model="ir.ui.view">
+        <field name="name">vbs.product.stock.list</field>
+        <field name="model">vbs.product.stock</field>
+        <field name="arch" type="xml">
+            <list string="Tồn kho sản phẩm">
+                <field name="product_id"/>
+                <field name="partner_store_id"/>
+                <field name="quantity_on_hand"/>
+                <field name="quantity_reserved"/>
+                <field name="quantity_available"/>
+                <field name="date_received"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_vbs_product_stock_search" model="ir.ui.view">
+        <field name="name">vbs.product.stock.search</field>
+        <field name="model">vbs.product.stock</field>
+        <field name="arch" type="xml">
+            <search string="Tìm tồn kho sản phẩm">
+                <field name="product_id"/>
+                <field name="partner_store_id"/>
+                <separator/>
+                <filter string="Còn hàng" name="available"
+                        domain="[('quantity_available','>',0)]"/>
+                <filter string="Hết hàng" name="empty"
+                        domain="[('quantity_available','&lt;=',0)]"/>
+                <group>
+                    <filter string="Cửa hàng" name="group_store"
+                            context="{'group_by': 'partner_store_id'}"/>
+                    <filter string="Sản phẩm" name="group_product"
+                            context="{'group_by': 'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vbs_product_stock" model="ir.actions.act_window">
+        <field name="name">Tồn kho sản phẩm</field>
+        <field name="res_model">vbs.product.stock</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vbs_product_stock_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có tồn kho sản phẩm nào</p>
+        </field>
+    </record>
+
+</odoo>

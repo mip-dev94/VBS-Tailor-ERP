@@ -1,0 +1,640 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* vbs_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260409\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-18 00:33+0000\n"
+"PO-Revision-Date: 2026-04-18 00:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_needaction
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_needaction
+msgid "Action Needed"
+msgstr "Cần xử lý"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__active
+msgid "Active"
+msgstr "Đang hoạt động"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_ids
+msgid "Activities"
+msgstr "Hoạt động"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Biểu tượng ngoại lệ hoạt động"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_state
+msgid "Activity State"
+msgstr "Trạng thái hoạt động"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Biểu tượng loại hoạt động"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_attachment_count
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_attachment_count
+msgid "Attachment Count"
+msgstr "Số tệp đính kèm"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bomber
+msgid "Bomber"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__budong
+msgid "Budong"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bo_3_manh
+msgid "Bộ 3 mảnh (cũ)"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bo_comple
+msgid "Bộ comple 2 mảnh (cũ)"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__chan_vay
+msgid "Chân váy"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product
+msgid "Chưa có sản phẩm B2C nào"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product_stock
+msgid "Chưa có tồn kho sản phẩm nào"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__create_uid
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__create_uid
+msgid "Created by"
+msgstr "Tạo bởi"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__create_date
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__create_date
+msgid "Created on"
+msgstr "Ngày tạo"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Còn hàng"
+msgstr ""
+
+#. module: vbs_product
+#. odoo-python
+#: code:addons/vbs_product/models/vbs_product.py:0
+msgid "Cần có ít nhất 1 record tồn kho trước khi đánh dấu sẵn bán."
+msgstr ""
+
+#. module: vbs_product
+#. odoo-python
+#: code:addons/vbs_product/models/vbs_product.py:0
+msgid "Cần nhập giá bán trước khi đánh dấu sẵn bán."
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__partner_store_id
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Cửa hàng"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__display_name
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_follower_ids
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_follower_ids
+msgid "Followers"
+msgstr "Người theo dõi"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_partner_ids
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Người theo dõi (Đối tác)"
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__note
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+msgid "Ghi chú"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+msgid "Ghi chú..."
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile
+msgid "Gile (cũ)"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile_dd
+msgid "Gile DD"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile_sb
+msgid "Gile SB"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Giá"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__list_price
+msgid "Giá bán"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__cost_price
+msgid "Giá vốn"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__has_message
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__has_message
+msgid "Has Message"
+msgstr "Có tin nhắn"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Hết hàng"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__id
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__id
+msgid "ID"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_exception_icon
+msgid "Icon"
+msgstr "Biểu tượng"
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__message_needaction
+#: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__message_has_error
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__message_has_sms_error
+#: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_has_error
+#: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__image_1920
+msgid "Image"
+msgstr "Hình ảnh"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__image_1024
+msgid "Image 1024"
+msgstr "Ảnh 1024"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__image_128
+msgid "Image 128"
+msgstr "Ảnh 128"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__image_256
+msgid "Image 256"
+msgstr "Ảnh 256"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__image_512
+msgid "Image 512"
+msgstr "Ảnh 512"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_is_follower
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_is_follower
+msgid "Is Follower"
+msgstr "Là người theo dõi"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_available
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_list
+msgid "Khả dụng"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_kanban
+msgid "Khả dụng:"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__size
+msgid "Kích cỡ"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__write_uid
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật bởi"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__write_date
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__write_date
+msgid "Last Updated on"
+msgstr "Sửa lần cuối vào"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__fabric_type_id
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Loại vải"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__garment_type
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Loại đồ"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_has_error
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_has_error
+msgid "Message Delivery error"
+msgstr "Lỗi gửi tin nhắn"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_ids
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_ids
+msgid "Messages"
+msgstr "Tin nhắn"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Hạn hoạt động của tôi"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__color
+msgid "Màu sắc"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__code
+msgid "Mã SP"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Mô tả"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__detail
+msgid "Mô tả chi tiết"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Mô tả chi tiết cho landing..."
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Hạn hoạt động tiếp theo"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_summary
+msgid "Next Activity Summary"
+msgstr "Tóm tắt hoạt động tiếp theo"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_type_id
+msgid "Next Activity Type"
+msgstr "Loại hoạt động tiếp theo"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__date_received
+msgid "Ngày nhập kho"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__archived
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Ngừng bán"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__draft
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Nháp"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_needaction_counter
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Số hoạt động"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_has_error_counter
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_has_error_counter
+msgid "Number of errors"
+msgstr "Số lỗi"
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__message_needaction_counter
+#: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Số tin nhắn cần xử lý"
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__message_has_error_counter
+#: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Số tin nhắn lỗi gửi"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__polo
+msgid "Polo"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_kanban
+msgid "Product"
+msgstr "Sản phẩm"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__quan
+msgid "Quần"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__quan_comple
+msgid "Quần Comple"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_user_id
+msgid "Responsible User"
+msgstr "Người phụ trách"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_has_sms_error
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Lỗi gửi SMS"
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi
+msgid "Sơ mi"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi_tux
+msgid "Sơ mi Tux"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi_tao_kieu
+msgid "Sơ mi tao kiểu"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__product_id
+#: model:ir.ui.menu,name:vbs_product.menu_vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Sản phẩm"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+msgid "Sản phẩm & cửa hàng"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.actions.act_window,name:vbs_product.action_vbs_product
+#: model:ir.model,name:vbs_product.model_vbs_product
+#: model:ir.ui.menu,name:vbs_product.menu_root_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_list
+msgid "Sản phẩm B2C"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__ready
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Sẵn bán"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+msgid "Số lượng"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Thuộc tính"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__currency_id
+msgid "Tiền tệ"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__state
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Trạng thái"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__name
+msgid "Tên sản phẩm"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Tên sản phẩm..."
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Tìm sản phẩm"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Tìm tồn kho sản phẩm"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product
+msgid "Tạo sản phẩm thủ công hoặc publish từ đồ may đã hoàn thiện."
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Tồn kho"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.actions.act_window,name:vbs_product.action_vbs_product_stock
+#: model:ir.ui.menu,name:vbs_product.menu_vbs_product_stock
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_list
+msgid "Tồn kho sản phẩm"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model,name:vbs_product.model_vbs_product_stock
+msgid "Tồn kho sản phẩm B2C"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__stock_ids
+msgid "Tồn kho theo cửa hàng"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_on_hand
+msgid "Tồn thực tế"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__total_available
+msgid "Tổng tồn khả dụng"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__website_message_ids
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__website_message_ids
+msgid "Website Messages"
+msgstr "Tin nhắn website"
+
+#. module: vbs_product
+#: model:ir.model.fields,help:vbs_product.field_vbs_product__website_message_ids
+#: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__website_message_ids
+msgid "Website communication history"
+msgstr "Lịch sử trao đổi qua website"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_comple_sb
+msgid "Áo Comple SB"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_comple_db
+msgid "Áo Comple ĐB"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_dai_pb
+msgid "Áo dài PB"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_dai_sb
+msgid "Áo dài SB"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_khoac
+msgid "Áo khoác (cũ)"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_ngan_pb
+msgid "Áo ngắn PB"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_ngan_sb
+msgid "Áo ngắn SB"
+msgstr ""
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Đánh dấu sẵn bán"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__sold
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Đã bán"
+msgstr ""
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_reserved
+msgid "Đã giữ"
+msgstr ""
+
+#. module: vbs_product
+#. odoo-python
+#: code:addons/vbs_product/models/vbs_product.py:0
+msgid "Đã ngừng bán."
+msgstr ""
+
+#. module: vbs_product
+#. odoo-python
+#: code:addons/vbs_product/models/vbs_product.py:0
+msgid "Đã đánh dấu sẵn bán."
+msgstr ""

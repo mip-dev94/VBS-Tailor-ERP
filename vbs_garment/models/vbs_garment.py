@@ -3,12 +3,13 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.addons.vbs_base.models.vbs_constants import (
     GARMENT_TYPE, GARMENT_STATE, GARMENT_LOCATION,
+    HOA_TIET_VAI, SO_HANG_CUC, TUI_AO, LOT_AO, LO_VE,
 )
 
 
 class VbsGarment(models.Model):
     _name = 'vbs.garment'
-    _description = 'Theo dõi đồ may'
+    _description = 'Lệnh sản xuất'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'order_id, sequence, id'
     _rec_name = 'name'
@@ -92,6 +93,17 @@ class VbsGarment(models.Model):
         tracking=True,
     )
 
+    cancel_reason = fields.Char(
+        string='Lý do huỷ',
+        tracking=True,
+    )
+
+    date_cancelled = fields.Datetime(
+        string='Ngày huỷ',
+        readonly=True,
+        copy=False,
+    )
+
     move_ids = fields.One2many(
         'vbs.garment.move',
         'garment_id',
@@ -139,7 +151,6 @@ class VbsGarment(models.Model):
         help='Ngày nhập đồ vào hệ thống (Ngày nhập trong sheet cũ)',
     )
 
-    confirmed_cs = fields.Boolean(string='CS xác nhận', tracking=True)
     confirmed_sale = fields.Boolean(string='Sale xác nhận', tracking=True)
     confirmed_qa = fields.Boolean(string='Đã kiểm tra', tracking=True)
 
@@ -231,6 +242,33 @@ class VbsGarment(models.Model):
         string='Trễ kế hoạch',
         compute='_compute_overdue_planned',
         store=True,
+    )
+
+    # ── Thuộc tính kỹ thuật (theo sheet "Thuộc tính phụ" — file DV01A) ───────
+    hoa_tiet_vai = fields.Selection(
+        HOA_TIET_VAI, string='Hoạ tiết vải', tracking=True,
+    )
+    dai_ao = fields.Float(
+        string='Dài áo (cm)', digits=(6, 1),
+        help='Xưởng dùng khi cắt rập. Ánh xạ cột "Dài áo" file DV01A.',
+    )
+    dai_tay = fields.Float(
+        string='Dài tay áo (cm)', digits=(6, 1),
+    )
+    so_hang_cuc = fields.Selection(
+        SO_HANG_CUC, string='Số hàng cúc',
+    )
+    tui_ao = fields.Selection(
+        TUI_AO, string='Túi áo',
+    )
+    lot_ao = fields.Selection(
+        LOT_AO, string='Lót áo',
+    )
+    dai_quan = fields.Float(
+        string='Dài quần (cm)', digits=(6, 1),
+    )
+    lo_ve = fields.Selection(
+        LO_VE, string='Lơ vê',
     )
 
     # ── Ghi chú nội bộ ───────────────────────────────────────────────────────
@@ -395,10 +433,16 @@ class VbsGarment(models.Model):
         if 'state' in vals:
             new_state = vals['state']
             for rec in self:
-                if rec.state == 'nhap' and new_state == 'luoc' and not rec.confirmed_cs:
-                    raise UserError(_('Cần CS xác nhận trước khi chuyển "%s" sang "Lược".') % rec.ref)
                 if rec.state == 'lan_2' and new_state == 'hoan_thien' and not rec.confirmed_qa:
                     raise UserError(_('Cần QA xác nhận trước khi chuyển "%s" sang "Hoàn thiện".') % rec.ref)
+                if new_state == 'huy':
+                    reason = vals.get('cancel_reason', rec.cancel_reason)
+                    if not reason:
+                        raise UserError(_(
+                            'Phải điền "Lý do huỷ" trước khi huỷ đồ %s.'
+                        ) % rec.ref)
+                    vals.setdefault('date_cancelled', fields.Datetime.now())
+                    vals.setdefault('location', 'huy')
             vals['date_state_changed'] = fields.Datetime.now()
         result = super().write(vals)
         # CRM automation: tạo contact log khi state hoặc location thay đổi
@@ -610,9 +654,6 @@ class VbsGarment(models.Model):
                 vals['date_return'] = today
             garment.write(vals)
 
-    def action_confirm_cs(self):
-        self.write({'confirmed_cs': True})
-
     def action_confirm_qa(self):
         self.write({'confirmed_qa': True})
 
@@ -624,6 +665,31 @@ class VbsGarment(models.Model):
 
     def action_quick_van_phong(self):
         self.write({'location': 'van_phong'})
+
+    def action_cancel_garment(self):
+        """Huỷ đồ: mở wizard hỏi lý do (hoặc huỷ luôn nếu đã có cancel_reason)."""
+        active = self.filtered(lambda g: g.state != 'huy')
+        if not active:
+            return
+        need_reason = active.filtered(lambda g: not g.cancel_reason)
+        if need_reason:
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'vbs.garment.cancel.wizard',
+                'view_mode': 'form',
+                'target': 'new',
+                'name': _('Huỷ đồ'),
+                'context': {'default_garment_ids': [(6, 0, active.ids)]},
+            }
+        active.write({'state': 'huy'})
+
+    def action_uncancel_garment(self):
+        """Admin thao tác: bỏ huỷ, đưa đồ về trạng thái nhap."""
+        self.write({
+            'state': 'nhap',
+            'location': 'cua_hang',
+            'date_cancelled': False,
+        })
 
     def _check_sla(self):
         """Cron method: tạo activity cho garment quá hạn SLA."""

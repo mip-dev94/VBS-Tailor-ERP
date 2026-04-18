@@ -50,7 +50,6 @@
                     <group>
                         <group string="Thông tin phiếu">
                             <field name="date_order" readonly="state != 'draft'"/>
-                            <field name="branch_summary" readonly="1"/>
                             <field name="partner_ids" widget="many2many_tags" readonly="1"/>
                             <field name="total_quantity" readonly="1"/>
                         </group>
@@ -66,7 +65,6 @@
                             <field name="line_ids">
                                 <list editable="bottom">
                                     <field name="sequence" widget="handle"/>
-                                    <field name="branch"/>
                                     <field name="sapo_code"/>
                                     <field name="partner_id"/>
                                     <field name="garment_ref" optional="show"/>
@@ -89,8 +87,7 @@
                                 <form string="Dòng vải">
                                     <sheet>
                                         <group>
-                                            <group string="Khách &amp; chi nhánh">
-                                                <field name="branch"/>
+                                            <group string="Khách">
                                                 <field name="sapo_code"/>
                                                 <field name="partner_id"/>
                                                 <field name="garment_ref"/>
@@ -169,7 +166,6 @@
                   decoration-info="state == 'cho_ve'">
                 <field name="name"/>
                 <field name="date_order"/>
-                <field name="branch_summary" string="Chi nhánh"/>
                 <field name="partner_ids" widget="many2many_tags" string="Khách hàng"/>
                 <field name="line_count" string="Số dòng"/>
                 <field name="total_quantity" string="Tổng (m)" sum="Tổng (m)"/>
@@ -197,15 +193,6 @@
                 <field name="partner_ids"/>
                 <field name="line_ids" string="Hãng vải"
                        filter_domain="[('line_ids.fabric_brand', 'ilike', self)]"/>
-                <separator/>
-                <filter string="VBS HN" name="br_vbs_hn"
-                        domain="[('line_ids.branch', '=', 'vbs_hn')]"/>
-                <filter string="VBS SG" name="br_vbs_sg"
-                        domain="[('line_ids.branch', '=', 'vbs_sg')]"/>
-                <filter string="TFC HN" name="br_tfc_hn"
-                        domain="[('line_ids.branch', '=', 'tfc_hn')]"/>
-                <filter string="TFC SG" name="br_tfc_sg"
-                        domain="[('line_ids.branch', '=', 'tfc_sg')]"/>
                 <separator/>
                 <filter string="Có dòng chưa kiểm tra" name="chua_kt"
                         domain="[('line_ids.inspection_state', '=', 'chua_kt')]"/>

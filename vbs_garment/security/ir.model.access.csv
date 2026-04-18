@@ -28,3 +28,7 @@ access_planning_slot_office_erp,planning.slot office erp,vbs_planning.model_plan
 access_planning_role_sale,planning.role sale,vbs_planning.model_planning_role,vbs_base.group_vbs_sale,1,0,0,0
 access_planning_role_workshop_erp,planning.role workshop erp,vbs_planning.model_planning_role,vbs_base.group_vbs_workshop,1,0,0,0
 access_planning_role_office_erp,planning.role office erp,vbs_planning.model_planning_role,vbs_base.group_vbs_office,1,0,0,0
+access_vbs_garment_cancel_wizard_admin,vbs.garment.cancel.wizard admin,model_vbs_garment_cancel_wizard,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_garment_cancel_wizard_sale,vbs.garment.cancel.wizard sale,model_vbs_garment_cancel_wizard,vbs_base.group_vbs_sale,1,1,1,1
+access_vbs_garment_cancel_wizard_workshop,vbs.garment.cancel.wizard workshop,model_vbs_garment_cancel_wizard,vbs_base.group_vbs_workshop,1,1,1,1
+access_vbs_garment_cancel_wizard_office,vbs.garment.cancel.wizard office,model_vbs_garment_cancel_wizard,vbs_base.group_vbs_office,1,1,1,1

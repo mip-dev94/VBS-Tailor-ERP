@@ -2,7 +2,7 @@
 <odoo>
 
     <menuitem id="menu_root_contact"
-              name="Liên hệ khách hàng"
+              name="Đơn đặt"
               sequence="11"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
 

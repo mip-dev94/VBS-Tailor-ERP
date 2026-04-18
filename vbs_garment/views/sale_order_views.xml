@@ -74,9 +74,15 @@
                 <attribute name="domain">[('user_ids', '=', False)]</attribute>
             </field>
 
+            <!-- Tab guard: ẩn Order Lines khi order_type là B2B/Sửa (chỉ may đo) -->
+            <xpath expr="//page[@name='order_lines']" position="attributes">
+                <attribute name="invisible">order_type in ('b2b', 'sua')</attribute>
+            </xpath>
+
             <!-- Tab đồ may + Tab thanh toán -->
             <page name="order_lines" position="after">
-                <page string="Đồ may" name="vbs_garments">
+                <page string="Đồ may" name="vbs_garments"
+                      invisible="order_type == 'b2c'">
                     <field name="garment_ids">
                         <list editable="bottom">
                             <field name="sequence" widget="handle"/>

@@ -8,8 +8,9 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app data-string="VBS Tailor" string="VBS Tailor"
-                     data-key="vbs_config"
-                     groups="vbs_base.group_vbs_admin">
+                     name="vbs_config"
+                     groups="vbs_base.group_vbs_admin"
+                     logo="/vbs_config/static/description/icon.png">
 
                     <block title="Thông tin cửa hàng" name="vbs_shop_info">
                         <setting string="Thông tin liên hệ"

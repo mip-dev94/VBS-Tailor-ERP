@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vbs_product_form" model="ir.ui.view">
+        <field name="name">vbs.product.form</field>
+        <field name="model">vbs.product</field>
+        <field name="arch" type="xml">
+            <form string="Sản phẩm B2C">
+                <header>
+                    <button name="action_mark_ready" type="object"
+                            string="Đánh dấu sẵn bán" class="oe_highlight"
+                            invisible="state != 'draft'"/>
+                    <button name="action_archive" type="object"
+                            string="Ngừng bán"
+                            invisible="state in ('archived',)"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,ready,sold,archived"/>
+                </header>
+                <sheet>
+                    <field name="image_1920" widget="image" class="oe_avatar"
+                           options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <span class="text-muted me-2">
+                            <field name="code" readonly="1"/>
+                        </span>
+                        <h1><field name="name" placeholder="Tên sản phẩm..."/></h1>
+                    </div>
+                    <group>
+                        <group string="Thuộc tính">
+                            <field name="garment_type"/>
+                            <field name="fabric_type_id"/>
+                            <field name="size"/>
+                            <field name="color"/>
+                        </group>
+                        <group string="Giá">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="list_price" widget="monetary"/>
+                            <field name="cost_price" widget="monetary"
+                                   groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+                            <field name="total_available" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Tồn kho" name="stock">
+                            <field name="stock_ids">
+                                <list editable="bottom">
+                                    <field name="partner_store_id"/>
+                                    <field name="quantity_on_hand"/>
+                                    <field name="quantity_reserved" readonly="1"/>
+                                    <field name="quantity_available" readonly="1"/>
+                                    <field name="date_received"/>
+                                    <field name="note" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Mô tả" name="description">
+                            <field name="detail" placeholder="Mô tả chi tiết cho landing..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_vbs_product_list" model="ir.ui.view">
+        <field name="name">vbs.product.list</field>
+        <field name="model">vbs.product</field>
+        <field name="arch" type="xml">
+            <list string="Sản phẩm B2C">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="garment_type"/>
+                <field name="size" optional="show"/>
+                <field name="color" optional="show"/>
+                <field name="list_price" widget="monetary"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="total_available" string="Khả dụng"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-success="state == 'ready'"
+                       decoration-muted="state == 'sold'"
+                       decoration-danger="state == 'archived'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_vbs_product_kanban" model="ir.ui.view">
+        <field name="name">vbs.product.kanban</field>
+        <field name="model">vbs.product</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="list_price"/>
+                <field name="currency_id"/>
+                <field name="total_available"/>
+                <field name="image_128"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="o_kanban_card_content d-flex">
+                            <div class="o_kanban_image me-3">
+                                <img t-att-src="kanban_image('vbs.product', 'image_128', record.id.raw_value)"
+                                     alt="Product" class="rounded"/>
+                            </div>
+                            <div class="oe_kanban_details flex-grow-1">
+                                <strong><field name="name"/></strong>
+                                <div class="text-muted small"><field name="code"/></div>
+                                <div>
+                                    <field name="list_price" widget="monetary"/>
+                                </div>
+                                <div class="text-muted small">
+                                    Khả dụng: <field name="total_available"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_vbs_product_search" model="ir.ui.view">
+        <field name="name">vbs.product.search</field>
+        <field name="model">vbs.product</field>
+        <field name="arch" type="xml">
+            <search string="Tìm sản phẩm">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="garment_type"/>
+                <field name="fabric_type_id"/>
+                <separator/>
+                <filter string="Nháp" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Sẵn bán" name="ready" domain="[('state','=','ready')]"/>
+                <filter string="Đã bán" name="sold" domain="[('state','=','sold')]"/>
+                <filter string="Ngừng bán" name="archived" domain="[('state','=','archived')]"/>
+                <separator/>
+                <filter string="Còn hàng" name="has_stock" domain="[('total_available','>',0)]"/>
+                <group>
+                    <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Loại đồ" name="group_garment_type" context="{'group_by': 'garment_type'}"/>
+                    <filter string="Loại vải" name="group_fabric" context="{'group_by': 'fabric_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vbs_product" model="ir.actions.act_window">
+        <field name="name">Sản phẩm B2C</field>
+        <field name="res_model">vbs.product</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_vbs_product_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có sản phẩm B2C nào</p>
+            <p>Tạo sản phẩm thủ công hoặc publish từ đồ may đã hoàn thiện.</p>
+        </field>
+    </record>
+
+</odoo>

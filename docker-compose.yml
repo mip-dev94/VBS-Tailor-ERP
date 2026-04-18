@@ -39,6 +39,8 @@ services:
       - ./vbs_garment:/mnt/extra-addons/vbs_garment:ro
       - ./vbs_contact:/mnt/extra-addons/vbs_contact:ro
       - ./vbs_hr:/mnt/extra-addons/vbs_hr:ro
+      - ./vbs_product:/mnt/extra-addons/vbs_product:ro
+      - ./io:/mnt/io
     restart: unless-stopped
 
 volumes:

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_root_product"
+              name="Sản phẩm B2C"
+              sequence="13"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+    <menuitem id="menu_vbs_product"
+              name="Sản phẩm"
+              parent="menu_root_product"
+              action="action_vbs_product"
+              sequence="10"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+    <menuitem id="menu_vbs_product_stock"
+              name="Tồn kho sản phẩm"
+              parent="menu_root_product"
+              action="action_vbs_product_stock"
+              sequence="20"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+</odoo>

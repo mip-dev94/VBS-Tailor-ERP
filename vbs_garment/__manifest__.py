@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'VBS Sản xuất',
-    'version': '19.0.2.2.0',
+    'version': '19.0.2.4.0',
     'category': 'VBS',
-    'summary': 'Theo dõi đồ may, công đoạn, vận chuyển, lịch sản xuất',
+    'summary': 'Lệnh sản xuất, công đoạn, vận chuyển, lịch sản xuất',
     'description': 'Module trung tâm VBS: quản lý đồ may, công đoạn sản xuất, vận chuyển LCH/LX, tích hợp planning + sale.',
     'depends': [
         'vbs_base',
@@ -20,6 +20,7 @@
         'data/vbs_sequence_data.xml',
         'data/mail_activity_type_data.xml',
         'data/ir_cron.xml',
+        'wizard/vbs_garment_cancel_wizard_views.xml',
         'views/vbs_garment_views.xml',
         'views/planning_slot_ext_views.xml',
         'views/sale_order_views.xml',

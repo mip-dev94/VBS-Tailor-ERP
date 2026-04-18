@@ -118,9 +118,23 @@ class VbsPattern(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        type_map = dict(GARMENT_TYPE)
+        Partner = self.env['res.partner']
         for vals in vals_list:
             if vals.get('code', 'New') == 'New':
                 vals['code'] = self.env['ir.sequence'].next_by_code('vbs.pattern') or 'New'
+            if not vals.get('name'):
+                parts = []
+                if vals.get('partner_id'):
+                    partner = Partner.browse(vals['partner_id'])
+                    if partner.name:
+                        parts.append(partner.name)
+                if vals.get('garment_type'):
+                    gt_label = type_map.get(vals['garment_type'])
+                    if gt_label:
+                        parts.append(gt_label)
+                if parts:
+                    vals['name'] = ' — '.join(parts)
         records = super().create(vals_list)
         # Auto-archive previous active custom pattern of same partner+garment_type
         for rec in records:

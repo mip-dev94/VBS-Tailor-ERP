@@ -7,7 +7,7 @@
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office,vbs_base.group_vbs_sale"/>
 
     <menuitem id="menu_production_garments"
-              name="Theo dõi đồ"
+              name="Lệnh sản xuất"
               parent="menu_root_production"
               action="action_vbs_garment"
               sequence="10"

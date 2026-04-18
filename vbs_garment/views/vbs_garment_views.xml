@@ -84,11 +84,6 @@
                             string="✓ Đã trả khách"
                             class="btn-success"
                             invisible="location in ('da_tra', 'huy')"/>
-                    <button name="action_confirm_cs" type="object"
-                            string="CS duyệt"
-                            class="btn-secondary"
-                            groups="vbs_base.group_vbs_office,vbs_base.group_vbs_admin"
-                            invisible="confirmed_cs or state != 'nhap'"/>
                     <button name="action_confirm_qa" type="object"
                             string="QA duyệt"
                             class="btn-secondary"
@@ -99,8 +94,18 @@
                             class="btn-secondary"
                             groups="vbs_base.group_vbs_sale,vbs_base.group_vbs_admin"
                             invisible="confirmed_sale or state != 'hoan_thien' or location in ('da_tra', 'huy')"/>
+                    <button name="action_cancel_garment" type="object"
+                            string="Huỷ đồ"
+                            class="btn-danger"
+                            confirm="Huỷ đồ này? (phải điền Lý do huỷ trước)"
+                            invisible="state == 'huy' or location == 'da_tra'"/>
+                    <button name="action_uncancel_garment" type="object"
+                            string="Bỏ huỷ"
+                            class="btn-secondary"
+                            groups="vbs_base.group_vbs_admin"
+                            invisible="state != 'huy'"/>
                     <field name="state" widget="statusbar"
-                           statusbar_visible="nhap,sua,luoc,lan_2,hoan_thien"/>
+                           statusbar_visible="nhap,luoc,lan_2,hoan_thien"/>
                     <field name="location" widget="statusbar"
                            statusbar_visible="cua_hang,ve_xuong,qc,van_phong,da_tra"/>
                 </header>
@@ -194,6 +199,31 @@
                                     groups="vbs_base.group_vbs_admin"/>
                         </group>
                     </group>
+                    <group string="Thuộc tính kỹ thuật"
+                           invisible="state == 'huy'">
+                        <group>
+                            <field name="hoa_tiet_vai"/>
+                            <field name="so_hang_cuc"/>
+                            <field name="tui_ao"/>
+                            <field name="lot_ao"/>
+                            <field name="lo_ve"/>
+                        </group>
+                        <group>
+                            <field name="dai_ao"/>
+                            <field name="dai_tay"/>
+                            <field name="dai_quan"/>
+                        </group>
+                    </group>
+                    <group string="Huỷ đồ" invisible="state != 'huy' and not cancel_reason">
+                        <group>
+                            <field name="cancel_reason"
+                                   readonly="state == 'huy'"
+                                   required="state == 'huy'"/>
+                        </group>
+                        <group>
+                            <field name="date_cancelled" readonly="1"/>
+                        </group>
+                    </group>
                     <group string="Ghi chú">
                         <field name="note" nolabel="1"/>
                     </group>
@@ -215,12 +245,11 @@
                         </page>
                         <page string="Xác nhận" name="approvals">
                             <group>
-                                <field name="confirmed_cs" readonly="1"/>
                                 <field name="confirmed_qa" readonly="1"/>
                                 <field name="confirmed_sale" readonly="1"/>
                             </group>
                             <div class="text-muted small">
-                                <p>Dùng nút "CS/QA/Sale duyệt" ở đầu form để đặt cờ. Lịch sử thay đổi xem ở Chatter.</p>
+                                <p>Dùng nút "QA/Sale duyệt" ở đầu form để đặt cờ. Lịch sử thay đổi xem ở Chatter.</p>
                             </div>
                         </page>
                     </notebook>
@@ -238,7 +267,7 @@
             <list string="Đồ may"
                   editable="top"
                   decoration-danger="sla_overdue == True or overdue_planned == True"
-                  decoration-muted="location in ('da_tra', 'huy')">
+                  decoration-muted="location in ('da_tra', 'huy') or state == 'huy'">
                 <field name="partner_id" readonly="1"/>
                 <field name="garment_type"/>
                 <field name="detail"/>
@@ -391,6 +420,8 @@
                 <filter string="Lần 2" name="lan_2" domain="[('state', '=', 'lan_2')]"/>
                 <filter string="Hoàn thiện" name="hoan_thien"
                         domain="[('state', '=', 'hoan_thien')]"/>
+                <filter string="Đã huỷ" name="huy"
+                        domain="[('state', '=', 'huy')]"/>
                 <separator/>
                 <group>
                     <filter string="Khách hàng" name="group_partner" domain="[]"
@@ -429,7 +460,7 @@
 
     <!-- ============ GARMENT ACTION ============ -->
     <record id="action_vbs_garment" model="ir.actions.act_window">
-        <field name="name">Theo dõi đồ may</field>
+        <field name="name">Lệnh sản xuất</field>
         <field name="res_model">vbs.garment</field>
         <field name="view_mode">kanban,list,calendar,form</field>
         <field name="search_view_id" ref="view_vbs_garment_search"/>

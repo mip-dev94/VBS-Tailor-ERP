@@ -77,10 +77,6 @@ class VbsFabricOrder(models.Model):
         compute='_compute_total_quantity', store=True,
     )
 
-    branch_summary = fields.Char(
-        string='Chi nhánh', compute='_compute_branch_summary', store=True,
-    )
-
     note = fields.Text(string='Ghi chú')
 
     @api.model_create_multi
@@ -105,15 +101,6 @@ class VbsFabricOrder(models.Model):
     def _compute_total_quantity(self):
         for rec in self:
             rec.total_quantity = sum(rec.line_ids.mapped('quantity'))
-
-    @api.depends('line_ids.branch')
-    def _compute_branch_summary(self):
-        branch_dict = dict(self.env['vbs.fabric.order.line']._fields['branch'].selection)
-        for rec in self:
-            branches = set(rec.line_ids.mapped('branch'))
-            rec.branch_summary = ', '.join(
-                branch_dict.get(b, b) for b in branches if b
-            )
 
     @api.depends('date_order', 'date_arrived')
     def _compute_lead_time(self):

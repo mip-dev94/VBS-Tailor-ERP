@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vbs_garment_cancel_wizard_form" model="ir.ui.view">
+        <field name="name">vbs.garment.cancel.wizard.form</field>
+        <field name="model">vbs.garment.cancel.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Huỷ đồ">
+                <sheet>
+                    <group>
+                        <field name="garment_ids" widget="many2many_tags" readonly="1"/>
+                        <field name="reason" placeholder="VD: Khách đổi ý, vải hết…"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" type="object" string="Xác nhận huỷ"
+                            class="btn-danger"/>
+                    <button string="Thoát" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_vbs_garment_cancel_wizard" model="ir.actions.act_window">
+        <field name="name">Huỷ đồ</field>
+        <field name="res_model">vbs.garment.cancel.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vbs_product_admin,vbs.product admin,model_vbs_product,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_product_sale,vbs.product sale,model_vbs_product,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_product_office,vbs.product office,model_vbs_product,vbs_base.group_vbs_office,1,1,1,0
+access_vbs_product_workshop,vbs.product workshop,model_vbs_product,vbs_base.group_vbs_workshop,1,0,0,0
+access_vbs_product_stock_admin,vbs.product.stock admin,model_vbs_product_stock,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_product_stock_sale,vbs.product.stock sale,model_vbs_product_stock,vbs_base.group_vbs_sale,1,1,1,0
+access_vbs_product_stock_office,vbs.product.stock office,model_vbs_product_stock,vbs_base.group_vbs_office,1,1,1,0
+access_vbs_product_stock_workshop,vbs.product.stock workshop,model_vbs_product_stock,vbs_base.group_vbs_workshop,1,0,0,0

@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* vbs_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260409\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-18 00:33+0000\n"
+"PO-Revision-Date: 2026-04-18 00:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: vbs_base
+#: model:res.groups,name:vbs_base.group_vbs_warehouse
+#: model:res.groups.privilege,name:vbs_base.priv_vbs_warehouse
+msgid "Kho VBS"
+msgstr ""
+
+#. module: vbs_base
+#: model:res.groups,name:vbs_base.group_vbs_accountant
+#: model:res.groups.privilege,name:vbs_base.priv_vbs_accountant
+msgid "Kế toán VBS"
+msgstr ""
+
+#. module: vbs_base
+#: model:res.groups,name:vbs_base.group_vbs_admin
+#: model:res.groups.privilege,name:vbs_base.priv_vbs_admin
+msgid "Quản trị VBS"
+msgstr ""
+
+#. module: vbs_base
+#: model:res.groups,name:vbs_base.group_vbs_sale
+#: model:res.groups.privilege,name:vbs_base.priv_vbs_sale
+msgid "Sale VBS"
+msgstr ""
+
+#. module: vbs_base
+#: model:ir.module.category,name:vbs_base.module_category_vbs
+msgid "VBS"
+msgstr ""
+
+#. module: vbs_base
+#: model:res.groups,name:vbs_base.group_vbs_office
+#: model:res.groups.privilege,name:vbs_base.priv_vbs_office
+msgid "Văn phòng VBS"
+msgstr ""
+
+#. module: vbs_base
+#: model:res.groups,name:vbs_base.group_vbs_workshop
+#: model:res.groups.privilege,name:vbs_base.priv_vbs_workshop
+msgid "Xưởng VBS"
+msgstr ""

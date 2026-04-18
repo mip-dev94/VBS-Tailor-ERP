@@ -35,7 +35,7 @@
                         <span class="text-muted me-2">
                             <field name="code" readonly="1"/>
                         </span>
-                        <h1><field name="name" placeholder="Tên rập (tuỳ chọn)"/></h1>
+                        <h1><field name="name" placeholder="Tự tạo: [Khách] — [Loại đồ] (sửa nếu muốn)"/></h1>
                     </div>
                     <group>
                         <group string="Thông tin rập">
@@ -45,7 +45,9 @@
                                    required="pattern_type == 'custom'"/>
                             <field name="garment_type"/>
                             <field name="based_on_id"
-                                   invisible="pattern_type == 'template'"/>
+                                   invisible="pattern_type == 'template'"
+                                   options="{'no_quick_create': True, 'no_create_edit': True}"
+                                   domain="[('id', '!=', id), ('garment_type', '=', garment_type), ('active', '=', True)]"/>
                         </group>
                         <group string="Lưu kho &amp; Định mức">
                             <field name="storage_location"/>

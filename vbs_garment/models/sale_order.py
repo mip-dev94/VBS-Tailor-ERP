@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
-from odoo.exceptions import AccessError
+from odoo.exceptions import AccessError, ValidationError
 
 FASHION_STATE = [
     ('dat_hang', 'Đặt hàng'),
@@ -78,6 +78,24 @@ class SaleOrder(models.Model):
                 ])
             else:
                 order.pattern_count = 0
+
+    @api.constrains('order_type', 'order_line', 'garment_ids')
+    def _check_order_type_consistency(self):
+        for order in self:
+            if order.order_type == 'b2c' and order.garment_ids:
+                raise ValidationError(_(
+                    'Đơn B2C không thể có "Đồ may". '
+                    'Chuyển order_type sang B2B/Sửa nếu muốn may đo.'
+                ))
+            if order.order_type in ('b2b', 'sua'):
+                real_lines = order.order_line.filtered(
+                    lambda l: not l.display_type and l.product_id
+                )
+                if real_lines:
+                    raise ValidationError(_(
+                        'Đơn B2B/Sửa không thể có Order Line sản phẩm. '
+                        'Dùng tab "Đồ may" để quản lý.'
+                    ))
 
     @api.depends('payment_ids.amount', 'amount_total')
     def _compute_payment_state(self):
