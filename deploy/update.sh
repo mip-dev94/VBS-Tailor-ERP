@@ -39,8 +39,9 @@ if [ "${1:-}" = "all" ]; then
     echo "    Force update tất cả module (--upgrade-all)."
 else
     # Lấy thư mục con cấp 1 trong commits mới (= tên module)
+    # `|| true` sau grep: nếu không có dòng vbs_* nào → exit 0 thay vì 1 (tránh pipefail).
     CHANGED=$(git diff --name-only "$OLD_SHA" "$NEW_SHA" \
-        | grep -E '^vbs_[a-z_]+/' \
+        | { grep -E '^vbs_[a-z_]+/' || true; } \
         | cut -d/ -f1 | sort -u | tr '\n' ',' | sed 's/,$//')
     if [ -z "$CHANGED" ]; then
         echo "    Không có module nào thay đổi. Chỉ rebuild + restart."
