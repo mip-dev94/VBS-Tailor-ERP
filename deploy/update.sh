@@ -26,7 +26,7 @@ echo "=== [2/5] Git pull ==="
 OLD_SHA=$(git rev-parse HEAD)
 git pull --ff-only
 NEW_SHA=$(git rev-parse HEAD)
-if [ "$OLD_SHA" = "$NEW_SHA" ]; then
+if [ "$OLD_SHA" = "$NEW_SHA" ] && [ "${1:-}" != "all" ]; then
     echo "    Không có commit mới. Bỏ qua restart."
     exit 0
 fi
