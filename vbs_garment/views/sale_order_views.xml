@@ -94,6 +94,10 @@
                         string="Xem LSX" icon="fa-tshirt"
                         class="btn-link"
                         invisible="garment_count == 0"/>
+                <button name="action_compute_line_price" type="object"
+                        string="Tính giá" icon="fa-calculator"
+                        class="btn-link" title="Tính giá từ LSX → cập nhật đơn giá dòng này"
+                        invisible="garment_count == 0"/>
             </xpath>
 
             <!-- Tab đồ may (read-only aggregate) + Tab thanh toán -->

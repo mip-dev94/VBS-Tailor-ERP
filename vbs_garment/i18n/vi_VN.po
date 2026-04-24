@@ -1614,3 +1614,13 @@ msgstr "B2B Bán (Thành phẩm)"
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__b2b_type__sx
 msgid "B2B Gia công CMT"
 msgstr "B2B Gia công CMT"
+
+#. module: vbs_garment
+#: code:addons/vbs_garment/models/sale_order.py:0
+msgid "Tính giá"
+msgstr "Tính giá"
+
+#. module: vbs_garment
+#: code:addons/vbs_garment/models/sale_order.py:0
+msgid "Tính giá từ LSX → cập nhật đơn giá dòng này"
+msgstr "Tính giá từ LSX → cập nhật đơn giá dòng này"

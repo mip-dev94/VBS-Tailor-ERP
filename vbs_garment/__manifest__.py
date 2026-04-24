@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'VBS Sản xuất',
-    'version': '19.0.2.6.0',
+    'version': '19.0.2.7.0',
     'category': 'VBS',
     'summary': 'Lệnh sản xuất, công đoạn, vận chuyển, lịch sản xuất',
     'description': 'Module trung tâm VBS: quản lý đồ may, công đoạn sản xuất, vận chuyển LCH/LX, tích hợp planning + sale.',

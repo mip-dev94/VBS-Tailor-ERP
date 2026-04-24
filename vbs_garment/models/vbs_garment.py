@@ -529,7 +529,9 @@ class VbsGarment(models.Model):
                 )
 
     def action_compute_price(self):
-        """Admin trigger: tính giá = vải × mét + gia công + phụ phí."""
+        """Admin trigger: tính giá = vải × mét + gia công + phụ phí.
+        Sau đó cộng dồn tất cả garment trong cùng order line → ghi vào price_unit.
+        """
         self.ensure_one()
         fabric_cost = 0.0
         if self.fabric_id and self.fabric_meters:
@@ -543,6 +545,16 @@ class VbsGarment(models.Model):
         surcharge = self.price_surcharge or 0.0
 
         self.computed_price = fabric_cost + labor_cost + surcharge
+        self._push_price_to_order_line()
+
+    def _push_price_to_order_line(self):
+        """Cộng dồn computed_price của tất cả garment cùng order_line → price_unit."""
+        if not self.order_line_id:
+            return
+        line = self.order_line_id
+        total = sum(line.garment_ids.mapped('computed_price'))
+        if total:
+            line.price_unit = total
 
     def action_view_moves(self):
         self.ensure_one()

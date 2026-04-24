@@ -267,6 +267,14 @@ class SaleOrderLine(models.Model):
             'domain': [('id', 'in', created.ids)],
         }
 
+    def action_compute_line_price(self):
+        """Tính giá tất cả LSX trong dòng này → cộng dồn vào price_unit."""
+        for line in self:
+            if not line.garment_ids:
+                continue
+            for garment in line.garment_ids:
+                garment.action_compute_price()
+
     def action_view_line_garments(self):
         self.ensure_one()
         return {
