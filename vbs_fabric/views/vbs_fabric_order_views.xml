@@ -230,6 +230,30 @@
         </field>
     </record>
 
+    <!-- DVM: DS vải cần đặt (draft + cho_dat) -->
+    <record id="action_vbs_fabric_can_dat" model="ir.actions.act_window">
+        <field name="name">DS vải cần đặt</field>
+        <field name="res_model">vbs.fabric.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vbs_fabric_order_search"/>
+        <field name="domain">[('state', 'in', ['draft', 'cho_dat'])]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Không có phiếu vải nào đang chờ đặt</p>
+        </field>
+    </record>
+
+    <!-- DVM: DS vải đang về (cho_ve) -->
+    <record id="action_vbs_fabric_dang_ve" model="ir.actions.act_window">
+        <field name="name">DS vải đang về</field>
+        <field name="res_model">vbs.fabric.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_vbs_fabric_order_search"/>
+        <field name="domain">[('state', '=', 'cho_ve')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Không có phiếu vải nào đang trên đường về</p>
+        </field>
+    </record>
+
     <!-- Dashboard: Vải về hôm nay -->
     <record id="action_vbs_fabric_arrived_today" model="ir.actions.act_window">
         <field name="name">Vải về hôm nay</field>

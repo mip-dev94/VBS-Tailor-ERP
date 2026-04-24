@@ -56,6 +56,8 @@
             <!-- Loại đơn + thanh toán info -->
             <field name="partner_id" position="after">
                 <field name="order_type"/>
+                <field name="b2b_type" invisible="order_type != 'b2b'"
+                       required="order_type == 'b2b'"/>
                 <field name="payment_state" widget="badge"
                        decoration-danger="payment_state == 'chua_tt'"
                        decoration-warning="payment_state == 'tt_1_phan'"

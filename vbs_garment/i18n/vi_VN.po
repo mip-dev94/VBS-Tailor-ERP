@@ -1599,3 +1599,18 @@ msgstr "Dòng \"%s\" đã có %d lệnh sản xuất. Xoá lệnh cũ trước k
 #: code:addons/vbs_garment/models/sale_order.py:0
 msgid "Lệnh sản xuất vừa tạo"
 msgstr "Lệnh sản xuất vừa tạo"
+
+#. module: vbs_garment
+#: model:ir.model.fields,field_description:vbs_garment.field_sale_order__b2b_type
+msgid "Loại B2B"
+msgstr "Loại B2B"
+
+#. module: vbs_garment
+#: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__b2b_type__ban
+msgid "B2B Bán (Thành phẩm)"
+msgstr "B2B Bán (Thành phẩm)"
+
+#. module: vbs_garment
+#: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__b2b_type__sx
+msgid "B2B Gia công CMT"
+msgstr "B2B Gia công CMT"

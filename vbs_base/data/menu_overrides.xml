@@ -5,6 +5,11 @@
         <field name="active" eval="False"/>
     </record>
 
+    <!-- Ẩn menu Lập kế hoạch (planning) — xưởng chưa dùng Gantt calendar -->
+    <record id="vbs_planning.menu_planning_root" model="ir.ui.menu">
+        <field name="active" eval="False"/>
+    </record>
+
     <!-- Đổi tên 3 menu gốc sang tiếng Việt -->
     <record id="mail.mail_menu_root_discuss" model="ir.ui.menu">
         <field name="name">Thảo luận</field>

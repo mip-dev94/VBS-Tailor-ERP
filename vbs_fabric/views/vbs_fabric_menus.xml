@@ -13,6 +13,20 @@
               sequence="10"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_warehouse,vbs_base.group_vbs_sale"/>
 
+    <menuitem id="menu_fabric_can_dat"
+              name="DS vải cần đặt"
+              parent="menu_root_fabric"
+              action="action_vbs_fabric_can_dat"
+              sequence="12"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_warehouse,vbs_base.group_vbs_sale"/>
+
+    <menuitem id="menu_fabric_dang_ve"
+              name="DS vải đang về"
+              parent="menu_root_fabric"
+              action="action_vbs_fabric_dang_ve"
+              sequence="14"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_warehouse,vbs_base.group_vbs_sale"/>
+
     <menuitem id="menu_fabric_stock"
               name="Tồn kho"
               parent="menu_root_fabric"

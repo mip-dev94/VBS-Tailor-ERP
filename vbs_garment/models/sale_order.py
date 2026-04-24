@@ -9,6 +9,11 @@ SET_TYPE = [
     ('bo_3', 'Bộ 3 mảnh'),
 ]
 
+B2B_TYPE = [
+    ('ban', 'B2B Bán (Thành phẩm)'),
+    ('sx',  'B2B Gia công CMT'),
+]
+
 FASHION_STATE = [
     ('dat_hang', 'Đặt hàng'),
     ('da_thanh_toan', 'Đã thanh toán'),
@@ -32,6 +37,11 @@ class SaleOrder(models.Model):
         ('b2c', 'B2C (Thành phẩm)'),
         ('sua', 'Sửa (Đồ khách)'),
     ], string='Loại đơn', required=True, default='b2c', tracking=True)
+
+    b2b_type = fields.Selection(
+        B2B_TYPE, string='Loại B2B', tracking=True,
+        help='Bán: VBS mua vải + may + giao thành phẩm. CMT: khách mang vải, VBS chỉ gia công.',
+    )
 
     fashion_state = fields.Selection(
         FASHION_STATE, string='Trạng thái VBS',
