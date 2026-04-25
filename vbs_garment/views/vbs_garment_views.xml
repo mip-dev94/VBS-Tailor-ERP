@@ -89,11 +89,9 @@
                             class="btn-secondary"
                             groups="vbs_base.group_vbs_workshop,vbs_base.group_vbs_admin"
                             invisible="confirmed_qa or state != 'lan_2'"/>
-                    <button name="action_confirm_sale" type="object"
-                            string="Sale duyệt"
-                            class="btn-secondary"
-                            groups="vbs_base.group_vbs_sale,vbs_base.group_vbs_admin"
-                            invisible="confirmed_sale or state != 'hoan_thien' or location in ('da_tra', 'huy')"/>
+                    <!-- Sale duyệt đã bỏ: Sale không vào màn sản xuất, việc trả khách
+                         được thực hiện qua nút "✓ Trả khách" trên form này hoặc từ tab
+                         Đồ may của đơn hàng. confirmed_sale được set tự động khi trả. -->
                     <button name="action_cancel_garment" type="object"
                             string="Huỷ đồ"
                             class="btn-danger"
