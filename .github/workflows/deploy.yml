@@ -28,18 +28,7 @@ jobs:
           script_stop: true
           command_timeout: 30m
           script: |
-            REPO="$HOME/ERP_Fashion"
-            cd "$REPO"
+            cd ~/ERP_Fashion
             rm -f .git/index.lock .git/config.lock .git/HEAD.lock 2>/dev/null || true
             git checkout -- odoo.conf.docker 2>/dev/null || true
-            echo "=== run ==="
-            FORCE="${{ github.event.inputs.force_all }}"
-            set +e
-            if [ "$FORCE" = "true" ]; then
-              bash -x "$REPO/deploy/update.sh" all 2>&1
-            else
-              bash -x "$REPO/deploy/update.sh" 2>&1
-            fi
-            EXIT=$?
-            echo "=== update.sh exited: $EXIT ==="
-            exit $EXIT
+            bash deploy/update.sh
