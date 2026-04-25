@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- board.menu_reporting_dashboard đã bỏ — board module không được cài trên VBS setup -->
-
-    <!-- Ẩn menu Lập kế hoạch (planning) — xưởng chưa dùng Gantt calendar -->
-    <record id="vbs_planning.menu_planning_root" model="ir.ui.menu">
-        <field name="active" eval="False"/>
-    </record>
+    <!-- board + vbs_planning references removed — those modules are not
+         in vbs_base's depends. Menu hides for vbs_planning live in
+         vbs_garment/views/vbs_hide_menus.xml which properly depends on it. -->
 
     <!-- Đổi tên 3 menu gốc sang tiếng Việt -->
     <record id="mail.mail_menu_root_discuss" model="ir.ui.menu">
