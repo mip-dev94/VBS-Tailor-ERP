@@ -323,17 +323,41 @@
                 <field name="responsible_id"/>
                 <field name="planned_date"/>
                 <field name="fabric_note"/>
+                <field name="order_id"/>
+                <field name="ref"/>
+                <field name="set_type"/>
+                <field name="set_code"/>
+                <field name="fabric_arrived"/>
                 <templates>
                     <t t-name="card">
                         <div t-attf-class="oe_kanban_card #{(record.sla_overdue.raw_value or record.overdue_planned.raw_value) ? 'border border-danger' : ''}">
                             <div class="oe_kanban_content">
-                                <strong><field name="partner_id"/></strong>
-                                <div><field name="garment_type"/></div>
-                                <div class="text-muted small"><field name="detail"/></div>
-                                <div t-if="record.fabric_note.raw_value"
-                                     class="text-muted small">
-                                    <field name="fabric_note"/>
+                                <!-- Header: khách + mã đơn -->
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <strong><field name="partner_id"/></strong>
+                                    <span class="text-muted small ms-1">
+                                        <field name="order_id"/>
+                                    </span>
                                 </div>
+                                <!-- Loại đồ + mã LSX -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><field name="garment_type"/></span>
+                                    <span class="text-muted small"><field name="ref"/></span>
+                                </div>
+                                <!-- Chi tiết màu/kiểu -->
+                                <div t-if="record.detail.raw_value" class="text-muted small">
+                                    <field name="detail"/>
+                                </div>
+                                <!-- Ghi chú vải -->
+                                <div t-if="record.fabric_note.raw_value" class="text-muted small">
+                                    🧵 <field name="fabric_note"/>
+                                </div>
+                                <!-- Set nếu là bộ -->
+                                <div t-if="record.set_type.raw_value != 'none' and record.set_code.raw_value"
+                                     class="text-muted small">
+                                    Bộ: <field name="set_code"/>
+                                </div>
+                                <!-- Badges: vị trí + người phụ trách + vải -->
                                 <div class="mt-1 d-flex align-items-center gap-1 flex-wrap">
                                     <span t-attf-class="badge rounded-pill #{record.location.raw_value == 've_xuong' ? 'bg-warning text-dark' : record.location.raw_value == 'qc' ? 'bg-info text-dark' : record.location.raw_value == 'van_phong' ? 'bg-primary' : record.location.raw_value == 'da_tra' ? 'bg-success' : 'bg-secondary'}">
                                         <field name="location"/>
@@ -342,18 +366,28 @@
                                           class="badge rounded-pill bg-light text-dark">
                                         <field name="responsible_id"/>
                                     </span>
+                                    <span t-if="not record.fabric_arrived.raw_value"
+                                          class="badge rounded-pill bg-warning text-dark">
+                                        Chưa có vải
+                                    </span>
                                 </div>
-                                <div class="mt-1">
+                                <!-- SLA / kế hoạch -->
+                                <div class="mt-1 d-flex gap-1 flex-wrap">
                                     <span t-if="record.sla_overdue.raw_value"
                                           class="badge rounded-pill bg-danger">
-                                        SLA <field name="days_in_current_state"/> ngày
+                                        ⚠ SLA <field name="days_in_current_state"/> ngày
                                     </span>
                                     <span t-elif="record.overdue_planned.raw_value"
                                           class="badge rounded-pill bg-warning text-dark">
                                         Trễ kế hoạch
                                     </span>
+                                    <span t-else=""
+                                          t-if="record.days_in_current_state.raw_value > 0"
+                                          class="text-muted small">
+                                        <field name="days_in_current_state"/> ngày
+                                    </span>
                                 </div>
-                                <!-- Quick-move buttons: 1 click không cần mở form -->
+                                <!-- Quick-move buttons -->
                                 <div class="mt-2 d-flex gap-1 flex-wrap"
                                      t-if="record.location.raw_value != 'da_tra' and record.location.raw_value != 'huy'">
                                     <button name="action_quick_lch" type="object"
