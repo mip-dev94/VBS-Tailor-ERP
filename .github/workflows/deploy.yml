@@ -31,4 +31,4 @@ jobs:
             cd ~/ERP_Fashion
             rm -f .git/index.lock .git/config.lock .git/HEAD.lock 2>/dev/null || true
             git checkout -- odoo.conf.docker 2>/dev/null || true
-            bash deploy/update.sh
+            bash deploy/update.sh ${{ github.event.inputs.force_all == 'true' && 'all' || '' }}
