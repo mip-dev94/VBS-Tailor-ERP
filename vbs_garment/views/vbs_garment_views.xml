@@ -409,7 +409,8 @@
                                         Cửa hàng
                                     </button>
                                     <button name="action_quick_da_tra" type="object"
-                                            class="btn btn-sm btn-success px-2 py-1">
+                                            class="btn btn-sm btn-success px-2 py-1"
+                                            t-if="record.state.raw_value == 'hoan_thien'">
                                         Trả
                                     </button>
                                 </div>
