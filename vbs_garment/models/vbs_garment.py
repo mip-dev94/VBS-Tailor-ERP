@@ -343,10 +343,17 @@ class VbsGarment(models.Model):
         if pattern:
             self.pattern_id = pattern
 
-    @api.depends('fabric_line_id.state')
+    @api.depends('fabric_line_id.arrived', 'fabric_order_id.state')
     def _compute_fabric_arrived(self):
         for g in self:
-            g.fabric_arrived = g.fabric_line_id and g.fabric_line_id.state == 'da_ve'
+            if g.fabric_line_id:
+                # Per-line tracking (mới): dùng arrived trên từng dòng vải
+                g.fabric_arrived = g.fabric_line_id.arrived
+            elif g.fabric_order_id:
+                # Fallback: toàn bộ đơn da_ve
+                g.fabric_arrived = g.fabric_order_id.state == 'da_ve'
+            else:
+                g.fabric_arrived = False
 
     @api.depends('garment_type', 'partner_id')
     def _compute_name(self):

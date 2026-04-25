@@ -120,12 +120,23 @@
                             <field name="slot_count" widget="statinfo" string="Ca sx"/>
                         </button>
                         <button name="action_view_fabric_line" type="object"
-                                class="oe_stat_button" icon="fa-cube"
+                                class="oe_stat_button icon"
                                 invisible="not fabric_line_id">
                             <div class="o_stat_info">
-                                <span class="o_stat_text">Phiếu vải</span>
-                                <span class="o_stat_value" invisible="not fabric_arrived">Đã về</span>
-                                <span class="o_stat_value" invisible="fabric_arrived">Đang đặt</span>
+                                <i class="fa fa-cube me-1"
+                                   t-attf-class="fa fa-cube me-1 #{fabric_arrived and 'text-success' or 'text-warning'}"/>
+                                <span class="o_stat_text">Vải</span>
+                                <span class="o_stat_value text-success" invisible="not fabric_arrived">✓ Đã về</span>
+                                <span class="o_stat_value text-warning" invisible="fabric_arrived">⏳ Chờ về</span>
+                            </div>
+                        </button>
+                        <button name="action_view_fabric_line" type="object"
+                                class="oe_stat_button" icon="fa-cube"
+                                invisible="fabric_line_id or not fabric_order_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Đơn vải</span>
+                                <span class="o_stat_value text-success" invisible="not fabric_arrived">✓ Đã về</span>
+                                <span class="o_stat_value text-muted" invisible="fabric_arrived">Đang đặt</span>
                             </div>
                         </button>
                     </div>
@@ -328,6 +339,8 @@
                 <field name="set_type"/>
                 <field name="set_code"/>
                 <field name="fabric_arrived"/>
+                <field name="fabric_order_id"/>
+                <field name="fabric_line_id"/>
                 <templates>
                     <t t-name="card">
                         <div t-attf-class="oe_kanban_card #{(record.sla_overdue.raw_value or record.overdue_planned.raw_value) ? 'border border-danger' : ''}">
@@ -366,9 +379,13 @@
                                           class="badge rounded-pill bg-light text-dark">
                                         <field name="responsible_id"/>
                                     </span>
-                                    <span t-if="not record.fabric_arrived.raw_value"
+                                    <span t-if="record.fabric_arrived.raw_value"
+                                          class="badge rounded-pill bg-success">
+                                        ✓ Vải đã về
+                                    </span>
+                                    <span t-elif="record.fabric_order_id.raw_value or record.fabric_line_id.raw_value"
                                           class="badge rounded-pill bg-warning text-dark">
-                                        Chưa có vải
+                                        ⏳ Chờ vải
                                     </span>
                                 </div>
                                 <!-- SLA / kế hoạch -->
