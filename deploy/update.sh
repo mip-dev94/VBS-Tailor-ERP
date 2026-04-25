@@ -66,20 +66,23 @@ MASTER_PASS=$(grep '^ODOO_MASTER_PASSWORD=' .env | cut -d= -f2-)
 sed -i "s|^db_password *=.*|db_password = $PG_PASS|" odoo.conf.docker
 sed -i "s|^admin_passwd *=.*|admin_passwd = $MASTER_PASS|" odoo.conf.docker
 
-$COMPOSE up -d odoo db
+# Chỉ start DB trước — Odoo sẽ start SAU khi upgrade xong
+$COMPOSE up -d db
+echo "    Chờ DB healthy..."
+$COMPOSE exec -T db pg_isready -U odoo -d "$DB" || sleep 5
 
 if [ -n "$MODULES" ]; then
     if [ "$MODULES" = "all" ]; then
-        echo "    Upgrade all modules..."
-        $COMPOSE exec -T odoo odoo -u all -d "$DB" --stop-after-init
+        echo "    Upgrade all modules (temporary container)..."
+        $COMPOSE run --rm odoo odoo -u all -d "$DB" --stop-after-init
     else
-        echo "    Upgrade $MODULES..."
-        $COMPOSE exec -T odoo odoo -u "$MODULES" -d "$DB" --stop-after-init
+        echo "    Upgrade $MODULES (temporary container)..."
+        $COMPOSE run --rm odoo odoo -u "$MODULES" -d "$DB" --stop-after-init
     fi
-    $COMPOSE restart odoo
-else
-    $COMPOSE restart odoo
 fi
+
+# Start toàn bộ stack sau khi DB đã được migrate
+$COMPOSE up -d
 
 echo
 echo "=== Update xong ==="
