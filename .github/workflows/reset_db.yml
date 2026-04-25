@@ -1,0 +1,33 @@
+name: Reset DB (xoá toàn bộ dữ liệu)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Gõ "RESET" để xác nhận xoá toàn bộ dữ liệu production'
+        required: true
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kiểm tra xác nhận
+        if: github.event.inputs.confirm != 'RESET'
+        run: |
+          echo "Xác nhận sai. Phải gõ RESET để tiếp tục."
+          exit 1
+
+      - name: SSH và reset DB
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          port: 22
+          script_stop: true
+          command_timeout: 30m
+          script: |
+            cd ~/ERP_Fashion
+            rm -f .git/index.lock .git/config.lock .git/HEAD.lock 2>/dev/null || true
+            git checkout -- odoo.conf.docker 2>/dev/null || true
+            bash deploy/reset_db.sh
