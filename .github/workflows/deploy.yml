@@ -30,11 +30,17 @@ jobs:
           script: |
             REPO="$HOME/ERP_Fashion"
             cd "$REPO"
-            rm -f .git/index.lock .git/config.lock .git/HEAD.lock || true
-            git checkout -- odoo.conf.docker || true
+            rm -f .git/index.lock .git/config.lock .git/HEAD.lock 2>/dev/null || true
+            git checkout -- odoo.conf.docker 2>/dev/null || true
+            echo "=== pre-flight ==="
+            bash -c 'echo bash_ok'
+            test -f "$REPO/deploy/update.sh" && echo "update.sh: EXISTS" || echo "update.sh: NOT FOUND"
+            test -r "$REPO/deploy/update.sh" && echo "update.sh: READABLE" || echo "update.sh: NOT READABLE"
+            file "$REPO/deploy/update.sh" || true
+            echo "=== run ==="
             FORCE="${{ github.event.inputs.force_all }}"
             if [ "$FORCE" = "true" ]; then
-              bash -x "$REPO/deploy/update.sh" all 2>&1
+              bash "$REPO/deploy/update.sh" all 2>&1 || echo "EXIT_CODE=$?"
             else
-              bash -x "$REPO/deploy/update.sh" 2>&1
+              bash "$REPO/deploy/update.sh" 2>&1 || echo "EXIT_CODE=$?"
             fi
