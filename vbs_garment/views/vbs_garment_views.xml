@@ -120,23 +120,14 @@
                             <field name="slot_count" widget="statinfo" string="Ca sx"/>
                         </button>
                         <button name="action_view_fabric_line" type="object"
-                                class="oe_stat_button icon"
-                                invisible="not fabric_line_id">
-                            <div class="o_stat_info">
-                                <i class="fa fa-cube me-1"
-                                   t-attf-class="fa fa-cube me-1 #{fabric_arrived and 'text-success' or 'text-warning'}"/>
-                                <span class="o_stat_text">Vải</span>
-                                <span class="o_stat_value text-success" invisible="not fabric_arrived">✓ Đã về</span>
-                                <span class="o_stat_value text-warning" invisible="fabric_arrived">⏳ Chờ về</span>
-                            </div>
-                        </button>
-                        <button name="action_view_fabric_line" type="object"
                                 class="oe_stat_button" icon="fa-cube"
-                                invisible="fabric_line_id or not fabric_order_id">
+                                invisible="not fabric_line_id and not fabric_order_id">
+                            <field name="fabric_arrived" invisible="1"/>
                             <div class="o_stat_info">
-                                <span class="o_stat_text">Đơn vải</span>
-                                <span class="o_stat_value text-success" invisible="not fabric_arrived">✓ Đã về</span>
-                                <span class="o_stat_value text-muted" invisible="fabric_arrived">Đang đặt</span>
+                                <span class="o_stat_value" invisible="not fabric_arrived"
+                                      style="color: var(--bs-success);">Đã về</span>
+                                <span class="o_stat_value text-warning" invisible="fabric_arrived">Chờ về</span>
+                                <span class="o_stat_text">Vải</span>
                             </div>
                         </button>
                     </div>
