@@ -195,7 +195,13 @@
                        decoration-warning="payment_state == 'tt_1_phan'"
                        decoration-success="payment_state == 'tt_toan_bo'"
                        optional="show"/>
+                <!-- Hiện currency_id để dễ phân biệt khi mix VND/USD -->
+                <field name="currency_id" optional="show" string="Tiền tệ"/>
             </field>
+            <!-- Bỏ sum tổng — không có ý nghĩa khi mix nhiều currency -->
+            <xpath expr="//field[@name='amount_total']" position="attributes">
+                <attribute name="sum"></attribute>
+            </xpath>
         </field>
     </record>
 
