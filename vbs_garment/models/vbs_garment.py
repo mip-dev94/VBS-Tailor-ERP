@@ -444,10 +444,31 @@ class VbsGarment(models.Model):
                     } for t in templates])
         return records
 
+    def _check_ready_for_luoc(self):
+        """Kiểm tra điều kiện bắt buộc trước khi chuyển Nháp → Lược."""
+        errors = []
+        if not self.fabric_id:
+            errors.append('• Chưa chọn Loại vải')
+        if not self.fabric_meters or self.fabric_meters <= 0:
+            errors.append('• Chưa điền Số mét vải')
+        if not self.fabric_arrived:
+            fabric_info = ''
+            if self.fabric_line_id:
+                fabric_info = f' (Phiếu {self.fabric_line_id.order_id.name})'
+            elif self.fabric_order_id:
+                fabric_info = f' ({self.fabric_order_id.name})'
+            errors.append(f'• Vải chưa về kho{fabric_info}')
+        if errors:
+            raise UserError(_(
+                'Không thể chuyển "%s" sang Lược:\n%s'
+            ) % (self.ref or self.name, '\n'.join(errors)))
+
     def write(self, vals):
         if 'state' in vals:
             new_state = vals['state']
             for rec in self:
+                if rec.state == 'nhap' and new_state == 'luoc':
+                    rec._check_ready_for_luoc()
                 if rec.state == 'lan_2' and new_state == 'hoan_thien' and not rec.confirmed_qa:
                     raise UserError(_('Cần QA xác nhận trước khi chuyển "%s" sang "Hoàn thiện".') % rec.ref)
                 if new_state == 'huy':
@@ -671,10 +692,13 @@ class VbsGarment(models.Model):
         self.write({'location': 'cua_hang'})
 
     def action_sale_advance_luoc(self):
-        """Sale kích hoạt từ tab Đồ may: chuyển Nháp → Lược (bắt đầu sản xuất)."""
+        """Sale kích hoạt từ tab Đồ may: chuyển Nháp → Lược (bắt đầu sản xuất).
+        Validation: vải phải đã về + loại vải + số mét phải điền.
+        """
         for garment in self:
             if garment.state != 'nhap':
                 continue
+            # _check_ready_for_luoc được gọi tự động trong write()
             garment.write({'state': 'luoc'})
             garment.message_post(body=_('Sale chuyển trạng thái: Nháp → Lược'))
 
