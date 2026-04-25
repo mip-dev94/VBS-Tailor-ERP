@@ -28,16 +28,9 @@ jobs:
           script_stop: true
           command_timeout: 30m
           script: |
-            echo ">>> whoami: $(whoami)"
-            echo ">>> HOME: $HOME"
-            echo ">>> pwd: $(pwd)"
-            echo ">>> ls ~: $(ls ~ | head -5)"
-            echo ">>> cd ERP_Fashion..."
             cd ~/ERP_Fashion
-            echo ">>> pwd after cd: $(pwd)"
+            rm -f .git/index.lock .git/config.lock .git/HEAD.lock 2>/dev/null || true
             git checkout -- odoo.conf.docker 2>/dev/null || true
-            echo ">>> git status:"
-            git status --short
             if [ "${{ github.event.inputs.force_all }}" = "true" ]; then
               bash deploy/update.sh all
             else
