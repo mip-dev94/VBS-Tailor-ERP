@@ -467,8 +467,6 @@ class VbsGarment(models.Model):
         if 'state' in vals:
             new_state = vals['state']
             for rec in self:
-                if rec.state == 'nhap' and new_state == 'luoc':
-                    rec._check_ready_for_luoc()
                 if rec.state == 'lan_2' and new_state == 'hoan_thien' and not rec.confirmed_qa:
                     raise UserError(_('Cần QA xác nhận trước khi chuyển "%s" sang "Hoàn thiện".') % rec.ref)
                 if new_state == 'huy':
