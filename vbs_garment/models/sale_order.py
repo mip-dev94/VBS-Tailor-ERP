@@ -20,6 +20,8 @@ FASHION_STATE = [
     ('da_thanh_toan', 'Đã thanh toán'),
     ('hoan_thanh', 'Hoàn thành'),
     ('huy', 'Huỷ'),
+    # Legacy — tồn tại trong DB cũ, migration tự chuyển sang da_thanh_toan
+    ('dang_lam', 'Đang làm (cũ)'),
 ]
 
 PAYMENT_STATE = [
@@ -126,17 +128,14 @@ class SaleOrder(models.Model):
                 order.payment_state = 'tt_1_phan'
             else:
                 order.payment_state = 'tt_toan_bo'
-            # Auto-advance: Đang xử lý → Đã thanh toán khi thanh toán đủ 100%
-            if order.payment_state == 'tt_toan_bo' and order.fashion_state == 'dang_xu_ly':
-                order.fashion_state = 'da_thanh_toan'
 
     # --- Fashion state transitions ---
 
     def _auto_advance_fashion_state(self):
-        """Hook gọi sau khi payment_record thay đổi (giữ tương thích với vbs_payment_record)."""
+        """Gọi từ vbs_payment_record sau create/write — auto chuyển dang_xu_ly → da_thanh_toan khi TT đủ."""
         for order in self:
             if order.payment_state == 'tt_toan_bo' and order.fashion_state == 'dang_xu_ly':
-                order.fashion_state = 'da_thanh_toan'
+                order.write({'fashion_state': 'da_thanh_toan'})
 
     def action_confirm(self):
         """Override: sau khi confirm đơn, chuyển Đặt hàng → Đang xử lý."""
