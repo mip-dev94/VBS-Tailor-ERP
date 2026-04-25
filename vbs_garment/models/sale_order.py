@@ -34,6 +34,16 @@ PAYMENT_STATE = [
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    currency_id = fields.Many2one(
+        'res.currency',
+        string='Tiền tệ',
+        required=True,
+        default=lambda self: self.env.company.currency_id,
+        domain=[('active', '=', True)],
+        tracking=True,
+        help='Tiền tệ của đơn hàng. Mặc định theo công ty (VNĐ).',
+    )
+
     order_type = fields.Selection([
         ('b2b', 'B2B (Vải + Gia công)'),
         ('b2c', 'B2C (Thành phẩm)'),

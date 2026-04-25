@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Kích hoạt VNĐ và USD -->
+    <record id="base.VND" model="res.currency">
+        <field name="active">True</field>
+        <field name="rounding">1.0</field>
+        <field name="decimal_places">0</field>
+    </record>
+
+    <record id="base.USD" model="res.currency">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Đặt currency công ty thành VNĐ -->
+    <record id="base.main_company" model="res.company">
+        <field name="currency_id" ref="base.VND"/>
+    </record>
+</odoo>
