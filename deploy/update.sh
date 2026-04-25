@@ -24,6 +24,8 @@ ls -1t "$BACKUP_DIR"/${DB}_*.sql.gz 2>/dev/null | tail -n +8 | xargs -r rm -v
 echo
 echo "=== [2/5] Git pull ==="
 OLD_SHA=$(git rev-parse HEAD)
+# odoo.conf.docker bị sed -i sửa ở bước 5 → reset để git pull không bị conflict
+git checkout -- odoo.conf.docker 2>/dev/null || true
 git pull --ff-only
 NEW_SHA=$(git rev-parse HEAD)
 if [ "$OLD_SHA" = "$NEW_SHA" ] && [ "${1:-}" != "all" ]; then
