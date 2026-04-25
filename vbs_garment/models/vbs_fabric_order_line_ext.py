@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Extend vbs.fabric.order.line with garment_id FK + pattern pivot.
+"""Extend vbs.fabric.order.line with garment_id FK + pattern pivot + arrival hook.
 
 Lives in vbs_garment (depends on vbs_fabric) to avoid circular dep.
 """
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 # Map garment_type selection → fabric line garment_desc selection
@@ -36,6 +36,41 @@ class VbsFabricOrderLineExt(models.Model):
         store=True,
         index=True,
     )
+
+    def _after_line_arrived(self):
+        """Bump fabric stock và tạo activity cho garment phụ trách khi dòng vải về."""
+        super()._after_line_arrived()
+        Stock = self.env['vbs.fabric.stock']
+        activity_type = self.env.ref(
+            'vbs_garment.activity_type_lien_he_khach', raise_if_not_found=False,
+        )
+        for line in self:
+            if line.partner_id and line.fabric_type_id and line.quantity:
+                stock = Stock.search([
+                    ('partner_id', '=', line.partner_id.id),
+                    ('fabric_type_id', '=', line.fabric_type_id.id),
+                ], limit=1)
+                if stock:
+                    stock.quantity_received = (stock.quantity_received or 0.0) + line.quantity
+                else:
+                    Stock.create({
+                        'partner_id': line.partner_id.id,
+                        'fabric_type_id': line.fabric_type_id.id,
+                        'fabric_order_id': line.order_id.id,
+                        'fabric_brand': line.fabric_brand or (line.fabric_type_id.fabric_brand or ''),
+                        'fabric_type': line.fabric_type_id.name,
+                        'quantity_received': line.quantity,
+                        'note': _('Nhập từ %s') % line.order_id.name,
+                    })
+            garment = line.garment_id
+            if garment and garment.responsible_id and activity_type:
+                garment.activity_schedule(
+                    activity_type_id=activity_type.id,
+                    summary=_('Vải đã về — có thể bắt đầu cắt đồ %s') % (
+                        garment.ref or garment.name,
+                    ),
+                    user_id=garment.responsible_id.id,
+                )
 
     @api.onchange('garment_id')
     def _onchange_garment_id(self):

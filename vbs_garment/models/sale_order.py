@@ -16,8 +16,8 @@ B2B_TYPE = [
 
 FASHION_STATE = [
     ('dat_hang', 'Đặt hàng'),
+    ('dang_xu_ly', 'Đang xử lý'),
     ('da_thanh_toan', 'Đã thanh toán'),
-    ('dang_lam', 'Đang làm'),
     ('hoan_thanh', 'Hoàn thành'),
     ('huy', 'Huỷ'),
 ]
@@ -74,6 +74,12 @@ class SaleOrder(models.Model):
         store=True,
     )
 
+    can_start_production = fields.Boolean(
+        string='Có thể nhảy LSX',
+        compute='_compute_can_start_production',
+        help='True khi đã thanh toán ≥ 70% và đang ở trạng thái Đang xử lý',
+    )
+
     pattern_count = fields.Integer(
         string='Số rập khách',
         compute='_compute_pattern_count',
@@ -83,6 +89,15 @@ class SaleOrder(models.Model):
     def _compute_garment_count(self):
         for order in self:
             order.garment_count = len(order.garment_ids)
+
+    @api.depends('amount_paid', 'amount_total', 'fashion_state')
+    def _compute_can_start_production(self):
+        for order in self:
+            order.can_start_production = (
+                order.fashion_state == 'dang_xu_ly'
+                and order.amount_total > 0
+                and order.amount_paid >= order.amount_total * 0.7
+            )
 
     @api.depends('partner_id')
     def _compute_pattern_count(self):
@@ -111,30 +126,44 @@ class SaleOrder(models.Model):
                 order.payment_state = 'tt_1_phan'
             else:
                 order.payment_state = 'tt_toan_bo'
+            # Auto-advance: Đang xử lý → Đã thanh toán khi thanh toán đủ 100%
+            if order.payment_state == 'tt_toan_bo' and order.fashion_state == 'dang_xu_ly':
+                order.fashion_state = 'da_thanh_toan'
 
     # --- Fashion state transitions ---
 
-    def action_fashion_confirm_payment(self):
-        """Đặt hàng → Đã thanh toán."""
-        self.filtered(lambda o: o.fashion_state == 'dat_hang').write({
-            'fashion_state': 'da_thanh_toan',
-        })
-
     def _auto_advance_fashion_state(self):
-        """Gọi sau khi payment_record thay đổi — auto chuyển dat_hang→da_thanh_toan."""
+        """Hook gọi sau khi payment_record thay đổi (giữ tương thích với vbs_payment_record)."""
         for order in self:
-            if order.payment_state == 'tt_toan_bo' and order.fashion_state == 'dat_hang':
+            if order.payment_state == 'tt_toan_bo' and order.fashion_state == 'dang_xu_ly':
                 order.fashion_state = 'da_thanh_toan'
 
-    def action_fashion_start_production(self):
-        """Đã thanh toán → Đang làm."""
-        self.filtered(lambda o: o.fashion_state == 'da_thanh_toan').write({
-            'fashion_state': 'dang_lam',
+    def action_confirm(self):
+        """Override: sau khi confirm đơn, chuyển Đặt hàng → Đang xử lý."""
+        result = super().action_confirm()
+        self.filtered(lambda o: o.fashion_state == 'dat_hang').write({
+            'fashion_state': 'dang_xu_ly',
         })
+        return result
+
+    def action_launch_production(self):
+        """Nhảy lệnh sản xuất — tạo LSX cho tất cả dòng chưa có garment (yêu cầu ≥70% thanh toán)."""
+        for order in self:
+            if not order.can_start_production:
+                raise UserError(_(
+                    'Cần thanh toán ít nhất 70%% giá trị đơn hàng trước khi nhảy lệnh sản xuất.\n'
+                    'Đã thanh toán: %s / %s'
+                ) % (order.amount_paid, order.amount_total))
+            lines = order.order_line.filtered(
+                lambda l: l.garment_type and not l.garment_ids
+            )
+            if not lines:
+                raise UserError(_('Tất cả dòng đã có lệnh sản xuất hoặc chưa chọn loại đồ.'))
+            lines.action_create_garments()
 
     def action_fashion_complete(self):
-        """Đang làm → Hoàn thành."""
-        self.filtered(lambda o: o.fashion_state == 'dang_lam').write({
+        """Đã thanh toán → Hoàn thành."""
+        self.filtered(lambda o: o.fashion_state == 'da_thanh_toan').write({
             'fashion_state': 'hoan_thanh',
         })
 

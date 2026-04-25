@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* vbs_planning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-25 00:00+0000\n"
+"PO-Revision-Date: 2026-04-25 00:00+0000\n"
+"Last-Translator: VBS Team\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__start_datetime
+msgid "Bắt đầu"
+msgstr "Start"
+
+#. module: vbs_planning
+#: model:ir.actions.act_window,name:vbs_planning.action_planning_slot
+#: model:ir.model,name:vbs_planning.model_planning_slot
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_role__slot_ids
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_list
+msgid "Ca làm việc"
+msgstr "Work Shift"
+
+#. module: vbs_planning
+#. odoo-python
+#: code:addons/vbs_planning/models/planning_slot.py:0
+msgid "Ca làm việc mới"
+msgstr "New Work Shift"
+
+#. module: vbs_planning
+#: model:ir.ui.menu,name:vbs_planning.menu_planning_config
+msgid "Cấu hình"
+msgstr "Configuration"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__note
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
+msgid "Ghi chú"
+msgstr "Note"
+
+#. module: vbs_planning
+#: model:ir.model.fields.selection,name:vbs_planning.selection__planning_slot__state__done
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
+msgid "Hoàn thành"
+msgstr "Done"
+
+#. module: vbs_planning
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
+msgid "Huỷ"
+msgstr "Cancel"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__end_datetime
+msgid "Kết thúc"
+msgstr "End"
+
+#. module: vbs_planning
+#: model:ir.ui.menu,name:vbs_planning.menu_planning_root
+msgid "Lập lịch"
+msgstr "Scheduling"
+
+#. module: vbs_planning
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_calendar
+msgid "Lịch ca làm việc"
+msgstr "Work Shift Calendar"
+
+#. module: vbs_planning
+#: model:ir.ui.menu,name:vbs_planning.menu_planning_main
+msgid "Lịch làm việc"
+msgstr "Work Schedule"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_role__color
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__color
+msgid "Màu sắc"
+msgstr "Color"
+
+#. module: vbs_planning
+#: model:ir.model.fields.selection,name:vbs_planning.selection__planning_slot__state__draft
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
+msgid "Nháp"
+msgstr "Draft"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__employee_id
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
+msgid "Nhân viên"
+msgstr "Employee"
+
+#. module: vbs_planning
+#: model_terms:ir.actions.act_window,help:vbs_planning.action_planning_slot
+msgid "Phân công ca làm việc cho nhân viên theo vai trò và thời gian."
+msgstr "Assign work shifts to employees by role and time."
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__department_id
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
+msgid "Phòng ban"
+msgstr "Department"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_role__slot_count
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_role_list
+msgid "Số ca"
+msgstr "Shifts"
+
+#. module: vbs_planning
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
+msgid "Thông tin chung"
+msgstr "General Information"
+
+#. module: vbs_planning
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
+msgid "Thời gian"
+msgstr "Time"
+
+#. module: vbs_planning
+#. odoo-python
+#: code:addons/vbs_planning/models/planning_slot.py:0
+msgid "Thời gian kết thúc phải sau thời gian bắt đầu."
+msgstr "End time must be after start time."
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__duration
+msgid "Thời lượng (giờ)"
+msgstr "Duration (hours)"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__name
+msgid "Tiêu đề"
+msgstr "Title"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__state
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
+msgid "Trạng thái"
+msgstr "Status"
+
+#. module: vbs_planning
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_role__name
+msgid "Tên vai trò"
+msgstr "Role Name"
+
+#. module: vbs_planning
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
+msgid "Tìm ca làm việc"
+msgstr "Search Work Shifts"
+
+#. module: vbs_planning
+#: model_terms:ir.actions.act_window,help:vbs_planning.action_planning_slot
+msgid "Tạo ca làm việc đầu tiên"
+msgstr "Create your first work shift"
+
+#. module: vbs_planning
+#: model:ir.actions.act_window,name:vbs_planning.action_planning_role
+#: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__role_id
+#: model:ir.ui.menu,name:vbs_planning.menu_planning_role
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_role_form
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_role_list
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
+msgid "Vai trò"
+msgstr "Role"
+
+#. module: vbs_planning
+#: model:ir.model,name:vbs_planning.model_planning_role
+msgid "Vai trò / Vị trí công việc"
+msgstr "Role / Job Position"
+
+#. module: vbs_planning
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
+msgid "Xác nhận"
+msgstr "Confirm"
+
+#. module: vbs_planning
+#: model:ir.model.fields.selection,name:vbs_planning.selection__planning_slot__state__cancelled
+msgid "Đã huỷ"
+msgstr "Cancelled"
+
+#. module: vbs_planning
+#: model:ir.model.fields.selection,name:vbs_planning.selection__planning_slot__state__confirmed
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
+msgid "Đã xác nhận"
+msgstr "Confirmed"
+
+#. module: vbs_planning
+#: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
+msgid "Đặt lại nháp"
+msgstr "Reset to Draft"

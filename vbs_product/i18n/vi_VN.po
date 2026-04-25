@@ -6,14 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260409\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-18 00:33+0000\n"
-"PO-Revision-Date: 2026-04-18 00:33+0000\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2026-04-25 00:00+0000\n"
+"PO-Revision-Date: 2026-04-25 00:00+0000\n"
+"Last-Translator: VBS Team\n"
+"Language-Team: Vietnamese\n"
+"Language: vi_VN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_needaction
@@ -55,37 +56,37 @@ msgstr "Số tệp đính kèm"
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bomber
 msgid "Bomber"
-msgstr ""
+msgstr "Áo Bomber"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__budong
 msgid "Budong"
-msgstr ""
+msgstr "Bu-đông"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bo_3_manh
 msgid "Bộ 3 mảnh (cũ)"
-msgstr ""
+msgstr "Bộ 3 mảnh (cũ)"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bo_comple
 msgid "Bộ comple 2 mảnh (cũ)"
-msgstr ""
+msgstr "Bộ comple 2 mảnh (cũ)"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__chan_vay
 msgid "Chân váy"
-msgstr ""
+msgstr "Chân váy"
 
 #. module: vbs_product
 #: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product
 msgid "Chưa có sản phẩm B2C nào"
-msgstr ""
+msgstr "Chưa có sản phẩm B2C nào"
 
 #. module: vbs_product
 #: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product_stock
 msgid "Chưa có tồn kho sản phẩm nào"
-msgstr ""
+msgstr "Chưa có tồn kho sản phẩm nào"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__create_uid
@@ -103,25 +104,25 @@ msgstr "Ngày tạo"
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
 msgid "Còn hàng"
-msgstr ""
+msgstr "Còn hàng"
 
 #. module: vbs_product
 #. odoo-python
 #: code:addons/vbs_product/models/vbs_product.py:0
 msgid "Cần có ít nhất 1 record tồn kho trước khi đánh dấu sẵn bán."
-msgstr ""
+msgstr "Cần có ít nhất 1 record tồn kho trước khi đánh dấu sẵn bán."
 
 #. module: vbs_product
 #. odoo-python
 #: code:addons/vbs_product/models/vbs_product.py:0
 msgid "Cần nhập giá bán trước khi đánh dấu sẵn bán."
-msgstr ""
+msgstr "Cần nhập giá bán trước khi đánh dấu sẵn bán."
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__partner_store_id
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
 msgid "Cửa hàng"
-msgstr ""
+msgstr "Cửa hàng"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__display_name
@@ -144,48 +145,48 @@ msgstr "Người theo dõi (Đối tác)"
 #. module: vbs_product
 #: model:ir.model.fields,help:vbs_product.field_vbs_product__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Biểu tượng Font Awesome, vd: fa-tasks"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__note
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
 msgid "Ghi chú"
-msgstr ""
+msgstr "Ghi chú"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
 msgid "Ghi chú..."
-msgstr ""
+msgstr "Ghi chú..."
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile
 msgid "Gile (cũ)"
-msgstr ""
+msgstr "Gile (cũ)"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile_dd
 msgid "Gile DD"
-msgstr ""
+msgstr "Gile đôi dây"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile_sb
 msgid "Gile SB"
-msgstr ""
+msgstr "Gile single-breasted"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 msgid "Giá"
-msgstr ""
+msgstr "Giá"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__list_price
 msgid "Giá bán"
-msgstr ""
+msgstr "Giá bán"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__cost_price
 msgid "Giá vốn"
-msgstr ""
+msgstr "Giá vốn"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__has_message
@@ -196,13 +197,13 @@ msgstr "Có tin nhắn"
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
 msgid "Hết hàng"
-msgstr ""
+msgstr "Hết hàng"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__id
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_exception_icon
@@ -212,13 +213,13 @@ msgstr "Biểu tượng"
 #. module: vbs_product
 #: model:ir.model.fields,help:vbs_product.field_vbs_product__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Biểu tượng thể hiện hoạt động ngoại lệ."
 
 #. module: vbs_product
 #: model:ir.model.fields,help:vbs_product.field_vbs_product__message_needaction
 #: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Nếu được đánh dấu, có tin nhắn mới cần bạn xử lý."
 
 #. module: vbs_product
 #: model:ir.model.fields,help:vbs_product.field_vbs_product__message_has_error
@@ -226,7 +227,7 @@ msgstr ""
 #: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_has_error
 #: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Nếu được đánh dấu, một số tin nhắn bị lỗi gửi."
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__image_1920
@@ -257,23 +258,23 @@ msgstr "Ảnh 512"
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_is_follower
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_is_follower
 msgid "Is Follower"
-msgstr "Là người theo dõi"
+msgstr "Đang theo dõi"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_available
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_list
 msgid "Khả dụng"
-msgstr ""
+msgstr "Khả dụng"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_kanban
 msgid "Khả dụng:"
-msgstr ""
+msgstr "Khả dụng:"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__size
 msgid "Kích cỡ"
-msgstr ""
+msgstr "Kích cỡ"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__write_uid
@@ -285,19 +286,19 @@ msgstr "Cập nhật bởi"
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__write_date
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__write_date
 msgid "Last Updated on"
-msgstr "Sửa lần cuối vào"
+msgstr "Ngày cập nhật"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__fabric_type_id
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 msgid "Loại vải"
-msgstr ""
+msgstr "Loại vải"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__garment_type
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 msgid "Loại đồ"
-msgstr ""
+msgstr "Loại đồ"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_has_error
@@ -319,27 +320,27 @@ msgstr "Hạn hoạt động của tôi"
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__color
 msgid "Màu sắc"
-msgstr ""
+msgstr "Màu sắc"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__code
 msgid "Mã SP"
-msgstr ""
+msgstr "Mã SP"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 msgid "Mô tả"
-msgstr ""
+msgstr "Mô tả"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__detail
 msgid "Mô tả chi tiết"
-msgstr ""
+msgstr "Mô tả chi tiết"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 msgid "Mô tả chi tiết cho landing..."
-msgstr ""
+msgstr "Mô tả chi tiết cho landing..."
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_date_deadline
@@ -359,26 +360,26 @@ msgstr "Loại hoạt động tiếp theo"
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__date_received
 msgid "Ngày nhập kho"
-msgstr ""
+msgstr "Ngày nhập kho"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__archived
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 msgid "Ngừng bán"
-msgstr ""
+msgstr "Ngừng bán"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__draft
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 msgid "Nháp"
-msgstr ""
+msgstr "Nháp"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_needaction_counter
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Số hoạt động"
+msgstr "Số thao tác"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__message_has_error_counter
@@ -396,12 +397,12 @@ msgstr "Số tin nhắn cần xử lý"
 #: model:ir.model.fields,help:vbs_product.field_vbs_product__message_has_error_counter
 #: model:ir.model.fields,help:vbs_product.field_vbs_product_stock__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "Số tin nhắn lỗi gửi"
+msgstr "Số tin nhắn bị lỗi gửi"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__polo
 msgid "Polo"
-msgstr ""
+msgstr "Áo Polo"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_kanban
@@ -411,12 +412,12 @@ msgstr "Sản phẩm"
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__quan
 msgid "Quần"
-msgstr ""
+msgstr "Quần"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__quan_comple
 msgid "Quần Comple"
-msgstr ""
+msgstr "Quần Comple"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__activity_user_id
@@ -437,33 +438,37 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Trạng thái dựa trên hoạt động\n"
+"Quá hạn: Đã qua ngày hạn\n"
+"Hôm nay: Ngày hoạt động là hôm nay\n"
+"Đã lên kế hoạch: Hoạt động trong tương lai."
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi
 msgid "Sơ mi"
-msgstr ""
+msgstr "Sơ mi"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi_tux
 msgid "Sơ mi Tux"
-msgstr ""
+msgstr "Sơ mi Tux"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi_tao_kieu
 msgid "Sơ mi tao kiểu"
-msgstr ""
+msgstr "Sơ mi tao kiểu"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__product_id
 #: model:ir.ui.menu,name:vbs_product.menu_vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
 msgid "Sản phẩm"
-msgstr ""
+msgstr "Sản phẩm"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
 msgid "Sản phẩm & cửa hàng"
-msgstr ""
+msgstr "Sản phẩm & cửa hàng"
 
 #. module: vbs_product
 #: model:ir.actions.act_window,name:vbs_product.action_vbs_product
@@ -472,69 +477,69 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_list
 msgid "Sản phẩm B2C"
-msgstr ""
+msgstr "Sản phẩm B2C"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__ready
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 msgid "Sẵn bán"
-msgstr ""
+msgstr "Sẵn bán"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
 msgid "Số lượng"
-msgstr ""
+msgstr "Số lượng"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 msgid "Thuộc tính"
-msgstr ""
+msgstr "Thuộc tính"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__currency_id
 msgid "Tiền tệ"
-msgstr ""
+msgstr "Tiền tệ"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__state
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 msgid "Trạng thái"
-msgstr ""
+msgstr "Trạng thái"
 
 #. module: vbs_product
 #: model:ir.model.fields,help:vbs_product.field_vbs_product__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Loại hoạt động ngoại lệ trên bản ghi."
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__name
 msgid "Tên sản phẩm"
-msgstr ""
+msgstr "Tên sản phẩm"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 msgid "Tên sản phẩm..."
-msgstr ""
+msgstr "Tên sản phẩm..."
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 msgid "Tìm sản phẩm"
-msgstr ""
+msgstr "Tìm sản phẩm"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
 msgid "Tìm tồn kho sản phẩm"
-msgstr ""
+msgstr "Tìm tồn kho sản phẩm"
 
 #. module: vbs_product
 #: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product
 msgid "Tạo sản phẩm thủ công hoặc publish từ đồ may đã hoàn thiện."
-msgstr ""
+msgstr "Tạo sản phẩm thủ công hoặc publish từ đồ may đã hoàn thiện."
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 msgid "Tồn kho"
-msgstr ""
+msgstr "Tồn kho"
 
 #. module: vbs_product
 #: model:ir.actions.act_window,name:vbs_product.action_vbs_product_stock
@@ -542,27 +547,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_list
 msgid "Tồn kho sản phẩm"
-msgstr ""
+msgstr "Tồn kho sản phẩm"
 
 #. module: vbs_product
 #: model:ir.model,name:vbs_product.model_vbs_product_stock
 msgid "Tồn kho sản phẩm B2C"
-msgstr ""
+msgstr "Tồn kho sản phẩm B2C"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__stock_ids
 msgid "Tồn kho theo cửa hàng"
-msgstr ""
+msgstr "Tồn kho theo cửa hàng"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_on_hand
 msgid "Tồn thực tế"
-msgstr ""
+msgstr "Tồn thực tế"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__total_available
 msgid "Tổng tồn khả dụng"
-msgstr ""
+msgstr "Tổng tồn khả dụng"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product__website_message_ids
@@ -579,62 +584,62 @@ msgstr "Lịch sử trao đổi qua website"
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_comple_sb
 msgid "Áo Comple SB"
-msgstr ""
+msgstr "Áo Comple SB"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_comple_db
 msgid "Áo Comple ĐB"
-msgstr ""
+msgstr "Áo Comple ĐB"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_dai_pb
 msgid "Áo dài PB"
-msgstr ""
+msgstr "Áo dài PB"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_dai_sb
 msgid "Áo dài SB"
-msgstr ""
+msgstr "Áo dài SB"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_khoac
 msgid "Áo khoác (cũ)"
-msgstr ""
+msgstr "Áo khoác (cũ)"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_ngan_pb
 msgid "Áo ngắn PB"
-msgstr ""
+msgstr "Áo ngắn PB"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_ngan_sb
 msgid "Áo ngắn SB"
-msgstr ""
+msgstr "Áo ngắn SB"
 
 #. module: vbs_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 msgid "Đánh dấu sẵn bán"
-msgstr ""
+msgstr "Đánh dấu sẵn bán"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__sold
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
 msgid "Đã bán"
-msgstr ""
+msgstr "Đã bán"
 
 #. module: vbs_product
 #: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_reserved
 msgid "Đã giữ"
-msgstr ""
+msgstr "Đã giữ"
 
 #. module: vbs_product
 #. odoo-python
 #: code:addons/vbs_product/models/vbs_product.py:0
 msgid "Đã ngừng bán."
-msgstr ""
+msgstr "Đã ngừng bán."
 
 #. module: vbs_product
 #. odoo-python
 #: code:addons/vbs_product/models/vbs_product.py:0
 msgid "Đã đánh dấu sẵn bán."
-msgstr ""
+msgstr "Đã đánh dấu sẵn bán."

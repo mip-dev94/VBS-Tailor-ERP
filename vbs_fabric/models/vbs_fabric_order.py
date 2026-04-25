@@ -72,6 +72,15 @@ class VbsFabricOrder(models.Model):
         string='Số dòng', compute='_compute_line_count',
     )
 
+    arrived_line_count = fields.Integer(
+        string='Dòng đã về',
+        compute='_compute_arrived_counts', store=True,
+    )
+    pending_line_count = fields.Integer(
+        string='Dòng chưa về',
+        compute='_compute_arrived_counts', store=True,
+    )
+
     total_quantity = fields.Float(
         string='Tổng khối lượng (m)', digits=(16, 3),
         compute='_compute_total_quantity', store=True,
@@ -96,6 +105,13 @@ class VbsFabricOrder(models.Model):
     def _compute_line_count(self):
         for rec in self:
             rec.line_count = len(rec.line_ids)
+
+    @api.depends('line_ids.arrived')
+    def _compute_arrived_counts(self):
+        for rec in self:
+            arrived = rec.line_ids.filtered('arrived')
+            rec.arrived_line_count = len(arrived)
+            rec.pending_line_count = len(rec.line_ids) - len(arrived)
 
     @api.depends('line_ids.quantity')
     def _compute_total_quantity(self):
@@ -142,17 +158,32 @@ class VbsFabricOrder(models.Model):
         self.write({'state': 'cho_ve'})
 
     def action_mark_arrived(self):
-        """DV03 → DV04: Vải đã về. Tạo contact log để báo khách."""
+        """DV03 → DV04: Đánh dấu tất cả dòng vải chưa về là đã về (bulk shortcut)."""
         for rec in self:
             if rec.state != 'cho_ve':
-                raise UserError(_('Chỉ đơn ở trạng thái DV03 mới đánh dấu vải về.'))
-        self.write({
-            'state': 'da_ve',
-            'date_arrived': fields.Date.today(),
-        })
-        ICP = self.env['ir.config_parameter'].sudo()
-        if ICP.get_param('vbs.auto_contact_log', 'True') != 'False':
-            self._create_fabric_arrived_contact_log()
+                raise UserError(_('Chỉ đơn ở trạng thái DV03 mới chuyển sang DV04.'))
+        pending = self.mapped('line_ids').filtered(lambda l: not l.arrived)
+        if pending:
+            pending.action_mark_line_arrived()
+        else:
+            self._check_all_arrived()
+
+    def _check_all_arrived(self):
+        """Tự động chuyển sang da_ve khi tất cả dòng đều đánh dấu đã về."""
+        for rec in self:
+            if rec.state != 'cho_ve':
+                continue
+            if not rec.line_ids:
+                continue
+            if all(l.arrived for l in rec.line_ids):
+                last_date = max(
+                    (l.date_arrived for l in rec.line_ids if l.date_arrived),
+                    default=fields.Date.today(),
+                )
+                rec.write({'state': 'da_ve', 'date_arrived': last_date})
+                ICP = self.env['ir.config_parameter'].sudo()
+                if ICP.get_param('vbs.auto_contact_log', 'True') != 'False':
+                    rec._create_fabric_arrived_contact_log()
 
     def _create_fabric_arrived_contact_log(self):
         """Tự động tạo nhật ký liên hệ — nhóm theo khách hàng từng dòng."""

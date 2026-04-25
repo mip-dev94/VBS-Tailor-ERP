@@ -6,14 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260409\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-18 00:33+0000\n"
-"PO-Revision-Date: 2026-04-18 00:33+0000\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2026-04-25 00:00+0000\n"
+"PO-Revision-Date: 2026-04-25 00:00+0000\n"
+"Last-Translator: VBS Team\n"
+"Language-Team: Vietnamese\n"
+"Language: vi_VN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__message_needaction
@@ -28,13 +29,13 @@ msgstr "Số tệp đính kèm"
 #. module: vbs_contact
 #: model_terms:ir.actions.act_window,help:vbs_contact.action_vbs_contact_log
 msgid "Chưa có nhật ký liên hệ"
-msgstr ""
+msgstr "Chưa có nhật ký liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields.selection,name:vbs_contact.selection__vbs_contact_log__tinh_trang__cho_lien_he
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
 msgid "Chờ liên hệ"
-msgstr ""
+msgstr "Chờ liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__create_uid
@@ -60,12 +61,12 @@ msgstr "Người theo dõi (Đối tác)"
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__note
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
 msgid "Ghi chú"
-msgstr ""
+msgstr "Ghi chú"
 
 #. module: vbs_contact
 #: model_terms:ir.actions.act_window,help:vbs_contact.action_vbs_contact_log
 msgid "Ghi lại mỗi lần liên hệ khách hàng về đồ may."
-msgstr ""
+msgstr "Ghi lại mỗi lần liên hệ khách hàng về đồ may."
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__has_message
@@ -75,12 +76,12 @@ msgstr "Có tin nhắn"
 #. module: vbs_contact
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
 msgid "Hôm nay"
-msgstr ""
+msgstr "Hôm nay"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: vbs_contact
 #: model:ir.model.fields,help:vbs_contact.field_vbs_contact_log__message_needaction
@@ -102,17 +103,17 @@ msgstr "Đang theo dõi"
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__partner_id
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
 msgid "Khách hàng"
-msgstr ""
+msgstr "Khách hàng"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__ket_qua
 msgid "Kết quả"
-msgstr ""
+msgstr "Kết quả"
 
 #. module: vbs_contact
 #: model:ir.model.fields,help:vbs_contact.field_vbs_contact_log__ket_qua
 msgid "Kết quả sau khi liên hệ"
-msgstr ""
+msgstr "Kết quả sau khi liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__write_uid
@@ -128,18 +129,18 @@ msgstr "Ngày cập nhật"
 #: model:ir.ui.menu,name:vbs_contact.menu_root_contact
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
 msgid "Liên hệ khách hàng"
-msgstr ""
+msgstr "Liên hệ khách hàng"
 
 #. module: vbs_contact
 #. odoo-python
 #: code:addons/vbs_contact/models/vbs_contact_log.py:0
 msgid "Liên hệ mới"
-msgstr ""
+msgstr "Liên hệ mới"
 
 #. module: vbs_contact
 #: model:ir.ui.menu,name:vbs_contact.menu_contact_log
 msgid "Lịch sử liên hệ"
-msgstr ""
+msgstr "Lịch sử liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__message_has_error
@@ -154,28 +155,28 @@ msgstr "Tin nhắn"
 #. module: vbs_contact
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
 msgid "Ngày"
-msgstr ""
+msgstr "Ngày"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__date_contact
 msgid "Ngày liên hệ"
-msgstr ""
+msgstr "Ngày liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__user_id
 msgid "Người liên hệ"
-msgstr ""
+msgstr "Người liên hệ"
 
 #. module: vbs_contact
 #: model:ir.actions.act_window,name:vbs_contact.action_vbs_contact_log
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_list
 msgid "Nhật ký liên hệ"
-msgstr ""
+msgstr "Nhật ký liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model,name:vbs_contact.model_vbs_contact_log
 msgid "Nhật ký liên hệ khách hàng"
-msgstr ""
+msgstr "Nhật ký liên hệ khách hàng"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__message_needaction_counter
@@ -200,17 +201,17 @@ msgstr "Số tin nhắn bị lỗi gửi"
 #. module: vbs_contact
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
 msgid "Nội dung & Kết quả"
-msgstr ""
+msgstr "Nội dung & Kết quả"
 
 #. module: vbs_contact
 #: model:ir.model.fields,help:vbs_contact.field_vbs_contact_log__noi_dung
 msgid "Nội dung hoặc loại liên hệ (VD: hẹn thử đồ, báo hàng về...)"
-msgstr ""
+msgstr "Nội dung hoặc loại liên hệ (VD: hẹn thử đồ, báo hàng về...)"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__noi_dung
 msgid "Nội dung liên hệ"
-msgstr ""
+msgstr "Nội dung liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__message_has_sms_error
@@ -220,23 +221,23 @@ msgstr "Lỗi gửi SMS"
 #. module: vbs_contact
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
 msgid "Thông tin liên hệ"
-msgstr ""
+msgstr "Thông tin liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__display_name
 msgid "Tên hiển thị"
-msgstr ""
+msgstr "Tên hiển thị"
 
 #. module: vbs_contact
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
 msgid "Tìm nhật ký liên hệ"
-msgstr ""
+msgstr "Tìm nhật ký liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__tinh_trang
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
 msgid "Tình trạng"
-msgstr ""
+msgstr "Tình trạng"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__website_message_ids
@@ -252,15 +253,15 @@ msgstr "Lịch sử giao tiếp website"
 #: model:ir.model.fields.selection,name:vbs_contact.selection__vbs_contact_log__tinh_trang__da_lien_he
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
 msgid "Đã liên hệ"
-msgstr ""
+msgstr "Đã liên hệ"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__order_id
 #: model:ir.ui.menu,name:vbs_contact.menu_contact_orders
 msgid "Đơn hàng"
-msgstr ""
+msgstr "Đơn hàng"
 
 #. module: vbs_contact
 #: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__garment_id
 msgid "Đồ may liên quan"
-msgstr ""
+msgstr "Đồ may liên quan"

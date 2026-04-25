@@ -113,6 +113,22 @@ class VbsFabricOrderLine(models.Model):
 
     state = fields.Selection(related='order_id.state', string='Trạng thái', store=True)
 
+    arrived = fields.Boolean(string='Đã về', default=False, index=True)
+    date_arrived = fields.Date(string='Ngày về')
+
+    def action_mark_line_arrived(self):
+        """Đánh dấu dòng vải này đã về kho."""
+        today = fields.Date.today()
+        newly = self.filtered(lambda l: not l.arrived)
+        if newly:
+            newly.write({'arrived': True, 'date_arrived': today})
+            newly._after_line_arrived()
+            newly.mapped('order_id')._check_all_arrived()
+
+    def _after_line_arrived(self):
+        """Hook cho submodule mở rộng khi từng dòng vải về (vd: cập nhật stock, tạo activity)."""
+        pass
+
     @api.onchange('fabric_type_id')
     def _onchange_fabric_type_id(self):
         if self.fabric_type_id:

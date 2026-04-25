@@ -6,14 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260409\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-18 00:33+0000\n"
-"PO-Revision-Date: 2026-04-18 00:33+0000\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2026-04-25 00:00+0000\n"
+"PO-Revision-Date: 2026-04-25 00:00+0000\n"
+"Last-Translator: VBS Team\n"
+"Language-Team: Vietnamese\n"
+"Language: vi_VN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__message_needaction
@@ -53,7 +54,7 @@ msgstr "Số tệp đính kèm"
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__start_datetime
 msgid "Bắt đầu"
-msgstr ""
+msgstr "Bắt đầu"
 
 #. module: vbs_planning
 #: model:ir.actions.act_window,name:vbs_planning.action_planning_slot
@@ -62,13 +63,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_list
 msgid "Ca làm việc"
-msgstr ""
+msgstr "Ca làm việc"
 
 #. module: vbs_planning
 #. odoo-python
 #: code:addons/vbs_planning/models/planning_slot.py:0
 msgid "Ca làm việc mới"
-msgstr ""
+msgstr "Ca làm việc mới"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_role__create_uid
@@ -85,7 +86,7 @@ msgstr "Ngày tạo"
 #. module: vbs_planning
 #: model:ir.ui.menu,name:vbs_planning.menu_planning_config
 msgid "Cấu hình"
-msgstr ""
+msgstr "Cấu hình"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_role__display_name
@@ -112,7 +113,7 @@ msgstr "Biểu tượng Font Awesome, vd: fa-tasks"
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__note
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
 msgid "Ghi chú"
-msgstr ""
+msgstr "Ghi chú"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__has_message
@@ -124,18 +125,18 @@ msgstr "Có tin nhắn"
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
 msgid "Hoàn thành"
-msgstr ""
+msgstr "Hoàn thành"
 
 #. module: vbs_planning
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
 msgid "Huỷ"
-msgstr ""
+msgstr "Huỷ"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_role__id
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__activity_exception_icon
@@ -166,7 +167,7 @@ msgstr "Đang theo dõi"
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__end_datetime
 msgid "Kết thúc"
-msgstr ""
+msgstr "Kết thúc"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_role__write_uid
@@ -183,17 +184,17 @@ msgstr "Ngày cập nhật"
 #. module: vbs_planning
 #: model:ir.ui.menu,name:vbs_planning.menu_planning_root
 msgid "Lập lịch"
-msgstr ""
+msgstr "Lập lịch"
 
 #. module: vbs_planning
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_calendar
 msgid "Lịch ca làm việc"
-msgstr ""
+msgstr "Lịch ca làm việc"
 
 #. module: vbs_planning
 #: model:ir.ui.menu,name:vbs_planning.menu_planning_main
 msgid "Lịch làm việc"
-msgstr ""
+msgstr "Lịch làm việc"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__message_has_error
@@ -214,7 +215,7 @@ msgstr "Hạn hoạt động của tôi"
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_role__color
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__color
 msgid "Màu sắc"
-msgstr ""
+msgstr "Màu sắc"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__activity_date_deadline
@@ -235,13 +236,13 @@ msgstr "Loại hoạt động tiếp theo"
 #: model:ir.model.fields.selection,name:vbs_planning.selection__planning_slot__state__draft
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
 msgid "Nháp"
-msgstr ""
+msgstr "Nháp"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__employee_id
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
 msgid "Nhân viên"
-msgstr ""
+msgstr "Nhân viên"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__message_needaction_counter
@@ -266,13 +267,13 @@ msgstr "Số tin nhắn bị lỗi gửi"
 #. module: vbs_planning
 #: model_terms:ir.actions.act_window,help:vbs_planning.action_planning_slot
 msgid "Phân công ca làm việc cho nhân viên theo vai trò và thời gian."
-msgstr ""
+msgstr "Phân công ca làm việc cho nhân viên theo vai trò và thời gian."
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__department_id
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
 msgid "Phòng ban"
-msgstr ""
+msgstr "Phòng ban"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__activity_user_id
@@ -292,44 +293,48 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Trạng thái dựa trên hoạt động\n"
+"Quá hạn: Đã qua ngày hạn\n"
+"Hôm nay: Ngày hoạt động là hôm nay\n"
+"Đã lên kế hoạch: Hoạt động trong tương lai."
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_role__slot_count
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_role_list
 msgid "Số ca"
-msgstr ""
+msgstr "Số ca"
 
 #. module: vbs_planning
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
 msgid "Thông tin chung"
-msgstr ""
+msgstr "Thông tin chung"
 
 #. module: vbs_planning
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
 msgid "Thời gian"
-msgstr ""
+msgstr "Thời gian"
 
 #. module: vbs_planning
 #. odoo-python
 #: code:addons/vbs_planning/models/planning_slot.py:0
 msgid "Thời gian kết thúc phải sau thời gian bắt đầu."
-msgstr ""
+msgstr "Thời gian kết thúc phải sau thời gian bắt đầu."
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__duration
 msgid "Thời lượng (giờ)"
-msgstr ""
+msgstr "Thời lượng (giờ)"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__name
 msgid "Tiêu đề"
-msgstr ""
+msgstr "Tiêu đề"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__state
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
 msgid "Trạng thái"
-msgstr ""
+msgstr "Trạng thái"
 
 #. module: vbs_planning
 #: model:ir.model.fields,help:vbs_planning.field_planning_slot__activity_exception_decoration
@@ -339,17 +344,17 @@ msgstr "Loại hoạt động ngoại lệ trên bản ghi."
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_role__name
 msgid "Tên vai trò"
-msgstr ""
+msgstr "Tên vai trò"
 
 #. module: vbs_planning
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
 msgid "Tìm ca làm việc"
-msgstr ""
+msgstr "Tìm ca làm việc"
 
 #. module: vbs_planning
 #: model_terms:ir.actions.act_window,help:vbs_planning.action_planning_slot
 msgid "Tạo ca làm việc đầu tiên"
-msgstr ""
+msgstr "Tạo ca làm việc đầu tiên"
 
 #. module: vbs_planning
 #: model:ir.actions.act_window,name:vbs_planning.action_planning_role
@@ -359,12 +364,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_role_list
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
 msgid "Vai trò"
-msgstr ""
+msgstr "Vai trò"
 
 #. module: vbs_planning
 #: model:ir.model,name:vbs_planning.model_planning_role
 msgid "Vai trò / Vị trí công việc"
-msgstr ""
+msgstr "Vai trò / Vị trí công việc"
 
 #. module: vbs_planning
 #: model:ir.model.fields,field_description:vbs_planning.field_planning_slot__website_message_ids
@@ -379,20 +384,20 @@ msgstr "Lịch sử giao tiếp website"
 #. module: vbs_planning
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
 msgid "Xác nhận"
-msgstr ""
+msgstr "Xác nhận"
 
 #. module: vbs_planning
 #: model:ir.model.fields.selection,name:vbs_planning.selection__planning_slot__state__cancelled
 msgid "Đã huỷ"
-msgstr ""
+msgstr "Đã huỷ"
 
 #. module: vbs_planning
 #: model:ir.model.fields.selection,name:vbs_planning.selection__planning_slot__state__confirmed
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_search
 msgid "Đã xác nhận"
-msgstr ""
+msgstr "Đã xác nhận"
 
 #. module: vbs_planning
 #: model_terms:ir.ui.view,arch_db:vbs_planning.view_planning_slot_form
 msgid "Đặt lại nháp"
-msgstr ""
+msgstr "Đặt lại nháp"

@@ -4,22 +4,22 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0-20260409\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-25 00:00+0000\n"
 "PO-Revision-Date: 2026-04-25 00:00+0000\n"
 "Last-Translator: VBS Team\n"
-"Language-Team: Vietnamese\n"
-"Language: vi_VN\n"
+"Language-Team: English\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "+ Tạo rập mới cho khách"
-msgstr "+ Tạo rập mới cho khách"
+msgstr "+ Create new pattern for customer"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
@@ -28,206 +28,153 @@ msgid ""
 "                                <span class=\"o_stat_value\" invisible=\"not fabric_arrived\">Đã về</span>\n"
 "                                <span class=\"o_stat_value\" invisible=\"fabric_arrived\">Đang đặt</span>"
 msgstr ""
-"<span class=\"o_stat_text\">Phiếu vải</span>\n"
-"                                <span class=\"o_stat_value\" invisible=\"not fabric_arrived\">Đã về</span>\n"
-"                                <span class=\"o_stat_value\" invisible=\"fabric_arrived\">Đang đặt</span>"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_needaction
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_needaction
-msgid "Action Needed"
-msgstr "Cần xử lý"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_ids
-msgid "Activities"
-msgstr "Hoạt động"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_exception_decoration
-msgid "Activity Exception Decoration"
-msgstr "Biểu tượng ngoại lệ hoạt động"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_state
-msgid "Activity State"
-msgstr "Trạng thái hoạt động"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_type_icon
-msgid "Activity Type Icon"
-msgstr "Biểu tượng loại hoạt động"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_attachment_count
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_attachment_count
-msgid "Attachment Count"
-msgstr "Số tệp đính kèm"
+"<span class=\"o_stat_text\">Fabric Order</span>\n"
+"                                <span class=\"o_stat_value\" invisible=\"not fabric_arrived\">Arrived</span>\n"
+"                                <span class=\"o_stat_value\" invisible=\"fabric_arrived\">Ordered</span>"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__order_type__b2b
 msgid "B2B (Vải + Gia công)"
-msgstr "B2B (Vải + Gia công)"
+msgstr "B2B (Fabric + CMT)"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__order_type__b2c
 msgid "B2C (Thành phẩm)"
-msgstr "B2C (Thành phẩm)"
+msgstr "B2C (Ready-made)"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__bomber
 msgid "Bomber"
-msgstr "Áo Bomber"
+msgstr "Bomber Jacket"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__budong
 msgid "Budong"
-msgstr "Bu-đông"
+msgstr "Budong Jacket"
 
 #. module: vbs_garment
 #: model:ir.model,name:vbs_garment.model_vbs_payment_record
 msgid "Bản ghi thanh toán"
-msgstr "Bản ghi thanh toán"
+msgstr "Payment Record"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Bắt đầu sản xuất"
-msgstr "Bắt đầu sản xuất"
+msgstr "Start Production"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__set_type__bo_2
 msgid "Bộ 2 mảnh"
-msgstr "Bộ 2 mảnh"
+msgstr "2-piece Set"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__set_type__bo_3
 msgid "Bộ 3 mảnh"
-msgstr "Bộ 3 mảnh"
+msgstr "3-piece Set"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__bo_3_manh
 msgid "Bộ 3 mảnh (cũ)"
-msgstr "Bộ 3 mảnh (cũ)"
+msgstr "3-piece set (legacy)"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__bo_comple
 msgid "Bộ comple 2 mảnh (cũ)"
-msgstr "Bộ comple 2 mảnh (cũ)"
+msgstr "2-piece suit (legacy)"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "CS duyệt"
-msgstr "CS duyệt"
+msgstr "CS Approve"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__confirmed_cs
 msgid "CS xác nhận"
-msgstr "CS xác nhận"
+msgstr "CS Confirmed"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_step_list_inline
 msgid "Ca SX"
-msgstr "Ca sản xuất"
+msgstr "Prod. Shift"
 
 #. module: vbs_garment
 #: model:ir.model,name:vbs_garment.model_planning_slot
 msgid "Ca làm việc"
-msgstr "Ca làm việc"
+msgstr "Work Shift"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/planning_slot_ext.py:0
 msgid "Ca làm việc mới"
-msgstr "Ca làm việc mới"
+msgstr "New Work Shift"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Ca sx"
-msgstr "Ca sản xuất"
+msgstr "Prod. Shifts"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__slot_id
 msgid "Ca sản xuất"
-msgstr "Ca sản xuất"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__can_publish
-msgid "Can Publish"
-msgstr "Có thể đăng bán"
+msgstr "Production Shift"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__detail
 msgid "Chi tiết đồ"
-msgstr "Chi tiết đồ"
+msgstr "Garment Details"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Chuyến"
-msgstr "Chuyến"
+msgstr "Trip"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_payment_record__method__transfer
 msgid "Chuyển khoản"
-msgstr "Chuyển khoản"
+msgstr "Bank Transfer"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__chan_vay
 msgid "Chân váy"
-msgstr "Chân váy"
+msgstr "Skirt"
 
 #. module: vbs_garment
 #: model_terms:ir.actions.act_window,help:vbs_garment.action_vbs_garment
 msgid "Chưa có đồ nào"
-msgstr "Chưa có đồ nào"
+msgstr "No garments yet"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__state__todo
 msgid "Chưa làm"
-msgstr "Chưa làm"
+msgstr "To Do"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__payment_state__chua_tt
 msgid "Chưa thanh toán"
-msgstr "Chưa thanh toán"
+msgstr "Unpaid"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/sale_order.py:0
 msgid "Chỉ Quản trị viên VBS mới được huỷ đơn hàng."
-msgstr "Chỉ Quản trị viên VBS mới được huỷ đơn hàng."
+msgstr "Only VBS Admin can cancel orders."
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Chỉ publish được đồ đã hoàn thiện, đã trả khách và chưa có sản phẩm."
-msgstr "Chỉ publish được đồ đã hoàn thiện, đã trả khách và chưa có sản phẩm."
+msgstr "Can only publish finished garments that have been returned to customer and have no existing product."
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Chờ thử đồ"
-msgstr "Chờ thử đồ"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__create_uid
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__create_uid
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__create_uid
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__create_uid
-msgid "Created by"
-msgstr "Tạo bởi"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__create_date
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__create_date
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__create_date
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__create_date
-msgid "Created on"
-msgstr "Ngày tạo"
+msgstr "Awaiting Fitting"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_stock__quantity_available
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_fabric_stock_list_garment
 msgid "Còn lại (m)"
-msgstr "Còn lại (m)"
+msgstr "Remaining (m)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__step_ids
@@ -235,90 +182,75 @@ msgstr "Còn lại (m)"
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_step_list_inline
 msgid "Công đoạn"
-msgstr "Công đoạn"
+msgstr "Stage"
 
 #. module: vbs_garment
 #: model:ir.model,name:vbs_garment.model_vbs_garment_step
 msgid "Công đoạn may"
-msgstr "Công đoạn may"
+msgstr "Tailoring Stage"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Cần CS xác nhận trước khi chuyển \"%s\" sang \"Lược\"."
-msgstr "Cần CS xác nhận trước khi chuyển \"%s\" sang \"Lược\"."
+msgstr "CS confirmation required before moving \"%s\" to \"Basting\"."
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Cần QA xác nhận trước khi chuyển \"%s\" sang \"Hoàn thiện\"."
-msgstr "Cần QA xác nhận trước khi chuyển \"%s\" sang \"Hoàn thiện\"."
+msgstr "QA confirmation required before moving \"%s\" to \"Finishing\"."
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Cần Sale xác nhận trước khi trả khách \"%s\"."
-msgstr "Cần Sale xác nhận trước khi trả khách \"%s\"."
+msgstr "Sales confirmation required before returning \"%s\" to customer."
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Cần có khách hàng và loại đồ để tạo rập."
-msgstr "Cần có khách hàng và loại đồ để tạo rập."
+msgstr "Customer and garment type are required to create a pattern."
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Cần điền loại vải và số mét trước khi yêu cầu vải."
-msgstr "Cần điền loại vải và số mét trước khi yêu cầu vải."
+msgstr "Fill in fabric type and meters before requesting fabric."
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__step_type__cat
 msgid "Cắt vải"
-msgstr "Cắt vải"
+msgstr "Cutting"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__location__cua_hang
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_kanban
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Cửa hàng"
-msgstr "Cửa hàng"
+msgstr "Store"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order__garment_ids
 msgid "Danh sách đồ"
-msgstr "Danh sách đồ"
+msgstr "Garments"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__planned_date
 msgid "Deadline nội bộ hoàn thành đồ"
-msgstr "Deadline nội bộ hoàn thành đồ"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_planning_slot__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_sale_order__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_order__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_order_line__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_stock__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_pattern__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__display_name
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_product__display_name
-msgid "Display Name"
-msgstr "Tên hiển thị"
+msgstr "Internal deadline to complete the garment"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__fabric_line_id
 msgid "Dòng vải cụ thể đã đặt cho đồ này"
-msgstr "Dòng vải cụ thể đã đặt cho đồ này"
+msgstr "Specific fabric line ordered for this garment"
 
 #. module: vbs_garment
 #: model:ir.model,name:vbs_garment.model_vbs_fabric_order_line
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__fabric_line_id
 msgid "Dòng đặt vải"
-msgstr "Dòng đặt vải"
+msgstr "Fabric Order Line"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
@@ -326,35 +258,17 @@ msgid ""
 "Dùng nút \"CS/QA/Sale duyệt\" ở đầu form để đặt cờ. Lịch sử thay đổi xem ở "
 "Chatter."
 msgstr ""
-"Dùng nút \"CS/QA/Sale duyệt\" ở đầu form để đặt cờ. Lịch sử thay đổi xem ở "
-"Chatter."
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_follower_ids
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_follower_ids
-msgid "Followers"
-msgstr "Người theo dõi"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_partner_ids
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_partner_ids
-msgid "Followers (Partners)"
-msgstr "Người theo dõi (Đối tác)"
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Biểu tượng Font Awesome, vd: fa-tasks"
+"Use the \"CS/QA/Sale Approve\" buttons at the top to set flags. View change history in Chatter."
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__set_code
 msgid "Garment cùng mã bộ thuộc cùng 1 set (VD: SET/00001)"
-msgstr "Garment cùng mã bộ thuộc cùng 1 set (VD: SET/00001)"
+msgstr "Garments with the same set code belong to 1 set (e.g.: SET/00001)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_product__source_garment_id
 msgid "Garment đã publish ra sản phẩm này (nullable với sản phẩm thủ công)."
-msgstr "Garment đã publish ra sản phẩm này (nullable với sản phẩm thủ công)."
+msgstr "Garment published as this product (nullable for manually created products)."
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__note
@@ -363,132 +277,81 @@ msgstr "Garment đã publish ra sản phẩm này (nullable với sản phẩm t
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__note
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Ghi chú"
-msgstr "Ghi chú"
+msgstr "Note"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__fabric_note
 msgid "Ghi chú vải"
-msgstr "Ghi chú vải"
+msgstr "Fabric Note"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__gile
 msgid "Gile (cũ)"
-msgstr "Gile (cũ)"
+msgstr "Vest (legacy)"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__gile_dd
 msgid "Gile DD"
-msgstr "Gile đôi dây"
+msgstr "Double-strap Vest"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__gile_sb
 msgid "Gile SB"
-msgstr "Gile single-breasted"
+msgstr "Single-breasted Vest"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Giá"
-msgstr "Giá"
+msgstr "Price"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__computed_price
 msgid "Giá dự tính"
-msgstr "Giá dự tính"
+msgstr "Estimated Price"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_planning_slot_list_inline_garment
 msgid "Giờ"
-msgstr "Giờ"
+msgstr "Hours"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_move_list_inline
 msgid "Giờ tại trạm"
-msgstr "Giờ tại trạm"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__has_message
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__has_message
-msgid "Has Message"
-msgstr "Có tin nhắn"
+msgstr "Hours at Station"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__state__hoan_thien
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__step_type__hoan_thien
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Hoàn thiện"
-msgstr "Hoàn thiện"
+msgstr "Finishing"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__fashion_state__hoan_thanh
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Hoàn thành"
-msgstr "Hoàn thành"
+msgstr "Completed"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__fashion_state__huy
 msgid "Huỷ"
-msgstr "Huỷ"
+msgstr "Cancelled"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__location__huy
 msgid "Huỷ đồ"
-msgstr "Huỷ đồ"
+msgstr "Cancelled"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_fabric_stock_search_garment
 msgid "Hết hàng"
-msgstr "Hết hàng"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_planning_slot__id
-#: model:ir.model.fields,field_description:vbs_garment.field_sale_order__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_order__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_order_line__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_stock__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_pattern__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__id
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_product__id
-msgid "ID"
-msgstr "ID"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_exception_icon
-msgid "Icon"
-msgstr "Biểu tượng"
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__activity_exception_icon
-msgid "Icon to indicate an exception activity."
-msgstr "Biểu tượng thể hiện hoạt động ngoại lệ."
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__message_needaction
-#: model:ir.model.fields,help:vbs_garment.field_vbs_payment_record__message_needaction
-msgid "If checked, new messages require your attention."
-msgstr "Nếu được đánh dấu, có tin nhắn mới cần bạn xử lý."
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__message_has_error
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__message_has_sms_error
-#: model:ir.model.fields,help:vbs_garment.field_vbs_payment_record__message_has_error
-#: model:ir.model.fields,help:vbs_garment.field_vbs_payment_record__message_has_sms_error
-msgid "If checked, some messages have a delivery error."
-msgstr "Nếu được đánh dấu, một số tin nhắn bị lỗi gửi."
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_is_follower
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_is_follower
-msgid "Is Follower"
-msgstr "Đang theo dõi"
+msgstr "Out of Stock"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__step_type__khac
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_payment_record__method__other
 msgid "Khác"
-msgstr "Khác"
+msgstr "Other"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__partner_id
@@ -496,124 +359,108 @@ msgstr "Khác"
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__partner_id
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Khách hàng"
-msgstr "Khách hàng"
+msgstr "Customer"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_planning_slot__garment_partner_id
 msgid "Khách hàng (đồ)"
-msgstr "Khách hàng (đồ)"
+msgstr "Customer (garment)"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__step_type__kiem_tra
 msgid "Kiểm tra QA"
-msgstr "Kiểm tra QA"
+msgstr "QA Check"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_move__move_type__lch
 msgid "LCH — Cửa hàng → Xưởng"
-msgstr "LCH — Cửa hàng → Xưởng"
+msgstr "LCH — Store → Workshop"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_move__move_type__lx
 msgid "LX — Xưởng → Cửa hàng"
-msgstr "LX — Xưởng → Cửa hàng"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__write_uid
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__write_uid
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__write_uid
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__write_uid
-msgid "Last Updated by"
-msgstr "Cập nhật bởi"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__write_date
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__write_date
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__write_date
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__write_date
-msgid "Last Updated on"
-msgstr "Ngày cập nhật"
+msgstr "LX — Workshop → Store"
 
 #. module: vbs_garment
 #: model:mail.activity.type,name:vbs_garment.activity_type_lien_he_khach
 msgid "Đơn đặt"
-msgstr "Liên hệ khách"
+msgstr "Customer Contact"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__fabric_order_id
 msgid "Liên kết đơn đặt vải tương ứng"
-msgstr "Liên kết đơn đặt vải tương ứng"
+msgstr "Linked fabric order"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__move_type
 msgid "Loại"
-msgstr "Loại"
+msgstr "Type"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__set_type
 msgid "Loại bộ"
-msgstr "Loại bộ"
+msgstr "Set Type"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__fabric_id
 msgid "Loại vải"
-msgstr "Loại vải"
+msgstr "Fabric Type"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_pattern__preferred_fabric_type_id
 msgid "Loại vải gợi ý khi tạo đồ mới từ rập này"
-msgstr "Loại vải gợi ý khi tạo đồ mới từ rập này"
+msgstr "Suggested fabric type when creating a new garment from this pattern"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order__order_type
 msgid "Loại đơn"
-msgstr "Loại đơn"
+msgstr "Order Type"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_planning_slot__garment_type
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__garment_type
 msgid "Loại đồ"
-msgstr "Loại đồ"
+msgstr "Garment Type"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__state__luoc
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__step_type__luoc
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Lược"
-msgstr "Lược"
+msgstr "Basting"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__state__lan_2
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Lần 2"
-msgstr "Lần 2"
+msgstr "Round 2"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_pattern__last_used_date
 msgid "Lần dùng gần nhất"
-msgstr "Lần dùng gần nhất"
+msgstr "Last Used Date"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__trip_number
 msgid "Lần thứ"
-msgstr "Lần thứ"
+msgstr "Trip No."
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__set_type__none
 msgid "Lẻ"
-msgstr "Lẻ"
+msgstr "Single"
 
 #. module: vbs_garment
 #: model:ir.actions.act_window,name:vbs_garment.action_vbs_garment
 #: model:ir.model,name:vbs_garment.model_vbs_garment
 #: model:ir.ui.menu,name:vbs_garment.menu_production_garments
 msgid "Lệnh sản xuất"
-msgstr "Lệnh sản xuất"
+msgstr "Production Orders"
 
 #. module: vbs_garment
 #: model:ir.ui.menu,name:vbs_garment.menu_production_planning
 msgid "Lịch làm việc"
-msgstr "Lịch làm việc"
+msgstr "Work Schedule"
 
 #. module: vbs_garment
 #. odoo-python
@@ -622,12 +469,12 @@ msgstr "Lịch làm việc"
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_planning_slot_list_inline_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Lịch sản xuất"
-msgstr "Lịch sản xuất"
+msgstr "Production Schedule"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order__payment_ids
 msgid "Lịch sử thanh toán"
-msgstr "Lịch sử thanh toán"
+msgstr "Payment History"
 
 #. module: vbs_garment
 #. odoo-python
@@ -636,226 +483,170 @@ msgstr "Lịch sử thanh toán"
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_move_list_inline
 msgid "Lịch sử vận chuyển"
-msgstr "Lịch sử vận chuyển"
+msgstr "Transport History"
 
 #. module: vbs_garment
 #: model:ir.model,name:vbs_garment.model_vbs_garment_move
 msgid "Lịch sử vận chuyển LCH/LX"
-msgstr "Lịch sử vận chuyển LCH/LX"
+msgstr "LCH/LX Transport History"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_calendar
 msgid "Lịch đồ may"
-msgstr "Lịch đồ may"
+msgstr "Garment Calendar"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__step_type__may
 msgid "May thô"
-msgstr "May thô"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_has_error
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_has_error
-msgid "Message Delivery error"
-msgstr "Lỗi gửi tin nhắn"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_ids
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_ids
-msgid "Messages"
-msgstr "Tin nhắn"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__my_activity_date_deadline
-msgid "My Activity Deadline"
-msgstr "Hạn hoạt động của tôi"
+msgstr "Rough Sewing"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__fabric_note
 msgid "Màu sắc, chi tiết bổ sung (VD: Navy, kẻ caro)"
-msgstr "Màu sắc, chi tiết bổ sung (VD: Navy, kẻ caro)"
+msgstr "Color, additional details (e.g.: Navy, check pattern)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__detail
 msgid "Màu sắc, kiểu dáng, ghi chú đặc biệt"
-msgstr "Màu sắc, kiểu dáng, ghi chú đặc biệt"
+msgstr "Color, style, special notes"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__ma_pkc
 msgid "Mã PKC"
-msgstr "Mã PKC"
+msgstr "PKC Code"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__ma_pkc
 msgid "Mã Phiếu Kế Công"
-msgstr "Mã Phiếu Kế Công"
+msgstr "Work Order Code"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__sapo_code
 msgid "Mã Sapo"
-msgstr "Mã Sapo"
+msgstr "Sapo Code"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__set_code
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Mã bộ"
-msgstr "Mã bộ"
+msgstr "Set Code"
 
 #. module: vbs_garment
 #: model:ir.model,name:vbs_garment.model_vbs_pattern
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_order_line__pattern_id
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__pattern_id
 msgid "Mã rập"
-msgstr "Mã rập"
+msgstr "Pattern Code"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__ref
 msgid "Mã đồ"
-msgstr "Mã đồ"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_date_deadline
-msgid "Next Activity Deadline"
-msgstr "Hạn hoạt động tiếp theo"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_summary
-msgid "Next Activity Summary"
-msgstr "Tóm tắt hoạt động tiếp theo"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_type_id
-msgid "Next Activity Type"
-msgstr "Loại hoạt động tiếp theo"
+msgstr "Garment Ref"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Ngày"
-msgstr "Ngày"
+msgstr "Date"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_list
 msgid "Ngày hiện tại"
-msgstr "Ngày hiện tại"
+msgstr "Current Date"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__date_done
 msgid "Ngày hoàn thành"
-msgstr "Ngày hoàn thành"
+msgstr "Completion Date"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__planned_date
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__date_planned
 msgid "Ngày kế hoạch"
-msgstr "Ngày kế hoạch"
+msgstr "Planned Date"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_step_list_inline
 msgid "Ngày lệch"
-msgstr "Ngày lệch"
+msgstr "Days Overdue"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__date_entry
 msgid "Ngày nhập"
-msgstr "Ngày nhập"
+msgstr "Entry Date"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__date_entry
 msgid "Ngày nhập đồ vào hệ thống (Ngày nhập trong sheet cũ)"
-msgstr "Ngày nhập đồ vào hệ thống (Ngày nhập trong sheet cũ)"
+msgstr "Date garment was entered into the system (entry date from old sheet)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__date
 msgid "Ngày thanh toán"
-msgstr "Ngày thanh toán"
+msgstr "Payment Date"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__date_return
 msgid "Ngày trả khách"
-msgstr "Ngày trả khách"
+msgstr "Return Date"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__responsible_id
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Người phụ trách"
-msgstr "Người phụ trách"
+msgstr "Responsible"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__employee_id
 msgid "Người thực hiện"
-msgstr "Người thực hiện"
+msgstr "Assigned To"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__state__nhap
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Nháp"
-msgstr "Nháp"
+msgstr "Draft"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_fabric_order_ext.py:0
 msgid "Nhập từ %s"
-msgstr "Nhập từ %s"
+msgstr "Imported from %s"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Nhắc khách thử đồ: %s"
-msgstr "Nhắc khách thử đồ: %s"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_needaction_counter
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_needaction_counter
-msgid "Number of Actions"
-msgstr "Số thao tác"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_has_error_counter
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_has_error_counter
-msgid "Number of errors"
-msgstr "Số lỗi"
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__message_needaction_counter
-#: model:ir.model.fields,help:vbs_garment.field_vbs_payment_record__message_needaction_counter
-msgid "Number of messages requiring action"
-msgstr "Số tin nhắn cần xử lý"
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__message_has_error_counter
-#: model:ir.model.fields,help:vbs_garment.field_vbs_payment_record__message_has_error_counter
-msgid "Number of messages with delivery error"
-msgstr "Số tin nhắn bị lỗi gửi"
+msgstr "Fitting reminder for customer: %s"
 
 #. module: vbs_garment
 #: model:ir.model,name:vbs_garment.model_vbs_fabric_order
 msgid "Phiếu đặt vải (DV01A)"
-msgstr "Phiếu đặt vải (DV01A)"
+msgstr "Fabric Order (DV01A)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__method
 msgid "Phương thức"
-msgstr "Phương thức"
+msgstr "Method"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__price_surcharge
 msgid "Phụ phí"
-msgstr "Phụ phí"
+msgstr "Surcharge"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__price_surcharge
 msgid "Phụ phí cộng thêm (VD: áo dài hơn áo ngắn, surcharge đặc biệt)"
-msgstr "Phụ phí cộng thêm (VD: áo dài hơn áo ngắn, surcharge đặc biệt)"
+msgstr "Additional surcharge (e.g.: long jacket vs short jacket, special surcharge)"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__polo
 msgid "Polo"
-msgstr "Áo Polo"
+msgstr "Polo Shirt"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "QA duyệt"
-msgstr "QA duyệt"
+msgstr "QA Approve"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
@@ -865,551 +656,427 @@ msgstr "QC"
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__location__qc
 msgid "QC (kiểm tra)"
-msgstr "QC (kiểm tra)"
+msgstr "QC (Inspection)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__sla_overdue
 #: model:mail.activity.type,name:vbs_garment.activity_type_sla_overdue
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Quá hạn SLA"
-msgstr "Quá hạn SLA"
+msgstr "SLA Overdue"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Quá hạn SLA: %s đang ở \"%s\" quá %s ngày"
-msgstr "Quá hạn SLA: %s đang ở \"%s\" quá %s ngày"
+msgstr "SLA Overdue: %s has been in \"%s\" for over %s days"
 
 #. module: vbs_garment
 #: model_terms:ir.actions.act_window,help:vbs_garment.action_vbs_sale_order
 msgid "Quản lý đơn hàng may đo khách hàng VBS."
-msgstr "Quản lý đơn hàng may đo khách hàng VBS."
+msgstr "Manage VBS customer tailoring orders."
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__quan
 msgid "Quần"
-msgstr "Quần"
+msgstr "Trousers"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__quan_comple
 msgid "Quần Comple"
-msgstr "Quần Comple"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__activity_user_id
-msgid "Responsible User"
-msgstr "Người phụ trách"
+msgstr "Suit Trousers"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/sale_order.py:0
 msgid "Rập của khách"
-msgstr "Rập của khách"
+msgstr "Customer Patterns"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Rập khách"
-msgstr "Rập khách"
-
-#. module: vbs_garment
-#: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_kanban
-msgid "SLA"
-msgstr "SLA"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__message_has_sms_error
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Lỗi gửi SMS"
+msgstr "Customer Patterns"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Sale duyệt"
-msgstr "Sale duyệt"
+msgstr "Sales Approve"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__confirmed_sale
 msgid "Sale xác nhận"
-msgstr "Sale xác nhận"
-
-#. module: vbs_garment
-#: model:ir.model,name:vbs_garment.model_sale_order
-msgid "Sales Order"
-msgstr "Đơn bán hàng"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__sequence
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__sequence
-msgid "Sequence"
-msgstr "Thứ tự"
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__activity_state
-msgid ""
-"Status based on activities\n"
-"Overdue: Due date is already passed\n"
-"Today: Activity date is today\n"
-"Planned: Future activities."
-msgstr ""
-"Trạng thái dựa trên hoạt động\n"
-"Quá hạn: Đã qua ngày hạn\n"
-"Hôm nay: Ngày hoạt động là hôm nay\n"
-"Đã lên kế hoạch: Hoạt động trong tương lai."
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_sale_order__amount_paid
-msgid ""
-"Sum of transactions made in through the online payment form that are in the "
-"state 'done' or 'authorized' and linked to this order."
-msgstr ""
-"Tổng số giao dịch đã thực hiện thông qua biểu mẫu thanh toán online có trạng"
-" thái 'hoàn tất' hoặc 'đã ủy quyền' và được liên kết với đơn hàng này."
-
-#. module: vbs_garment
-#: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__so_mi
-msgid "Sơ mi"
-msgstr "Sơ mi"
-
-#. module: vbs_garment
-#: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__so_mi_tux
-msgid "Sơ mi Tux"
-msgstr "Sơ mi Tux"
-
-#. module: vbs_garment
-#: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__so_mi_tao_kieu
-msgid "Sơ mi tao kiểu"
-msgstr "Sơ mi tao kiểu"
-
-#. module: vbs_garment
-#: model:ir.model,name:vbs_garment.model_vbs_product
-msgid "Sản phẩm B2C"
-msgstr "Sản phẩm B2C"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__published_product_id
-msgid "Sản phẩm B2C đã tạo"
-msgstr "Sản phẩm B2C đã tạo"
-
-#. module: vbs_garment
-#: model:ir.ui.menu,name:vbs_garment.menu_root_production
-msgid "Sản xuất"
-msgstr "Sản xuất"
-
-#. module: vbs_garment
-#: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
-msgid "Sẵn sàng VP"
-msgstr "Sẵn sàng VP"
+msgstr "Sales Confirmed"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__slot_count
 msgid "Số ca"
-msgstr "Số ca"
+msgstr "Shifts"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__step_count
 msgid "Số công đoạn"
-msgstr "Số công đoạn"
+msgstr "Stages"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__move_count
 msgid "Số lần vận chuyển"
-msgstr "Số lần vận chuyển"
+msgstr "Transports"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__fabric_meters
 msgid "Số mét vải"
-msgstr "Số mét vải"
+msgstr "Fabric Meters"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__fabric_meters
 msgid "Số mét vải cần dùng để tính giá"
-msgstr "Số mét vải cần dùng để tính giá"
+msgstr "Fabric meters needed for pricing calculation"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order__garment_count
 msgid "Số món đồ"
-msgstr "Số món đồ"
+msgstr "Garments"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__duration_days
 msgid "Số ngày"
-msgstr "Số ngày"
+msgstr "Days"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment_step__duration_days
 msgid "Số ngày từ kế hoạch đến thực tế hoàn thành"
-msgstr "Số ngày từ kế hoạch đến thực tế hoàn thành"
+msgstr "Days from planned to actual completion"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__days_in_current_state
 msgid "Số ngày ở tình trạng hiện tại"
-msgstr "Số ngày ở tình trạng hiện tại"
+msgstr "Days in Current State"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order__pattern_count
 msgid "Số rập khách"
-msgstr "Số rập khách"
+msgstr "Customer Patterns"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__amount
 msgid "Số tiền (VND)"
-msgstr "Số tiền (VND)"
+msgstr "Amount (VND)"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_pattern_list_garment
 msgid "Số đồ"
-msgstr "Số đồ"
+msgstr "Garments"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_pattern__garment_count
 msgid "Số đồ đã may"
-msgstr "Số đồ đã may"
+msgstr "Garments Made"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__step_type__sua
 msgid "Sửa"
-msgstr "Sửa"
+msgstr "Alteration"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__order_type__sua
 msgid "Sửa (Đồ khách)"
-msgstr "Sửa (Đồ khách)"
+msgstr "Alteration (Customer Garment)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order__payment_state
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Thanh toán"
-msgstr "Thanh toán"
+msgstr "Payment"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__payment_state__tt_1_phan
 msgid "Thanh toán 1 phần"
-msgstr "Thanh toán 1 phần"
+msgstr "Partial Payment"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__payment_state__tt_toan_bo
 msgid "Thanh toán toàn bộ"
-msgstr "Thanh toán toàn bộ"
+msgstr "Fully Paid"
 
 #. module: vbs_garment
 #: model_terms:ir.actions.act_window,help:vbs_garment.action_vbs_garment
 msgid "Thêm đồ may từ đơn hàng của khách."
-msgstr "Thêm đồ may từ đơn hàng của khách."
+msgstr "Add garments from customer orders."
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Thông tin đồ"
-msgstr "Thông tin đồ"
+msgstr "Garment Information"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_payment_record__method__card
 msgid "Thẻ"
-msgstr "Thẻ"
+msgstr "Card"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__duration_hours
 msgid "Thời gian tại trạm (giờ)"
-msgstr "Thời gian tại trạm (giờ)"
+msgstr "Hours at Station"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment_move__duration_hours
 msgid "Thời gian từ move này đến move tiếp theo"
-msgstr "Thời gian từ move này đến move tiếp theo"
+msgstr "Time from this move to the next move"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__move_date
 msgid "Thời điểm"
-msgstr "Thời điểm"
+msgstr "Timestamp"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__date_state_changed
 msgid "Thời điểm đổi tình trạng"
-msgstr "Thời điểm đổi tình trạng"
+msgstr "State Changed At"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_payment_record__method__cash
 msgid "Tiền mặt"
-msgstr "Tiền mặt"
+msgstr "Cash"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_step__state
 msgid "Trạng thái"
-msgstr "Trạng thái"
+msgstr "Status"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Trạng thái & Thời gian"
-msgstr "Trạng thái & Thời gian"
+msgstr "Status & Timeline"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order__fashion_state
 msgid "Trạng thái VBS"
-msgstr "Trạng thái VBS"
+msgstr "VBS Status"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_kanban
 msgid "Trả"
-msgstr "Trả"
+msgstr "Return"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__overdue_planned
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_kanban
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Trễ kế hoạch"
-msgstr "Trễ kế hoạch"
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__activity_exception_decoration
-msgid "Type of the exception activity on record."
-msgstr "Loại hoạt động ngoại lệ trên bản ghi."
+msgstr "Behind Schedule"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__name
 msgid "Tên đồ"
-msgstr "Tên đồ"
+msgstr "Garment Name"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Tìm đồ may"
-msgstr "Tìm đồ may"
+msgstr "Search Garments"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__state
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Tình trạng"
-msgstr "Tình trạng"
+msgstr "State"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Tính đề giá"
-msgstr "Tính đề giá"
+msgstr "Compute Price"
 
 #. module: vbs_garment
 #: model_terms:ir.actions.act_window,help:vbs_garment.action_vbs_sale_order
 msgid "Tạo đơn hàng đầu tiên"
-msgstr "Tạo đơn hàng đầu tiên"
+msgstr "Create your first order"
 
 #. module: vbs_garment
 #: model:ir.model,name:vbs_garment.model_vbs_fabric_stock
 msgid "Tồn kho vải"
-msgstr "Tồn kho vải"
+msgstr "Fabric Stock"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_list
 msgid "Tổng (ngày)"
-msgstr "Tổng (ngày)"
+msgstr "Total (days)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__total_duration_days
 msgid "Tổng thời gian (ngày)"
-msgstr "Tổng thời gian (ngày)"
+msgstr "Total Duration (days)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__total_duration_days
 msgid "Từ lần vận chuyển đầu tiên đến ngày trả khách"
-msgstr "Từ lần vận chuyển đầu tiên đến ngày trả khách"
+msgstr "From first transport to return date"
 
 #. module: vbs_garment
 #: model:ir.actions.server,name:vbs_garment.ir_cron_vbs_sla_check_ir_actions_server
 msgid "VBS: Kiểm tra SLA hàng ngày"
-msgstr "VBS: Kiểm tra SLA hàng ngày"
+msgstr "VBS: Daily SLA Check"
 
 #. module: vbs_garment
 #: model:ir.actions.server,name:vbs_garment.ir_cron_vbs_fitting_reminder_ir_actions_server
 msgid "VBS: Nhắc hẹn thử đồ hàng ngày"
-msgstr "VBS: Nhắc hẹn thử đồ hàng ngày"
+msgstr "VBS: Daily Fitting Reminder"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__location__van_phong
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Văn phòng"
-msgstr "Văn phòng"
+msgstr "Office"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Vải"
-msgstr "Vải"
+msgstr "Fabric"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_pattern__preferred_fabric_type_id
 msgid "Vải khách hay dùng"
-msgstr "Vải khách hay dùng"
+msgstr "Preferred Fabric"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__fabric_arrived
 msgid "Vải đã về"
-msgstr "Vải đã về"
+msgstr "Fabric Arrived"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_fabric_order_line_ext.py:0
 msgid "Vải đã về — có thể bắt đầu cắt đồ %s"
-msgstr "Vải đã về — có thể bắt đầu cắt đồ %s"
+msgstr "Fabric arrived — ready to start cutting %s"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__location__ve_xuong
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Về xưởng"
-msgstr "Về xưởng"
+msgstr "To Workshop"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__location
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Vị trí"
-msgstr "Vị trí"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__website_message_ids
-#: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__website_message_ids
-msgid "Website Messages"
-msgstr "Tin nhắn website"
-
-#. module: vbs_garment
-#: model:ir.model.fields,help:vbs_garment.field_vbs_garment__website_message_ids
-#: model:ir.model.fields,help:vbs_garment.field_vbs_payment_record__website_message_ids
-msgid "Website communication history"
-msgstr "Lịch sử giao tiếp website"
+msgstr "Location"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__state__done
 msgid "Xong"
-msgstr "Hoàn thành"
+msgstr "Done"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Xác nhận"
-msgstr "Xác nhận"
+msgstr "Confirm"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Xác nhận thanh toán"
-msgstr "Xác nhận thanh toán"
+msgstr "Confirm Payment"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_kanban
 msgid "Xưởng"
-msgstr "Xưởng"
+msgstr "Workshop"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Yêu cầu vải"
-msgstr "Yêu cầu vải"
+msgstr "Request Fabric"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_garment__note
 msgid "Yêu cầu đặc biệt, lưu ý xưởng, v.v."
-msgstr "Yêu cầu đặc biệt, lưu ý xưởng, v.v."
-
-#. module: vbs_garment
-#. odoo-python
-#: code:addons/vbs_garment/models/vbs_garment.py:0
-msgid "garment_id"
-msgstr "garment_id"
+msgstr "Special requirements, workshop notes, etc."
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_kanban
 msgid "ngày"
-msgstr "ngày"
-
-#. module: vbs_garment
-#. odoo-python
-#: code:addons/vbs_garment/models/sale_order.py:0
-msgid "order_id"
-msgstr "order_id"
-
-#. module: vbs_garment
-#. odoo-python
-#: code:addons/vbs_garment/models/sale_order.py:0
-msgid "partner_id"
-msgstr "partner_id"
+msgstr "days"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__ao_comple_sb
 msgid "Áo Comple SB"
-msgstr "Áo Comple SB"
+msgstr "SB Suit Jacket"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__ao_comple_db
 msgid "Áo Comple ĐB"
-msgstr "Áo Comple ĐB"
+msgstr "DB Suit Jacket"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__ao_dai_pb
 msgid "Áo dài PB"
-msgstr "Áo dài PB"
+msgstr "PB Long Jacket"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__ao_dai_sb
 msgid "Áo dài SB"
-msgstr "Áo dài SB"
+msgstr "SB Long Jacket"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__ao_khoac
 msgid "Áo khoác (cũ)"
-msgstr "Áo khoác (cũ)"
+msgstr "Jacket (legacy)"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__ao_ngan_pb
 msgid "Áo ngắn PB"
-msgstr "Áo ngắn PB"
+msgstr "PB Short Jacket"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__garment_type__ao_ngan_sb
 msgid "Áo ngắn SB"
-msgstr "Áo ngắn SB"
+msgstr "SB Short Jacket"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__fashion_state__dang_lam
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__state__doing
 msgid "Đang làm"
-msgstr "Đang làm"
+msgstr "In Progress"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
 msgid "Đang sản xuất"
-msgstr "Đang sản xuất"
+msgstr "In Production"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment_step__step_type__do
 msgid "Đo"
-msgstr "Đo"
+msgstr "Measuring"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_fabric_stock__quantity_consumed
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_fabric_stock_list_garment
 msgid "Đã dùng (m)"
-msgstr "Đã dùng (m)"
+msgstr "Used (m)"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__confirmed_qa
 msgid "Đã kiểm tra"
-msgstr "Đã kiểm tra"
+msgstr "QA Confirmed"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__fashion_state__da_thanh_toan
 msgid "Đã thanh toán"
-msgstr "Đã thanh toán"
-
-#. module: vbs_garment
-#: model:ir.model.fields,field_description:vbs_garment.field_sale_order__amount_paid
-msgid "Đã thanh toán (VND)"
-msgstr "Số tiền giao dịch thanh toán"
+msgstr "Paid"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__vbs_garment__location__da_tra
 msgid "Đã trả khách"
-msgstr "Đã trả khách"
+msgstr "Returned to Customer"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Đã tạo sản phẩm B2C: %s"
-msgstr "Đã tạo sản phẩm B2C: %s"
+msgstr "B2C product created: %s"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Đăng bán B2C"
-msgstr "Đăng bán B2C"
+msgstr "Publish B2C"
 
 #. module: vbs_garment
 #. odoo-python
@@ -1418,8 +1085,7 @@ msgid ""
 "Đơn B2B/Sửa không thể có Order Line sản phẩm. Dùng tab \"Đồ may\" để quản "
 "lý."
 msgstr ""
-"Đơn B2B/Sửa không thể có Order Line sản phẩm. Dùng tab \"Đồ may\" để quản "
-"lý."
+"B2B/Alteration orders cannot have product order lines. Use the \"Garments\" tab to manage."
 
 #. module: vbs_garment
 #. odoo-python
@@ -1428,8 +1094,7 @@ msgid ""
 "Đơn B2C không thể có \"Đồ may\". Chuyển order_type sang B2B/Sửa nếu muốn may"
 " đo."
 msgstr ""
-"Đơn B2C không thể có \"Đồ may\". Chuyển order_type sang B2B/Sửa nếu muốn may"
-" đo."
+"B2C orders cannot have garments. Change order_type to B2B/Alteration for tailoring."
 
 #. module: vbs_garment
 #: model:ir.actions.act_window,name:vbs_garment.action_vbs_sale_order
@@ -1437,43 +1102,43 @@ msgstr ""
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__order_id
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_payment_record__order_id
 msgid "Đơn hàng"
-msgstr "Đơn hàng"
+msgstr "Sales Order"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__fabric_order_id
 msgid "Đơn đặt vải"
-msgstr "Đơn đặt vải"
+msgstr "Fabric Order"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__fashion_state__dat_hang
 msgid "Đặt hàng"
-msgstr "Đặt hàng"
+msgstr "Ordered"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Đề giá"
-msgstr "Đề giá"
+msgstr "Quote Price"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "Đề giá = (Giá vải/m × Số mét) + Phí gia công + Phụ phí"
-msgstr "Đề giá = (Giá vải/m × Số mét) + Phí gia công + Phụ phí"
+msgstr "Quote = (Fabric price/m × Meters) + CMT fee + Surcharge"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment_move__garment_id
 msgid "Đồ"
-msgstr "Đồ"
+msgstr "Garment"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Đồ %s đã về VP — báo khách %s"
-msgstr "Đồ %s đã về VP — báo khách %s"
+msgstr "Garment %s is at the office — notify customer %s"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_product__source_garment_id
 msgid "Đồ gốc"
-msgstr "Đồ gốc"
+msgstr "Source Garment"
 
 #. module: vbs_garment
 #. odoo-python
@@ -1485,37 +1150,37 @@ msgstr "Đồ gốc"
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_list
 msgid "Đồ may"
-msgstr "Đồ may"
+msgstr "Garment"
 
 #. module: vbs_garment
 #: model:ir.model.fields,help:vbs_garment.field_vbs_fabric_order_line__garment_id
 msgid "Đồ may mà dòng vải này phục vụ"
-msgstr "Đồ may mà dòng vải này phục vụ"
+msgstr "Garment this fabric line is for"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Đồ mới"
-msgstr "Đồ mới"
+msgstr "New Garment"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_garment.py:0
 msgid "Đồ này đã có dòng đặt vải."
-msgstr "Đồ này đã có dòng đặt vải."
+msgstr "This garment already has a fabric order line."
 
 #. module: vbs_garment
 #: model:ir.actions.act_window,name:vbs_garment.action_vbs_pattern_garments
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_pattern__garment_ids
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_pattern_form_garment
 msgid "Đồ đã may"
-msgstr "Đồ đã may"
+msgstr "Garments Made"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_list
 msgid "→ Cửa hàng"
-msgstr "→ Cửa hàng"
+msgstr "→ Store"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
@@ -1525,118 +1190,123 @@ msgstr "→ QC"
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 msgid "→ Văn phòng"
-msgstr "→ Văn phòng"
+msgstr "→ Office"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_list
 msgid "→ Về xưởng"
-msgstr "→ Về xưởng"
+msgstr "→ To Workshop"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_form
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_list
 msgid "✓ Đã trả khách"
-msgstr "✓ Đã trả khách"
+msgstr "✓ Returned"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order_line__set_type
 msgid "Loại bộ"
-msgstr "Loại bộ"
+msgstr "Set Type"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order_line__garment_type
 msgid "Loại đồ"
-msgstr "Loại đồ"
+msgstr "Garment Type"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order_line__garment_ids
 #: model:ir.model.fields,field_description:vbs_garment.field_vbs_garment__order_line_id
 msgid "Lệnh sản xuất"
-msgstr "Lệnh sản xuất"
+msgstr "Production Orders"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order_line__garment_count
 msgid "Số LSX"
-msgstr "Số lệnh sản xuất"
+msgstr "Prod. Orders"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order_line__set_type__le
 msgid "Lẻ"
-msgstr "Lẻ"
+msgstr "Single"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order_line__set_type__bo_2
 msgid "Bộ 2 mảnh"
-msgstr "Bộ 2 mảnh"
+msgstr "2-piece Set"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order_line__set_type__bo_3
 msgid "Bộ 3 mảnh"
-msgstr "Bộ 3 mảnh"
+msgstr "3-piece Set"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Thành phẩm"
-msgstr "Thành phẩm"
+msgstr "Ready-made"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Đồ may (tổng hợp)"
-msgstr "Đồ may (tổng hợp)"
+msgstr "Garments (summary)"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Tạo LSX"
-msgstr "Tạo lệnh sản xuất"
+msgstr "Create Prod. Orders"
 
 #. module: vbs_garment
 #: model_terms:ir.ui.view,arch_db:vbs_garment.view_sale_order_form_vbs
 msgid "Xem LSX"
-msgstr "Xem lệnh sản xuất"
+msgstr "View Prod. Orders"
 
 #. module: vbs_garment
 #: code:addons/vbs_garment/models/sale_order.py:0
 msgid "Dòng \"%s\" chưa chọn Loại đồ — không thể tạo lệnh sản xuất."
-msgstr "Dòng \"%s\" chưa chọn Loại đồ — không thể tạo lệnh sản xuất."
+msgstr "Line \"%s\" has no Garment Type — cannot create production order."
 
 #. module: vbs_garment
 #: code:addons/vbs_garment/models/sale_order.py:0
 msgid "Dòng \"%s\" đã có %d lệnh sản xuất. Xoá lệnh cũ trước khi tạo mới."
-msgstr "Dòng \"%s\" đã có %d lệnh sản xuất. Xoá lệnh cũ trước khi tạo mới."
+msgstr "Line \"%s\" already has %d production orders. Delete old ones before creating new."
 
 #. module: vbs_garment
 #: code:addons/vbs_garment/models/sale_order.py:0
 msgid "Lệnh sản xuất vừa tạo"
-msgstr "Lệnh sản xuất vừa tạo"
+msgstr "Production Orders Created"
 
 #. module: vbs_garment
 #: model:ir.model.fields,field_description:vbs_garment.field_sale_order__b2b_type
 msgid "Loại B2B"
-msgstr "Loại B2B"
+msgstr "B2B Type"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__b2b_type__ban
 msgid "B2B Bán (Thành phẩm)"
-msgstr "B2B Bán (Thành phẩm)"
+msgstr "B2B Sales (Ready-made)"
 
 #. module: vbs_garment
 #: model:ir.model.fields.selection,name:vbs_garment.selection__sale_order__b2b_type__sx
 msgid "B2B Gia công CMT"
-msgstr "B2B Gia công CMT"
+msgstr "B2B CMT (Cut-Make-Trim)"
 
 #. module: vbs_garment
 #: code:addons/vbs_garment/models/sale_order.py:0
 msgid "Tính giá"
-msgstr "Tính giá"
+msgstr "Compute Price"
 
 #. module: vbs_garment
 #: code:addons/vbs_garment/models/sale_order.py:0
 msgid "Tính giá từ LSX → cập nhật đơn giá dòng này"
-msgstr "Tính giá từ LSX → cập nhật đơn giá dòng này"
+msgstr "Compute price from production orders → update line unit price"
 
 #. module: vbs_garment
 #. odoo-python
 #: code:addons/vbs_garment/models/vbs_fabric_order_line_ext.py:0
 msgid "Vải đã về — có thể bắt đầu cắt đồ %s"
-msgstr "Vải đã về — có thể bắt đầu cắt đồ %s"
+msgstr "Fabric arrived — ready to start cutting %s"
+
+#. module: vbs_garment
+#: model_terms:ir.ui.view,arch_db:vbs_garment.view_vbs_garment_search
+msgid "Sẵn sàng VP"
+msgstr "Ready at Office"

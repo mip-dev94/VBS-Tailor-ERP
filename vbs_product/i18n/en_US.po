@@ -1,0 +1,392 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* vbs_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-25 00:00+0000\n"
+"PO-Revision-Date: 2026-04-25 00:00+0000\n"
+"Last-Translator: VBS Team\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bomber
+msgid "Bomber"
+msgstr "Bomber Jacket"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__budong
+msgid "Budong"
+msgstr "Budong Jacket"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bo_3_manh
+msgid "Bộ 3 mảnh (cũ)"
+msgstr "3-piece set (legacy)"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__bo_comple
+msgid "Bộ comple 2 mảnh (cũ)"
+msgstr "2-piece suit (legacy)"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__chan_vay
+msgid "Chân váy"
+msgstr "Skirt"
+
+#. module: vbs_product
+#: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product
+msgid "Chưa có sản phẩm B2C nào"
+msgstr "No B2C products yet"
+
+#. module: vbs_product
+#: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product_stock
+msgid "Chưa có tồn kho sản phẩm nào"
+msgstr "No product stock yet"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Còn hàng"
+msgstr "In Stock"
+
+#. module: vbs_product
+#. odoo-python
+#: code:addons/vbs_product/models/vbs_product.py:0
+msgid "Cần có ít nhất 1 record tồn kho trước khi đánh dấu sẵn bán."
+msgstr "Must have at least 1 stock record before marking as ready for sale."
+
+#. module: vbs_product
+#. odoo-python
+#: code:addons/vbs_product/models/vbs_product.py:0
+msgid "Cần nhập giá bán trước khi đánh dấu sẵn bán."
+msgstr "Must enter a sale price before marking as ready for sale."
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__partner_store_id
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Cửa hàng"
+msgstr "Store"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__note
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+msgid "Ghi chú"
+msgstr "Note"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+msgid "Ghi chú..."
+msgstr "Note..."
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile
+msgid "Gile (cũ)"
+msgstr "Vest (legacy)"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile_dd
+msgid "Gile DD"
+msgstr "Double-strap Vest"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__gile_sb
+msgid "Gile SB"
+msgstr "Single-breasted Vest"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Giá"
+msgstr "Price"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__list_price
+msgid "Giá bán"
+msgstr "Sale Price"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__cost_price
+msgid "Giá vốn"
+msgstr "Cost Price"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Hết hàng"
+msgstr "Out of Stock"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_available
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_list
+msgid "Khả dụng"
+msgstr "Available"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_kanban
+msgid "Khả dụng:"
+msgstr "Available:"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__size
+msgid "Kích cỡ"
+msgstr "Size"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__fabric_type_id
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Loại vải"
+msgstr "Fabric Type"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__garment_type
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Loại đồ"
+msgstr "Garment Type"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__color
+msgid "Màu sắc"
+msgstr "Color"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__code
+msgid "Mã SP"
+msgstr "Product Code"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Mô tả"
+msgstr "Description"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__detail
+msgid "Mô tả chi tiết"
+msgstr "Detailed Description"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Mô tả chi tiết cho landing..."
+msgstr "Detailed description for landing page..."
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__date_received
+msgid "Ngày nhập kho"
+msgstr "Received Date"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__archived
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Ngừng bán"
+msgstr "Discontinued"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__draft
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Nháp"
+msgstr "Draft"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__polo
+msgid "Polo"
+msgstr "Polo Shirt"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__quan
+msgid "Quần"
+msgstr "Trousers"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__quan_comple
+msgid "Quần Comple"
+msgstr "Suit Trousers"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi
+msgid "Sơ mi"
+msgstr "Shirt"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi_tux
+msgid "Sơ mi Tux"
+msgstr "Tuxedo Shirt"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__so_mi_tao_kieu
+msgid "Sơ mi tao kiểu"
+msgstr "Styled Shirt"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__product_id
+#: model:ir.ui.menu,name:vbs_product.menu_vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Sản phẩm"
+msgstr "Product"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+msgid "Sản phẩm & cửa hàng"
+msgstr "Product & Store"
+
+#. module: vbs_product
+#: model:ir.actions.act_window,name:vbs_product.action_vbs_product
+#: model:ir.model,name:vbs_product.model_vbs_product
+#: model:ir.ui.menu,name:vbs_product.menu_root_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_list
+msgid "Sản phẩm B2C"
+msgstr "B2C Products"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__ready
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Sẵn bán"
+msgstr "Ready for Sale"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+msgid "Số lượng"
+msgstr "Quantity"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Thuộc tính"
+msgstr "Attributes"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__currency_id
+msgid "Tiền tệ"
+msgstr "Currency"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__state
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Trạng thái"
+msgstr "Status"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__name
+msgid "Tên sản phẩm"
+msgstr "Product Name"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Tên sản phẩm..."
+msgstr "Product name..."
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Tìm sản phẩm"
+msgstr "Search Products"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_search
+msgid "Tìm tồn kho sản phẩm"
+msgstr "Search Product Stock"
+
+#. module: vbs_product
+#: model_terms:ir.actions.act_window,help:vbs_product.action_vbs_product
+msgid "Tạo sản phẩm thủ công hoặc publish từ đồ may đã hoàn thiện."
+msgstr "Create products manually or publish from completed garments."
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Tồn kho"
+msgstr "Stock"
+
+#. module: vbs_product
+#: model:ir.actions.act_window,name:vbs_product.action_vbs_product_stock
+#: model:ir.ui.menu,name:vbs_product.menu_vbs_product_stock
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_form
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_stock_list
+msgid "Tồn kho sản phẩm"
+msgstr "Product Stock"
+
+#. module: vbs_product
+#: model:ir.model,name:vbs_product.model_vbs_product_stock
+msgid "Tồn kho sản phẩm B2C"
+msgstr "B2C Product Stock"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__stock_ids
+msgid "Tồn kho theo cửa hàng"
+msgstr "Stock by Store"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_on_hand
+msgid "Tồn thực tế"
+msgstr "On Hand"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product__total_available
+msgid "Tổng tồn khả dụng"
+msgstr "Total Available"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_comple_sb
+msgid "Áo Comple SB"
+msgstr "SB Suit Jacket"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_comple_db
+msgid "Áo Comple ĐB"
+msgstr "DB Suit Jacket"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_dai_pb
+msgid "Áo dài PB"
+msgstr "PB Long Jacket"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_dai_sb
+msgid "Áo dài SB"
+msgstr "SB Long Jacket"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_khoac
+msgid "Áo khoác (cũ)"
+msgstr "Jacket (legacy)"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_ngan_pb
+msgid "Áo ngắn PB"
+msgstr "PB Short Jacket"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__garment_type__ao_ngan_sb
+msgid "Áo ngắn SB"
+msgstr "SB Short Jacket"
+
+#. module: vbs_product
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
+msgid "Đánh dấu sẵn bán"
+msgstr "Mark Ready for Sale"
+
+#. module: vbs_product
+#: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__sold
+#: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_search
+msgid "Đã bán"
+msgstr "Sold"
+
+#. module: vbs_product
+#: model:ir.model.fields,field_description:vbs_product.field_vbs_product_stock__quantity_reserved
+msgid "Đã giữ"
+msgstr "Reserved"
+
+#. module: vbs_product
+#. odoo-python
+#: code:addons/vbs_product/models/vbs_product.py:0
+msgid "Đã ngừng bán."
+msgstr "Discontinued."
+
+#. module: vbs_product
+#. odoo-python
+#: code:addons/vbs_product/models/vbs_product.py:0
+msgid "Đã đánh dấu sẵn bán."
+msgstr "Marked as ready for sale."

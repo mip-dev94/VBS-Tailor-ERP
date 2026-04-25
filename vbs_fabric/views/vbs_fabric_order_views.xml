@@ -17,10 +17,10 @@
                             string="Xác nhận đã đặt" class="oe_highlight"
                             invisible="state != 'cho_dat'"
                             groups="vbs_base.group_vbs_accountant,vbs_base.group_vbs_admin"/>
-                    <!-- DV03 → DV04: Vải đã về -->
+                    <!-- DV03 → DV04: Đánh dấu tất cả dòng còn lại đã về -->
                     <button name="action_mark_arrived" type="object"
-                            string="Vải đã về" class="oe_highlight"
-                            invisible="state != 'cho_ve'"
+                            string="Tất cả đã về" class="oe_highlight"
+                            invisible="state != 'cho_ve' or pending_line_count == 0"
                             groups="vbs_base.group_vbs_warehouse,vbs_base.group_vbs_admin"/>
                     <!-- Reset (admin only) -->
                     <button name="action_reset_draft" type="object"
@@ -41,6 +41,16 @@
                         <button class="oe_stat_button" icon="fa-list">
                             <field name="line_count" widget="statinfo"
                                    string="Dòng vải"/>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-check-circle"
+                                invisible="state not in ('cho_ve', 'da_ve')">
+                            <field name="arrived_line_count" widget="statinfo"
+                                   string="Đã về"/>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-clock-o"
+                                invisible="state != 'cho_ve' or pending_line_count == 0">
+                            <field name="pending_line_count" widget="statinfo"
+                                   string="Chưa về"/>
                         </button>
                     </div>
                     <div class="oe_title">
@@ -73,6 +83,14 @@
                                     <field name="fabric_code"/>
                                     <field name="pattern" optional="show"/>
                                     <field name="quantity" sum="Tổng (m)"/>
+                                    <field name="arrived" readonly="1" optional="show"
+                                           column_invisible="parent.state not in ('cho_ve', 'da_ve')"/>
+                                    <field name="date_arrived" optional="show"
+                                           column_invisible="parent.state not in ('cho_ve', 'da_ve')"/>
+                                    <button name="action_mark_line_arrived" type="object"
+                                            string="Đánh dấu về"
+                                            invisible="arrived or state not in ('cho_ve',)"
+                                            groups="vbs_base.group_vbs_warehouse,vbs_base.group_vbs_admin"/>
                                     <field name="inspection_state" widget="badge"
                                            decoration-success="inspection_state == 'da_kt'"
                                            decoration-warning="inspection_state == 'chua_kt'"

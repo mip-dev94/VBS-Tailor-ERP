@@ -37,20 +37,17 @@
 
             <!-- Fashion state buttons + statusbar in header -->
             <field name="state" position="before">
-                <button name="action_fashion_confirm_payment" type="object"
-                        string="Xác nhận thanh toán" class="oe_highlight"
-                        invisible="fashion_state != 'dat_hang'"
-                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
-                <button name="action_fashion_start_production" type="object"
-                        string="Bắt đầu sản xuất" class="oe_highlight"
-                        invisible="fashion_state != 'da_thanh_toan'"
-                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
                 <button name="action_fashion_complete" type="object"
                         string="Hoàn thành" class="oe_highlight"
-                        invisible="fashion_state != 'dang_lam'"
-                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+                        invisible="fashion_state != 'da_thanh_toan'"
+                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_office"/>
                 <field name="fashion_state" widget="statusbar"
-                       statusbar_visible="dat_hang,da_thanh_toan,dang_lam,hoan_thanh"/>
+                       statusbar_visible="dat_hang,dang_xu_ly,da_thanh_toan,hoan_thanh"/>
+            </field>
+
+            <!-- Fields ẩn cho invisible conditions -->
+            <field name="partner_id" position="before">
+                <field name="can_start_production" invisible="1"/>
             </field>
 
             <!-- Loại đơn + thanh toán info -->
@@ -81,6 +78,18 @@
                 <attribute name="string">Thành phẩm</attribute>
             </xpath>
 
+            <!-- Thêm discount -->
+            <xpath expr="//page[@name='order_lines']//list//field[@name='price_unit']" position="after">
+                <field name="discount" optional="show"/>
+            </xpath>
+            <!-- Ẩn Delivered và Invoiced -->
+            <xpath expr="//page[@name='order_lines']//list//field[@name='qty_delivered']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']//list//field[@name='qty_invoiced']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
             <!-- Thêm cột set_type, garment_type, garment_count + nút tạo LSX -->
             <xpath expr="//page[@name='order_lines']//list//field[@name='product_template_id']" position="after">
                 <field name="set_type" optional="show"/>
@@ -100,10 +109,21 @@
                         invisible="garment_count == 0"/>
             </xpath>
 
-            <!-- Tab đồ may (read-only aggregate) + Tab thanh toán -->
+            <!-- Tab đồ may (luôn hiển thị) + nút Nhảy lệnh SX -->
             <page name="order_lines" position="after">
-                <page string="Đồ may (tổng hợp)" name="vbs_garments"
-                      invisible="garment_count == 0">
+                <page string="Đồ may (tổng hợp)" name="vbs_garments">
+                    <div class="mb-2">
+                        <button name="action_launch_production" type="object"
+                                string="Nhảy lệnh sản xuất"
+                                class="btn btn-primary"
+                                icon="fa-industry"
+                                invisible="not can_start_production"
+                                groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+                        <span class="text-muted ms-2"
+                              invisible="fashion_state != 'dang_xu_ly' or can_start_production">
+                            Cần thanh toán ≥ 70% để nhảy lệnh sản xuất
+                        </span>
+                    </div>
                     <field name="garment_ids" readonly="1">
                         <list editable="bottom">
                             <field name="sequence" widget="handle"/>
@@ -119,6 +139,8 @@
                             <field name="location" widget="badge"
                                    decoration-warning="location == 've_xuong'"
                                    decoration-success="location == 'da_tra'"/>
+                            <field name="fabric_arrived" widget="boolean_toggle"
+                                   string="Vải về" readonly="1" optional="show"/>
                             <field name="days_in_current_state" string="Ngày"/>
                             <field name="sla_overdue" invisible="1"/>
                         </list>
@@ -148,8 +170,8 @@
             <field name="state" position="before">
                 <field name="fashion_state" widget="badge"
                        decoration-info="fashion_state == 'dat_hang'"
-                       decoration-warning="fashion_state == 'da_thanh_toan'"
-                       decoration-primary="fashion_state == 'dang_lam'"
+                       decoration-warning="fashion_state == 'dang_xu_ly'"
+                       decoration-primary="fashion_state == 'da_thanh_toan'"
                        decoration-success="fashion_state == 'hoan_thanh'"
                        decoration-danger="fashion_state == 'huy'"
                        optional="show"/>

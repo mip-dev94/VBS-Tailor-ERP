@@ -1,0 +1,156 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* vbs_contact
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-25 00:00+0000\n"
+"PO-Revision-Date: 2026-04-25 00:00+0000\n"
+"Last-Translator: VBS Team\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: vbs_contact
+#: model_terms:ir.actions.act_window,help:vbs_contact.action_vbs_contact_log
+msgid "Chưa có nhật ký liên hệ"
+msgstr "No contact logs yet"
+
+#. module: vbs_contact
+#: model:ir.model.fields.selection,name:vbs_contact.selection__vbs_contact_log__tinh_trang__cho_lien_he
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
+msgid "Chờ liên hệ"
+msgstr "Pending Contact"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__note
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
+msgid "Ghi chú"
+msgstr "Note"
+
+#. module: vbs_contact
+#: model_terms:ir.actions.act_window,help:vbs_contact.action_vbs_contact_log
+msgid "Ghi lại mỗi lần liên hệ khách hàng về đồ may."
+msgstr "Log each customer contact regarding their garments."
+
+#. module: vbs_contact
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
+msgid "Hôm nay"
+msgstr "Today"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__partner_id
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
+msgid "Khách hàng"
+msgstr "Customer"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__ket_qua
+msgid "Kết quả"
+msgstr "Result"
+
+#. module: vbs_contact
+#: model:ir.model.fields,help:vbs_contact.field_vbs_contact_log__ket_qua
+msgid "Kết quả sau khi liên hệ"
+msgstr "Result after contacting"
+
+#. module: vbs_contact
+#: model:ir.ui.menu,name:vbs_contact.menu_root_contact
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
+msgid "Liên hệ khách hàng"
+msgstr "Customer Contact"
+
+#. module: vbs_contact
+#. odoo-python
+#: code:addons/vbs_contact/models/vbs_contact_log.py:0
+msgid "Liên hệ mới"
+msgstr "New Contact"
+
+#. module: vbs_contact
+#: model:ir.ui.menu,name:vbs_contact.menu_contact_log
+msgid "Lịch sử liên hệ"
+msgstr "Contact History"
+
+#. module: vbs_contact
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
+msgid "Ngày"
+msgstr "Date"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__date_contact
+msgid "Ngày liên hệ"
+msgstr "Contact Date"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__user_id
+msgid "Người liên hệ"
+msgstr "Contact Person"
+
+#. module: vbs_contact
+#: model:ir.actions.act_window,name:vbs_contact.action_vbs_contact_log
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_list
+msgid "Nhật ký liên hệ"
+msgstr "Contact Log"
+
+#. module: vbs_contact
+#: model:ir.model,name:vbs_contact.model_vbs_contact_log
+msgid "Nhật ký liên hệ khách hàng"
+msgstr "Customer Contact Log"
+
+#. module: vbs_contact
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
+msgid "Nội dung & Kết quả"
+msgstr "Content & Result"
+
+#. module: vbs_contact
+#: model:ir.model.fields,help:vbs_contact.field_vbs_contact_log__noi_dung
+msgid "Nội dung hoặc loại liên hệ (VD: hẹn thử đồ, báo hàng về...)"
+msgstr "Content or type of contact (e.g.: fitting appointment, notify arrival...)"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__noi_dung
+msgid "Nội dung liên hệ"
+msgstr "Contact Content"
+
+#. module: vbs_contact
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
+msgid "Thông tin liên hệ"
+msgstr "Contact Information"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__display_name
+msgid "Tên hiển thị"
+msgstr "Display Name"
+
+#. module: vbs_contact
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
+msgid "Tìm nhật ký liên hệ"
+msgstr "Search Contact Logs"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__tinh_trang
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
+msgid "Tình trạng"
+msgstr "Status"
+
+#. module: vbs_contact
+#: model:ir.model.fields.selection,name:vbs_contact.selection__vbs_contact_log__tinh_trang__da_lien_he
+#: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_search
+msgid "Đã liên hệ"
+msgstr "Contacted"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__order_id
+#: model:ir.ui.menu,name:vbs_contact.menu_contact_orders
+msgid "Đơn hàng"
+msgstr "Sales Order"
+
+#. module: vbs_contact
+#: model:ir.model.fields,field_description:vbs_contact.field_vbs_contact_log__garment_id
+msgid "Đồ may liên quan"
+msgstr "Related Garment"

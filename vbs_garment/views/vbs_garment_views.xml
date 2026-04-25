@@ -105,7 +105,7 @@
                             groups="vbs_base.group_vbs_admin"
                             invisible="state != 'huy'"/>
                     <field name="state" widget="statusbar"
-                           statusbar_visible="nhap,luoc,lan_2,hoan_thien"/>
+                           statusbar_visible="luoc,lan_2,hoan_thien"/>
                     <field name="location" widget="statusbar"
                            statusbar_visible="cua_hang,ve_xuong,qc,van_phong,da_tra"/>
                 </header>

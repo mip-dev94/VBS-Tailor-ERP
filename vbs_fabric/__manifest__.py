@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'VBS Fabric',
-    'version': '1.5',
+    'version': '1.6',
     'category': 'VBS',
     'sequence': 14,
     'author': 'VBS',
