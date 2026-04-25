@@ -29,6 +29,7 @@ jobs:
           command_timeout: 30m
           script: |
             cd ~/ERP_Fashion
+            git checkout -- odoo.conf.docker 2>/dev/null || true
             if [ "${{ github.event.inputs.force_all }}" = "true" ]; then
               bash deploy/update.sh all
             else
