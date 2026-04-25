@@ -95,6 +95,18 @@
                                            decoration-success="inspection_state == 'da_kt'"
                                            decoration-warning="inspection_state == 'chua_kt'"
                                            optional="show"/>
+                                    <button name="action_toggle_inspection" type="object"
+                                            string="✓ KT"
+                                            invisible="inspection_state == 'da_kt'"
+                                            class="btn-sm btn-success"
+                                            title="Đánh dấu đã kiểm tra"
+                                            groups="vbs_base.group_vbs_warehouse,vbs_base.group_vbs_admin,vbs_base.group_vbs_office"/>
+                                    <button name="action_toggle_inspection" type="object"
+                                            string="✗ KT"
+                                            invisible="inspection_state == 'chua_kt'"
+                                            class="btn-sm btn-secondary"
+                                            title="Bỏ đánh dấu kiểm tra"
+                                            groups="vbs_base.group_vbs_warehouse,vbs_base.group_vbs_admin,vbs_base.group_vbs_office"/>
                                     <field name="lining" optional="hide"/>
                                     <field name="button_row" optional="hide"/>
                                     <field name="pocket" optional="hide"/>

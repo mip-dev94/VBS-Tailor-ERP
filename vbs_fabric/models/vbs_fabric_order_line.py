@@ -116,6 +116,14 @@ class VbsFabricOrderLine(models.Model):
     arrived = fields.Boolean(string='Đã về', default=False, index=True)
     date_arrived = fields.Date(string='Ngày về')
 
+    def action_toggle_inspection(self):
+        """Toggle trạng thái kiểm tra: Chưa kiểm tra ↔ Đã kiểm tra."""
+        for rec in self:
+            if rec.inspection_state == 'chua_kt':
+                rec.inspection_state = 'da_kt'
+            else:
+                rec.inspection_state = 'chua_kt'
+
     def action_mark_line_arrived(self):
         """Đánh dấu dòng vải này đã về kho."""
         today = fields.Date.today()
