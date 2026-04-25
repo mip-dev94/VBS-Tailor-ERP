@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      force_all:
+        description: 'Force upgrade tất cả modules (dùng khi cần import lại translations)'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy-vm
@@ -24,4 +29,8 @@ jobs:
           command_timeout: 30m
           script: |
             cd ~/ERP_Fashion
-            bash deploy/update.sh
+            if [ "${{ github.event.inputs.force_all }}" = "true" ]; then
+              bash deploy/update.sh all
+            else
+              bash deploy/update.sh
+            fi
