@@ -66,23 +66,36 @@ MASTER_PASS=$(grep '^ODOO_MASTER_PASSWORD=' .env | cut -d= -f2-)
 sed -i "s|^db_password *=.*|db_password = $PG_PASS|" odoo.conf.docker
 sed -i "s|^admin_passwd *=.*|admin_passwd = $MASTER_PASS|" odoo.conf.docker
 
-# Chỉ start DB trước — Odoo sẽ start SAU khi upgrade xong
 $COMPOSE up -d db
 echo "    Chờ DB healthy..."
 $COMPOSE exec -T db pg_isready -U odoo -d "$DB" || sleep 5
 
 if [ -n "$MODULES" ]; then
-    if [ "$MODULES" = "all" ]; then
-        echo "    Upgrade all modules (temporary container)..."
-        $COMPOSE run --rm odoo odoo -u all -d "$DB" --stop-after-init
-    else
-        echo "    Upgrade $MODULES (temporary container)..."
-        $COMPOSE run --rm odoo odoo -u "$MODULES" -d "$DB" --stop-after-init
-    fi
+    # Patch schema trước khi start Odoo — tránh crash khi có stored field mới
+    # mà column chưa tồn tại trong DB (chicken-and-egg). IF NOT EXISTS = idempotent.
+    echo "    Patch schema (new stored fields)..."
+    $COMPOSE exec -T db psql -U odoo "$DB" -c "
+        ALTER TABLE vbs_fabric_order_line ADD COLUMN IF NOT EXISTS arrived boolean DEFAULT false;
+        ALTER TABLE vbs_fabric_order_line ADD COLUMN IF NOT EXISTS date_arrived date;
+        ALTER TABLE vbs_fabric_order     ADD COLUMN IF NOT EXISTS arrived_line_count integer DEFAULT 0;
+        ALTER TABLE vbs_fabric_order     ADD COLUMN IF NOT EXISTS pending_line_count integer DEFAULT 0;
+    " 2>&1 || true
 fi
 
-# Start toàn bộ stack sau khi DB đã được migrate
-$COMPOSE up -d
+$COMPOSE up -d odoo db
+
+if [ -n "$MODULES" ]; then
+    if [ "$MODULES" = "all" ]; then
+        echo "    Upgrade all modules..."
+        $COMPOSE exec -T odoo odoo -u all -d "$DB" --stop-after-init
+    else
+        echo "    Upgrade $MODULES..."
+        $COMPOSE exec -T odoo odoo -u "$MODULES" -d "$DB" --stop-after-init
+    fi
+    $COMPOSE restart odoo
+else
+    $COMPOSE restart odoo
+fi
 
 echo
 echo "=== Update xong ==="
