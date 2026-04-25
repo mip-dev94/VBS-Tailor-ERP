@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Ẩn menu Dashboards (board module) — không dùng trong VBS ERP -->
-    <record id="board.menu_reporting_dashboard" model="ir.ui.menu">
-        <field name="active" eval="False"/>
-    </record>
+    <!-- board.menu_reporting_dashboard đã bỏ — board module không được cài trên VBS setup -->
 
     <!-- Ẩn menu Lập kế hoạch (planning) — xưởng chưa dùng Gantt calendar -->
     <record id="vbs_planning.menu_planning_root" model="ir.ui.menu">
