@@ -87,10 +87,12 @@ $COMPOSE up -d odoo db
 if [ -n "$MODULES" ]; then
     if [ "$MODULES" = "all" ]; then
         echo "    Upgrade all modules..."
-        $COMPOSE exec -T odoo odoo -u all -d "$DB" --stop-after-init
+        $COMPOSE exec -T odoo odoo -u all -d "$DB" --stop-after-init \
+            --logfile=/dev/stdout --log-level=warn
     else
         echo "    Upgrade $MODULES..."
-        $COMPOSE exec -T odoo odoo -u "$MODULES" -d "$DB" --stop-after-init
+        $COMPOSE exec -T odoo odoo -u "$MODULES" -d "$DB" --stop-after-init \
+            --logfile=/dev/stdout --log-level=warn
     fi
     $COMPOSE restart odoo
 else
