@@ -15,4 +15,23 @@
     <record id="base.main_company" model="res.company">
         <field name="currency_id" ref="base.VND"/>
     </record>
+
+    <!-- Pricelist VNĐ (mặc định) -->
+    <record id="pricelist_vnd" model="product.pricelist">
+        <field name="name">Giá VNĐ</field>
+        <field name="currency_id" ref="base.VND"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- Pricelist USD -->
+    <record id="pricelist_usd" model="product.pricelist">
+        <field name="name">Giá USD</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- Đặt pricelist VNĐ làm mặc định cho công ty -->
+    <record id="base.main_company" model="res.company">
+        <field name="currency_id" ref="base.VND"/>
+    </record>
 </odoo>

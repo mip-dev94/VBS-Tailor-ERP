@@ -50,10 +50,11 @@
                 <field name="can_start_production" invisible="1"/>
             </field>
 
-            <!-- Loại đơn + tiền tệ + thanh toán info -->
+            <!-- Loại đơn + tiền tệ (qua pricelist) + thanh toán info -->
             <field name="partner_id" position="after">
                 <field name="order_type"/>
-                <field name="currency_id" options="{'no_create': True}"/>
+                <field name="pricelist_id" string="Tiền tệ" options="{'no_create': True}"
+                       domain="[('active', '=', True)]"/>
                 <field name="b2b_type" invisible="order_type != 'b2b'"
                        required="order_type == 'b2b'"/>
                 <field name="payment_state" widget="badge"
@@ -125,7 +126,7 @@
                             Cần thanh toán ≥ 70% để nhảy lệnh sản xuất
                         </span>
                     </div>
-                    <field name="garment_ids" readonly="1">
+                    <field name="garment_ids">
                         <list editable="bottom">
                             <field name="sequence" widget="handle"/>
                             <field name="garment_type"/>
@@ -144,6 +145,19 @@
                                    string="Vải về" readonly="1" optional="show"/>
                             <field name="days_in_current_state" string="Ngày"/>
                             <field name="sla_overdue" invisible="1"/>
+                            <!-- Sale actions: advance state + mark returned -->
+                            <button name="action_sale_advance_luoc" type="object"
+                                    string="→ Lược" icon="fa-play"
+                                    class="btn-sm btn-primary"
+                                    invisible="state != 'nhap'"
+                                    title="Chuyển sang Lược (bắt đầu sản xuất)"
+                                    groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+                            <button name="action_quick_da_tra" type="object"
+                                    string="✓ Trả khách" icon="fa-check"
+                                    class="btn-sm btn-success"
+                                    invisible="state != 'hoan_thien' or location == 'da_tra'"
+                                    title="Đồ đã hoàn thiện, khách duyệt — đánh dấu đã trả"
+                                    groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale"/>
                         </list>
                     </field>
                 </page>

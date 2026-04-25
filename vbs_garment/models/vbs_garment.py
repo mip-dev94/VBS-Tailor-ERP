@@ -670,13 +670,23 @@ class VbsGarment(models.Model):
             })
         self.write({'location': 'cua_hang'})
 
+    def action_sale_advance_luoc(self):
+        """Sale kích hoạt từ tab Đồ may: chuyển Nháp → Lược (bắt đầu sản xuất)."""
+        for garment in self:
+            if garment.state != 'nhap':
+                continue
+            garment.write({'state': 'luoc'})
+            garment.message_post(body=_('Sale chuyển trạng thái: Nháp → Lược'))
+
     def action_quick_da_tra(self):
-        """Đã trả khách: cập nhật vị trí + điền ngày trả nếu chưa có."""
+        """Đã trả khách: cập nhật vị trí + điền ngày trả nếu chưa có.
+        Khi gọi từ tab Sale (confirmed_sale chưa set), tự động set luôn.
+        """
         today = fields.Date.today()
         for garment in self:
-            if not garment.confirmed_sale:
-                raise UserError(_('Cần Sale xác nhận trước khi trả khách "%s".') % garment.ref)
-            vals = {'location': 'da_tra'}
+            if garment.state != 'hoan_thien':
+                raise UserError(_('Chỉ trả khách được đồ đã Hoàn thiện.'))
+            vals = {'location': 'da_tra', 'confirmed_sale': True}
             if not garment.date_return:
                 vals['date_return'] = today
             garment.write(vals)
