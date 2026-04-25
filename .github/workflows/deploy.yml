@@ -28,18 +28,13 @@ jobs:
           script_stop: true
           command_timeout: 30m
           script: |
-            set -e
             REPO="$HOME/ERP_Fashion"
-            echo "[1] cd $REPO"
             cd "$REPO"
-            echo "[2] remove git locks"
             rm -f .git/index.lock .git/config.lock .git/HEAD.lock || true
-            echo "[3] git checkout odoo.conf.docker"
             git checkout -- odoo.conf.docker || true
-            echo "[4] running update.sh"
             FORCE="${{ github.event.inputs.force_all }}"
             if [ "$FORCE" = "true" ]; then
-              bash "$REPO/deploy/update.sh" all
+              bash -x "$REPO/deploy/update.sh" all 2>&1
             else
-              bash "$REPO/deploy/update.sh"
+              bash -x "$REPO/deploy/update.sh" 2>&1
             fi
