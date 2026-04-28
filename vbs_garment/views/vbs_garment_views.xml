@@ -516,6 +516,7 @@
         <field name="name">vbs.garment.form.two_stage</field>
         <field name="model">vbs.garment</field>
         <field name="inherit_id" ref="view_vbs_garment_form"/>
+        <field name="mode">primary</field>
         <field name="arch" type="xml">
             <field name="state" position="attributes">
                 <attribute name="statusbar_visible">luoc,hoan_thien</attribute>
