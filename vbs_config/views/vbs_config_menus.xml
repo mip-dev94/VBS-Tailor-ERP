@@ -27,11 +27,6 @@
               sequence="25"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop"/>
 
-    <menuitem id="menu_config_pattern"
-              name="Mã rập"
-              parent="menu_root_config"
-              action="action_vbs_pattern"
-              sequence="30"
-              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+    <!-- Mã rập đã chuyển sang menu Sản xuất (vbs_garment/views/vbs_garment_menus.xml) -->
 
 </odoo>

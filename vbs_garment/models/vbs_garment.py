@@ -61,6 +61,11 @@ class VbsGarment(models.Model):
         tracking=True,
     )
 
+    production_type = fields.Selection([
+        ('nhap', 'Bản thử đo'),
+    ], string='Loại LSX', default=False, tracking=True,
+        help='Để trống = LSX thông thường. Bản thử đo = may prototype để kiểm tra form dáng trước khi may chính thức.')
+
     detail = fields.Char(
         string='Chi tiết đồ',
         help='Màu sắc, kiểu dáng, ghi chú đặc biệt',
@@ -463,10 +468,22 @@ class VbsGarment(models.Model):
                 'Không thể chuyển "%s" sang Lược:\n%s'
             ) % (self.ref or self.name, '\n'.join(errors)))
 
+    # Loại đồ có 2 bước (Lược → Hoàn thiện), không có Lần 2
+    _TWO_STAGE_TYPES = ['ao_khoac', 'gile', 'quan', 'quan_comple']
+
+    def _is_two_stage(self):
+        """True nếu LSX này chỉ có 2 bước: Lược → Hoàn thiện."""
+        return self.production_type == 'nhap' or self.garment_type in self._TWO_STAGE_TYPES
+
     def write(self, vals):
         if 'state' in vals:
             new_state = vals['state']
             for rec in self:
+                if rec.state == 'luoc' and new_state == 'lan_2' and rec._is_two_stage():
+                    raise UserError(_(
+                        'Đồ "%s" chỉ có 2 bước sản xuất: Lược → Hoàn thiện.\n'
+                        'Không có bước Lần 2 cho loại đồ này.'
+                    ) % (rec.ref or rec.name))
                 if rec.state == 'lan_2' and new_state == 'hoan_thien' and not rec.confirmed_qa:
                     raise UserError(_('Cần QA xác nhận trước khi chuyển "%s" sang "Hoàn thiện".') % rec.ref)
                 if new_state == 'huy':

@@ -140,6 +140,7 @@
                             <field name="order_id"/>
                             <field name="partner_id" readonly="1"/>
                             <field name="garment_type"/>
+                            <field name="production_type"/>
                             <field name="detail"/>
                             <field name="set_type"/>
                             <field name="set_code"
@@ -510,6 +511,58 @@
         </field>
     </record>
 
-    <!-- Dashboard submenus consolidated into search filters on action_vbs_garment -->
+    <!-- ============ ACTIONS PER CATEGORY ============ -->
+
+    <!-- LSX Áo: 3 stages (Lược → Lần 2 → Hoàn thiện) -->
+    <record id="action_vbs_garment_ao" model="ir.actions.act_window">
+        <field name="name">LSX Áo</field>
+        <field name="res_model">vbs.garment</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('garment_type', 'in', ['ao_ngan_sb','ao_ngan_pb','ao_dai_sb','ao_dai_pb','ao_comple_sb','ao_comple_db','so_mi','so_mi_tux','so_mi_tao_kieu','gile_sb','gile_dd','polo','budong','bomber','chan_vay']), ('production_type', '!=', 'nhap')]</field>
+        <field name="search_view_id" ref="view_vbs_garment_search"/>
+        <field name="context">{'search_default_in_production': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có lệnh sản xuất áo</p>
+        </field>
+    </record>
+
+    <!-- LSX Áo khoác: 2 stages (Lược → Hoàn thiện) -->
+    <record id="action_vbs_garment_ao_khoac" model="ir.actions.act_window">
+        <field name="name">LSX Áo khoác</field>
+        <field name="res_model">vbs.garment</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('garment_type', 'in', ['ao_khoac', 'gile'])]</field>
+        <field name="search_view_id" ref="view_vbs_garment_search"/>
+        <field name="context">{'search_default_in_production': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có lệnh sản xuất áo khoác</p>
+        </field>
+    </record>
+
+    <!-- LSX Quần: 2 stages (Lược → Hoàn thiện) -->
+    <record id="action_vbs_garment_quan" model="ir.actions.act_window">
+        <field name="name">LSX Quần</field>
+        <field name="res_model">vbs.garment</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('garment_type', 'in', ['quan', 'quan_comple'])]</field>
+        <field name="search_view_id" ref="view_vbs_garment_search"/>
+        <field name="context">{'search_default_in_production': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có lệnh sản xuất quần</p>
+        </field>
+    </record>
+
+    <!-- LSX Nháp: bản thử đo prototype, 2 stages -->
+    <record id="action_vbs_garment_nhap" model="ir.actions.act_window">
+        <field name="name">LSX Nháp</field>
+        <field name="res_model">vbs.garment</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('production_type', '=', 'nhap')]</field>
+        <field name="search_view_id" ref="view_vbs_garment_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có bản thử đo</p>
+            <p>Bản thử đo (prototype) để kiểm tra form dáng trước khi may chính thức.</p>
+        </field>
+    </record>
 
 </odoo>

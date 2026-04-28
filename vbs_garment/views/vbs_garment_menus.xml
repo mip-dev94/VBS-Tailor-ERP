@@ -6,12 +6,45 @@
               sequence="12"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office,vbs_base.group_vbs_sale"/>
 
-    <menuitem id="menu_production_garments"
-              name="Lệnh sản xuất"
+    <!-- LSX Nháp: bản thử đo prototype (2 stages) -->
+    <menuitem id="menu_production_nhap"
+              name="LSX Nháp"
               parent="menu_root_production"
-              action="action_vbs_garment"
+              action="action_vbs_garment_nhap"
               sequence="10"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+
+    <!-- LSX Áo: áo comple, sơ mi, gile... (3 stages: Lược → Lần 2 → Hoàn thiện) -->
+    <menuitem id="menu_production_ao"
+              name="LSX Áo"
+              parent="menu_root_production"
+              action="action_vbs_garment_ao"
+              sequence="11"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+
+    <!-- LSX Áo khoác: ao_khoac legacy (2 stages) -->
+    <menuitem id="menu_production_ao_khoac"
+              name="LSX Áo khoác"
+              parent="menu_root_production"
+              action="action_vbs_garment_ao_khoac"
+              sequence="12"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+
+    <!-- LSX Quần: quan, quan_comple (2 stages) -->
+    <menuitem id="menu_production_quan"
+              name="LSX Quần"
+              parent="menu_root_production"
+              action="action_vbs_garment_quan"
+              sequence="13"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
+
+    <!-- Mã rập: chuyển từ Cấu hình sang Sản xuất -->
+    <menuitem id="menu_production_pattern"
+              name="Mã rập"
+              parent="menu_root_production"
+              action="vbs_config.action_vbs_pattern"
+              sequence="15"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
 
     <menuitem id="menu_production_planning"
               name="Lịch làm việc"
@@ -19,7 +52,5 @@
               action="vbs_planning.action_planning_slot"
               sequence="20"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_workshop,vbs_base.group_vbs_office"/>
-
-    <!-- Dashboard submenus removed — use search filters (Sẵn sàng VP / Chờ thử / Hoàn thiện / Quá hạn SLA) on Theo dõi đồ. -->
 
 </odoo>
