@@ -511,6 +511,22 @@
         </field>
     </record>
 
+    <!-- ============ FORM VIEW 2-STAGE (Lược → Hoàn thiện, không có Lần 2) ============ -->
+    <record id="view_vbs_garment_form_two_stage" model="ir.ui.view">
+        <field name="name">vbs.garment.form.two_stage</field>
+        <field name="model">vbs.garment</field>
+        <field name="inherit_id" ref="view_vbs_garment_form"/>
+        <field name="arch" type="xml">
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">luoc,hoan_thien</attribute>
+            </field>
+            <!-- Ẩn QA duyệt: không có Lần 2 nên không cần QA approve -->
+            <button name="action_confirm_qa" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+        </field>
+    </record>
+
     <!-- ============ ACTIONS PER CATEGORY ============ -->
 
     <!-- LSX Áo: 3 stages (Lược → Lần 2 → Hoàn thiện) -->
@@ -534,6 +550,7 @@
         <field name="domain">[('garment_type', 'in', ['ao_khoac', 'gile'])]</field>
         <field name="search_view_id" ref="view_vbs_garment_search"/>
         <field name="context">{'search_default_in_production': 1}</field>
+        <field name="view_ids" eval="[(0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Chưa có lệnh sản xuất áo khoác</p>
         </field>
@@ -547,18 +564,20 @@
         <field name="domain">[('garment_type', 'in', ['quan', 'quan_comple'])]</field>
         <field name="search_view_id" ref="view_vbs_garment_search"/>
         <field name="context">{'search_default_in_production': 1}</field>
+        <field name="view_ids" eval="[(0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Chưa có lệnh sản xuất quần</p>
         </field>
     </record>
 
-    <!-- LSX Nháp: bản thử đo prototype, 2 stages -->
+    <!-- LSX Nháp: bản thử đo prototype, 2 stages (Lược → Hoàn thiện) -->
     <record id="action_vbs_garment_nhap" model="ir.actions.act_window">
         <field name="name">LSX Nháp</field>
         <field name="res_model">vbs.garment</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="domain">[('production_type', '=', 'nhap')]</field>
         <field name="search_view_id" ref="view_vbs_garment_search"/>
+        <field name="view_ids" eval="[(0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Chưa có bản thử đo</p>
             <p>Bản thử đo (prototype) để kiểm tra form dáng trước khi may chính thức.</p>
