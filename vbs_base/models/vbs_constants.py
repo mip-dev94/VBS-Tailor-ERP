@@ -33,7 +33,6 @@ GARMENT_TYPE = [
 ]
 
 GARMENT_STATE = [
-    ('nhap', 'Nháp'),
     ('luoc', 'Lược'),
     ('lan_2', 'Lần 2'),
     ('hoan_thien', 'Hoàn thiện'),

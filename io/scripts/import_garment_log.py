@@ -73,7 +73,7 @@ for row_idx, row in enumerate(
         detail = (row[IDX['detail']] if IDX['detail'] >= 0 else '') or ''
         state = map_value(
             row[IDX['state']] if IDX['state'] >= 0 else None,
-            GARMENT_STATE_MAP, default='nhap', label='state',
+            GARMENT_STATE_MAP, default='luoc', label='state',
         )
         location = map_value(
             row[IDX['location']] if IDX['location'] >= 0 else None,

@@ -272,7 +272,6 @@
                 <field name="garment_type"/>
                 <field name="detail"/>
                 <field name="state" widget="badge"
-                       decoration-info="state == 'nhap'"
                        decoration-warning="state == 'lan_2'"
                        decoration-primary="state == 'luoc'"
                        decoration-success="state == 'hoan_thien'"/>
@@ -456,7 +455,6 @@
                 <filter string="Văn phòng" name="van_phong"
                         domain="[('location', '=', 'van_phong')]"/>
                 <separator/>
-                <filter string="Nháp" name="nhap" domain="[('state', '=', 'nhap')]"/>
                 <filter string="Lược" name="luoc" domain="[('state', '=', 'luoc')]"/>
                 <filter string="Lần 2" name="lan_2" domain="[('state', '=', 'lan_2')]"/>
                 <filter string="Hoàn thiện" name="hoan_thien"

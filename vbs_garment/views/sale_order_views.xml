@@ -134,7 +134,6 @@
                             <field name="set_type" optional="show"/>
                             <field name="set_code" optional="hide"/>
                             <field name="state" widget="badge"
-                                   decoration-info="state == 'nhap'"
                                    decoration-warning="state == 'lan_2'"
                                    decoration-primary="state == 'luoc'"
                                    decoration-success="state == 'hoan_thien'"/>
@@ -145,13 +144,6 @@
                                    string="Vải về" readonly="1" optional="show"/>
                             <field name="days_in_current_state" string="Ngày"/>
                             <field name="sla_overdue" invisible="1"/>
-                            <!-- Sale actions: advance state + mark returned -->
-                            <button name="action_sale_advance_luoc" type="object"
-                                    string="→ Lược" icon="fa-play"
-                                    class="btn-sm btn-primary"
-                                    invisible="state != 'nhap'"
-                                    title="Chuyển sang Lược (bắt đầu sản xuất)"
-                                    groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
                             <button name="action_quick_da_tra" type="object"
                                     string="✓ Trả khách" icon="fa-check"
                                     class="btn-sm btn-success"

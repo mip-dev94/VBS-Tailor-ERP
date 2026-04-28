@@ -11,8 +11,8 @@ from datetime import datetime
 # ── MAPPING: Excel → ERP Selection keys ─────────────────────────────────────
 # Tình trạng (cột "Tình trạng" trong Excel) → vbs.garment.state
 GARMENT_STATE_MAP = {
-    'nháp': 'nhap',
-    'nhap': 'nhap',
+    'nháp': 'luoc',
+    'nhap': 'luoc',
     'lược': 'luoc',
     'luoc': 'luoc',
     'lần 2': 'lan_2',

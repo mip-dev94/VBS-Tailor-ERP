@@ -81,7 +81,7 @@ class VbsGarment(models.Model):
     state = fields.Selection(
         GARMENT_STATE,
         string='Tình trạng',
-        default='nhap',
+        default='luoc',
         required=True,
         tracking=True,
         index=True,
@@ -690,15 +690,8 @@ class VbsGarment(models.Model):
         self.write({'location': 'cua_hang'})
 
     def action_sale_advance_luoc(self):
-        """Sale kích hoạt từ tab Đồ may: chuyển Nháp → Lược (bắt đầu sản xuất).
-        Validation: vải phải đã về + loại vải + số mét phải điền.
-        """
-        for garment in self:
-            if garment.state != 'nhap':
-                continue
-            # _check_ready_for_luoc được gọi tự động trong write()
-            garment.write({'state': 'luoc'})
-            garment.message_post(body=_('Sale chuyển trạng thái: Nháp → Lược'))
+        """Không còn bước Nháp — LSX mới tạo ra đã ở Lược ngay."""
+        pass
 
     def action_quick_da_tra(self):
         """Đã trả khách: cập nhật vị trí + điền ngày trả nếu chưa có.
@@ -745,7 +738,7 @@ class VbsGarment(models.Model):
     def action_uncancel_garment(self):
         """Admin thao tác: bỏ huỷ, đưa đồ về trạng thái nhap."""
         self.write({
-            'state': 'nhap',
+            'state': 'luoc',
             'location': 'cua_hang',
             'date_cancelled': False,
         })
