@@ -178,7 +178,7 @@
                     <t t-name="card">
                         <div class="o_kanban_card_content d-flex">
                             <div class="o_kanban_image me-3">
-                                <img t-att-src="kanban_image('vbs.product', 'image_128', record.id.raw_value)"
+                                <img t-att-src="'/web/image/vbs.product/' + record.id.raw_value + '/image_128'"
                                      alt="Product" class="rounded"/>
                             </div>
                             <div class="oe_kanban_details flex-grow-1">
