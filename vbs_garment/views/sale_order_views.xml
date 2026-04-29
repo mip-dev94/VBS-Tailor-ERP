@@ -92,11 +92,15 @@
                 <attribute name="optional">hide</attribute>
             </xpath>
 
-            <!-- Thêm cột set_type, garment_type, garment_count — không có nút tạo LSX per-line -->
+            <!-- Thêm cột set_type, garment_type, garment_count + nút tạo LSX per-line -->
             <xpath expr="//page[@name='order_lines']//list//field[@name='product_template_id']" position="after">
                 <field name="set_type" optional="show"/>
                 <field name="garment_type" optional="show"/>
                 <field name="garment_count" string="LSX" optional="show"/>
+                <button name="action_create_garments" type="object"
+                        string="Tạo LSX" icon="fa-industry"
+                        class="btn-link" title="Tạo lệnh sản xuất từ dòng này (yêu cầu ≥70% thanh toán)"
+                        invisible="garment_count &gt; 0 or not garment_type"/>
                 <button name="action_view_line_garments" type="object"
                         string="Xem LSX" icon="fa-tshirt"
                         class="btn-link"
