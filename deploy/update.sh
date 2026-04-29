@@ -89,6 +89,7 @@ if [ -n "$MODULES" ]; then
         ALTER TABLE sale_order ADD COLUMN IF NOT EXISTS sale_confirmed boolean DEFAULT false;
         ALTER TABLE sale_order ADD COLUMN IF NOT EXISTS accountant_confirmed boolean DEFAULT false;
         ALTER TABLE sale_order ADD COLUMN IF NOT EXISTS amount_remaining numeric DEFAULT 0;
+        ALTER TABLE vbs_fabric_order ADD COLUMN IF NOT EXISTS sale_order_id integer;
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS garment_type character varying;
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS set_type character varying DEFAULT 'le';
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS fabric_type_id integer;

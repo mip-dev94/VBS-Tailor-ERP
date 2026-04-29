@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Extend vbs.fabric.order — per-line stock bump/garment notify is now handled
-in VbsFabricOrderLineExt._after_line_arrived() to support partial arrivals.
-"""
-from odoo import models
+from odoo import fields, models
 
 
 class VbsFabricOrderExt(models.Model):
     _inherit = 'vbs.fabric.order'
+
+    sale_order_id = fields.Many2one(
+        'sale.order', string='Đơn hàng liên kết',
+        ondelete='set null', index=True,
+        help='Đơn hàng khách hàng yêu cầu đặt vải này.',
+    )

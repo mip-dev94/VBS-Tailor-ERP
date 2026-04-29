@@ -33,6 +33,11 @@
                         invisible="pattern_count == 0 or not partner_id">
                     <field name="pattern_count" widget="statinfo" string="Rập khách"/>
                 </button>
+                <button name="action_view_fabric_orders" type="object"
+                        class="oe_stat_button" icon="fa-shopping-cart"
+                        invisible="fabric_order_count == 0">
+                    <field name="fabric_order_count" widget="statinfo" string="Đặt vải"/>
+                </button>
             </div>
 
             <!-- Fashion state + dual confirm buttons in header -->
@@ -61,6 +66,7 @@
             <!-- Fields ẩn cho invisible conditions -->
             <field name="partner_id" position="before">
                 <field name="can_start_production" invisible="1"/>
+                <field name="fabric_order_count" invisible="1"/>
             </field>
 
             <!-- Loại đơn + tiền tệ + thanh toán rõ ràng (3 dòng) -->
@@ -99,9 +105,9 @@
                 <attribute name="domain">[('user_ids', '=', False)]</attribute>
             </field>
 
-            <!-- Rename tab "Order Lines" → "Thành phẩm" (áp dụng cho mọi order_type) -->
+            <!-- Đổi "Order Lines" → "Đơn hàng" -->
             <xpath expr="//page[@name='order_lines']" position="attributes">
-                <attribute name="string">Thành phẩm</attribute>
+                <attribute name="string">Đơn hàng</attribute>
             </xpath>
 
             <!-- Thêm discount -->
@@ -180,7 +186,33 @@
                 </page>
             </xpath>
 
-            <!-- Notebook 2 — chỉ Thanh toán -->
+            <!-- Tab Lệnh đặt vải — sau Đồ may -->
+            <xpath expr="//page[@name='vbs_garments']" position="after">
+                <page string="Lệnh đặt vải" name="vbs_fabric_orders">
+                    <div class="mb-2">
+                        <button name="action_create_fabric_order" type="object"
+                                string="+ Tạo lệnh đặt vải"
+                                class="btn btn-secondary btn-sm"
+                                icon="fa-plus"/>
+                    </div>
+                    <field name="fabric_order_ids" readonly="1">
+                        <list>
+                            <field name="name" string="Số phiếu"/>
+                            <field name="order_date" string="Ngày đặt"/>
+                            <field name="partner_id" string="Nhà cung cấp"/>
+                            <field name="state" widget="badge"
+                                   decoration-info="state == 'draft'"
+                                   decoration-warning="state == 'confirmed'"
+                                   decoration-success="state == 'arrived'"
+                                   string="Trạng thái"/>
+                            <field name="arrived_line_count" string="Đã về"/>
+                            <field name="pending_line_count" string="Chờ về"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+            <!-- Notebook 2 — Thanh toán + Thông tin khác + Chữ ký -->
             <xpath expr="//sheet//notebook" position="after">
                 <notebook>
                     <page string="Thanh toán" name="vbs_payments">
@@ -193,7 +225,26 @@
                             </list>
                         </field>
                     </page>
+                    <page string="Thông tin khác" name="vbs_other_info2">
+                        <group>
+                            <group string="Đơn hàng">
+                                <field name="client_order_ref" string="Mã đơn khách"/>
+                                <field name="user_id" string="Nhân viên bán"/>
+                                <field name="team_id" string="Đội bán hàng" optional="hide"/>
+                            </group>
+                            <group string="Thời hạn">
+                                <field name="validity_date" string="Ngày hết hạn báo giá"/>
+                                <field name="commitment_date" string="Ngày giao dự kiến"/>
+                            </group>
+                        </group>
+                        <field name="note" string="Điều khoản &amp; điều kiện" placeholder="Nhập điều khoản..."/>
+                    </page>
                 </notebook>
+            </xpath>
+
+            <!-- Ẩn standard tabs khỏi notebook 1 bằng field-based xpath -->
+            <xpath expr="//page[descendant::field[@name='client_order_ref']]" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
             <!-- Ẩn statusbar chuẩn Odoo "Báo giá → Đơn bán hàng" — VBS dùng fashion_state -->

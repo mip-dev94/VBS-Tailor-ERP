@@ -96,6 +96,15 @@ class SaleOrder(models.Model):
         string='Kế toán đã xác nhận', default=False, tracking=True,
     )
 
+    fabric_order_ids = fields.One2many(
+        'vbs.fabric.order', 'sale_order_id',
+        string='Lệnh đặt vải',
+    )
+    fabric_order_count = fields.Integer(
+        string='Số lệnh đặt vải',
+        compute='_compute_fabric_order_count',
+    )
+
     pattern_count = fields.Integer(
         string='Số rập khách',
         compute='_compute_pattern_count',
@@ -105,6 +114,10 @@ class SaleOrder(models.Model):
     def _compute_garment_count(self):
         for order in self:
             order.garment_count = len(order.garment_ids)
+
+    def _compute_fabric_order_count(self):
+        for order in self:
+            order.fabric_order_count = len(order.fabric_order_ids)
 
     @api.depends('amount_paid', 'amount_total', 'fashion_state')
     def _compute_can_start_production(self):
@@ -215,6 +228,30 @@ class SaleOrder(models.Model):
             'view_mode': 'list,form',
             'domain': [('order_id', '=', self.id)],
             'context': {'default_order_id': self.id},
+        }
+
+    def action_view_fabric_orders(self):
+        self.ensure_one()
+        return {
+            'name': _('Lệnh đặt vải'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'vbs.fabric.order',
+            'view_mode': 'list,form',
+            'domain': [('sale_order_id', '=', self.id)],
+            'context': {'default_sale_order_id': self.id},
+        }
+
+    def action_create_fabric_order(self):
+        self.ensure_one()
+        return {
+            'name': _('Tạo lệnh đặt vải'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'vbs.fabric.order',
+            'view_mode': 'form',
+            'context': {
+                'default_sale_order_id': self.id,
+                'default_sapo': self.name,
+            },
         }
 
     def action_view_patterns(self):
