@@ -64,6 +64,7 @@ msgstr "Result after contacting"
 msgid "Bán hàng"
 msgstr "Sales"
 
+#. module: vbs_contact
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
 msgid "Liên hệ khách hàng"
 msgstr "Customer Contact"

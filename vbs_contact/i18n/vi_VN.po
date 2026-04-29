@@ -130,6 +130,7 @@ msgstr "Ngày cập nhật"
 msgid "Bán hàng"
 msgstr "Bán hàng"
 
+#. module: vbs_contact
 #: model_terms:ir.ui.view,arch_db:vbs_contact.view_vbs_contact_log_form
 msgid "Liên hệ khách hàng"
 msgstr "Liên hệ khách hàng"
