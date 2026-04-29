@@ -40,6 +40,8 @@ services:
       - ./vbs_contact:/mnt/extra-addons/vbs_contact:ro
       - ./vbs_hr:/mnt/extra-addons/vbs_hr:ro
       - ./vbs_product:/mnt/extra-addons/vbs_product:ro
+      - ./vbs_crm:/mnt/extra-addons/vbs_crm:ro
+      - ./vbs_accounting:/mnt/extra-addons/vbs_accounting:ro
       - ./io:/mnt/io
     restart: unless-stopped
 
