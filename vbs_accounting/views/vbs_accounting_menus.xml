@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_root_accounting"
+              name="Kế toán"
+              sequence="14"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+
+    <menuitem id="menu_accounting_receivable"
+              name="Công nợ"
+              parent="menu_root_accounting"
+              action="action_vbs_receivable"
+              sequence="10"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+
+    <menuitem id="menu_accounting_revenue"
+              name="Doanh thu"
+              parent="menu_root_accounting"
+              action="action_vbs_revenue"
+              sequence="20"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+
+    <menuitem id="menu_accounting_expense"
+              name="Chi phí"
+              parent="menu_root_accounting"
+              action="action_vbs_expense"
+              sequence="30"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant,vbs_base.group_vbs_office"/>
+
+</odoo>

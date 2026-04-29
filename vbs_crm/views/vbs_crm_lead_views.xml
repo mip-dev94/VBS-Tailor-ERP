@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ FORM ============ -->
+    <record id="view_vbs_crm_lead_form" model="ir.ui.view">
+        <field name="name">vbs.crm.lead.form</field>
+        <field name="model">vbs.crm.lead</field>
+        <field name="arch" type="xml">
+            <form string="Cơ hội / Lead">
+                <header>
+                    <button name="action_mark_won" type="object"
+                            string="Chốt đơn" class="oe_highlight"
+                            invisible="stage in ('won','lost')"/>
+                    <button name="action_mark_lost" type="object"
+                            string="Không chốt được"
+                            invisible="stage in ('won','lost')"/>
+                    <field name="stage" widget="statusbar"
+                           statusbar_visible="new,contacted,consulting,won"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_view_order" icon="fa-file-text-o"
+                                invisible="order_count == 0">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="order_count" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">Đơn hàng</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <div class="o_field_widget o_priority me-3">
+                            <field name="priority" widget="priority"/>
+                        </div>
+                        <h1><field name="name" placeholder="Tên cơ hội..."/></h1>
+                    </div>
+
+                    <group>
+                        <group string="Khách hàng">
+                            <field name="partner_id"/>
+                            <field name="partner_name"
+                                   invisible="partner_id != False"
+                                   placeholder="Nhập tên nếu chưa có hồ sơ"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                        </group>
+                        <group string="Pipeline">
+                            <field name="source"/>
+                            <field name="user_id"/>
+                            <field name="date_open"/>
+                            <field name="date_deadline"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="expected_amount" widget="monetary"/>
+                        </group>
+                    </group>
+
+                    <group invisible="stage != 'lost'">
+                        <field name="lost_reason" placeholder="Lý do không chốt đơn..."/>
+                    </group>
+
+                    <notebook>
+                        <page string="Nhu cầu khách hàng" name="need">
+                            <field name="note_need" placeholder="Ghi chú nhu cầu, loại đồ muốn may, ngân sách, thời hạn..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ LIST ============ -->
+    <record id="view_vbs_crm_lead_list" model="ir.ui.view">
+        <field name="name">vbs.crm.lead.list</field>
+        <field name="model">vbs.crm.lead</field>
+        <field name="arch" type="xml">
+            <list string="Danh sách leads">
+                <field name="priority" widget="priority" nolabel="1" optional="show"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="phone" optional="show"/>
+                <field name="source" optional="show"/>
+                <field name="expected_amount" widget="monetary" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="date_deadline" optional="show"/>
+                <field name="user_id" optional="show"/>
+                <field name="stage" widget="badge"
+                       decoration-info="stage == 'new'"
+                       decoration-warning="stage == 'contacted'"
+                       decoration-primary="stage == 'consulting'"
+                       decoration-success="stage == 'won'"
+                       decoration-danger="stage == 'lost'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============ KANBAN ============ -->
+    <record id="view_vbs_crm_lead_kanban" model="ir.ui.view">
+        <field name="name">vbs.crm.lead.kanban</field>
+        <field name="model">vbs.crm.lead</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage" quick_create="false">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="partner_name"/>
+                <field name="phone"/>
+                <field name="expected_amount"/>
+                <field name="currency_id"/>
+                <field name="stage"/>
+                <field name="priority"/>
+                <field name="user_id"/>
+                <field name="color"/>
+                <field name="date_deadline"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside>
+                            <field name="priority" widget="priority"/>
+                        </aside>
+                        <main>
+                            <field name="name" class="fw-bold fs-5"/>
+                            <div class="text-muted small mt-1">
+                                <t t-if="record.partner_id.raw_value">
+                                    <field name="partner_id"/>
+                                </t>
+                                <t t-elif="record.partner_name.raw_value">
+                                    <field name="partner_name"/>
+                                </t>
+                            </div>
+                            <div class="mt-1 small">
+                                <t t-if="record.phone.raw_value">
+                                    <i class="fa fa-phone me-1"/>
+                                    <field name="phone"/>
+                                </t>
+                            </div>
+                            <div class="mt-2 d-flex justify-content-between align-items-center">
+                                <span class="fw-bold text-primary">
+                                    <field name="expected_amount" widget="monetary"/>
+                                </span>
+                                <field name="user_id" widget="many2one_avatar_user" nolabel="1"/>
+                            </div>
+                            <t t-if="record.date_deadline.raw_value">
+                                <div class="text-muted small mt-1">
+                                    <i class="fa fa-calendar me-1"/>
+                                    Hạn: <field name="date_deadline"/>
+                                </div>
+                            </t>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ============ SEARCH ============ -->
+    <record id="view_vbs_crm_lead_search" model="ir.ui.view">
+        <field name="name">vbs.crm.lead.search</field>
+        <field name="model">vbs.crm.lead</field>
+        <field name="arch" type="xml">
+            <search string="Tìm lead">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="phone"/>
+                <field name="user_id"/>
+                <separator/>
+                <filter string="Mới" name="new" domain="[('stage','=','new')]"/>
+                <filter string="Đang tư vấn" name="consulting" domain="[('stage','in',['contacted','consulting'])]"/>
+                <filter string="Đã chốt" name="won" domain="[('stage','=','won')]"/>
+                <filter string="Không chốt" name="lost" domain="[('stage','=','lost')]"/>
+                <separator/>
+                <filter string="Của tôi" name="my_leads" domain="[('user_id','=',uid)]"/>
+                <filter string="Ưu tiên cao" name="priority" domain="[('priority','in',['1','2'])]"/>
+                <separator/>
+                <group>
+                    <filter string="Giai đoạn" name="group_stage" context="{'group_by':'stage'}"/>
+                    <filter string="Nguồn" name="group_source" context="{'group_by':'source'}"/>
+                    <filter string="Nhân viên" name="group_user" context="{'group_by':'user_id'}"/>
+                    <filter string="Tháng tạo" name="group_month" context="{'group_by':'date_open:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ GRAPH / PIVOT ============ -->
+    <record id="view_vbs_crm_lead_graph" model="ir.ui.view">
+        <field name="name">vbs.crm.lead.graph</field>
+        <field name="model">vbs.crm.lead</field>
+        <field name="arch" type="xml">
+            <graph string="Báo cáo CRM" type="bar">
+                <field name="stage"/>
+                <field name="expected_amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_vbs_crm_lead_pivot" model="ir.ui.view">
+        <field name="name">vbs.crm.lead.pivot</field>
+        <field name="model">vbs.crm.lead</field>
+        <field name="arch" type="xml">
+            <pivot string="Báo cáo CRM">
+                <field name="stage" type="row"/>
+                <field name="source" type="col"/>
+                <field name="expected_amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- ============ ACTIONS ============ -->
+    <record id="action_vbs_crm_pipeline" model="ir.actions.act_window">
+        <field name="name">Pipeline CRM</field>
+        <field name="res_model">vbs.crm.lead</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('stage','not in',['won','lost'])]</field>
+        <field name="search_view_id" ref="view_vbs_crm_lead_search"/>
+        <field name="context">{'search_default_group_stage': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có lead nào</p>
+            <p>Tạo lead mới để bắt đầu theo dõi cơ hội bán hàng.</p>
+        </field>
+    </record>
+
+    <record id="action_vbs_crm_leads_all" model="ir.actions.act_window">
+        <field name="name">Tất cả leads</field>
+        <field name="res_model">vbs.crm.lead</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="view_vbs_crm_lead_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có lead nào</p>
+        </field>
+    </record>
+
+    <record id="action_vbs_crm_report" model="ir.actions.act_window">
+        <field name="name">Báo cáo tỉ lệ chốt</field>
+        <field name="res_model">vbs.crm.lead</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="search_view_id" ref="view_vbs_crm_lead_search"/>
+    </record>
+
+</odoo>

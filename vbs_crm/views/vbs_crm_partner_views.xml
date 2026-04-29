@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_vbs_crm_partner" model="ir.actions.act_window">
+        <field name="name">Khách hàng</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('customer_rank','&gt;',0)]</field>
+        <field name="context">{'default_customer_rank': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có khách hàng nào</p>
+            <p>Khách hàng sẽ xuất hiện ở đây sau khi được tạo từ lead hoặc đơn hàng.</p>
+        </field>
+    </record>
+
+</odoo>

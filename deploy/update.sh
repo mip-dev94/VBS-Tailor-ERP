@@ -86,6 +86,20 @@ if [ -n "$MODULES" ]; then
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS cost_other numeric DEFAULT 0;
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS profit_amount numeric DEFAULT 0;
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS profit_margin_pct numeric DEFAULT 0;
+        CREATE TABLE IF NOT EXISTS vbs_expense_record (
+            id serial PRIMARY KEY,
+            name character varying NOT NULL,
+            date date,
+            amount numeric DEFAULT 0,
+            currency_id integer,
+            category character varying DEFAULT 'khac',
+            note text,
+            active boolean DEFAULT true,
+            create_date timestamp without time zone,
+            write_date timestamp without time zone,
+            create_uid integer,
+            write_uid integer
+        );
     " 2>&1 || true
 fi
 

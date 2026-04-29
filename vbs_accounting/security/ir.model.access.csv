@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vbs_expense_admin,vbs.expense.record admin,model_vbs_expense_record,vbs_base.group_vbs_admin,1,1,1,1
+access_vbs_expense_accountant,vbs.expense.record accountant,model_vbs_expense_record,vbs_base.group_vbs_accountant,1,1,1,0
+access_vbs_expense_office,vbs.expense.record office,model_vbs_expense_record,vbs_base.group_vbs_office,1,1,1,0
+access_vbs_expense_sale,vbs.expense.record sale,model_vbs_expense_record,vbs_base.group_vbs_sale,1,0,0,0

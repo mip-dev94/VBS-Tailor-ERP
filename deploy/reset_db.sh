@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 DB="${VBS_DB:-VBS_ERP}"
 COMPOSE="docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml"
 
-MODULES="vbs_base,vbs_config,vbs_contact,vbs_fabric,vbs_garment,vbs_hr,vbs_planning,vbs_product"
+MODULES="vbs_base,vbs_config,vbs_contact,vbs_fabric,vbs_garment,vbs_hr,vbs_planning,vbs_product,vbs_crm,vbs_accounting"
 
 echo "=== [1/4] Backup DB lần cuối trước khi xoá ==="
 TS=$(date +%Y%m%d_%H%M%S)

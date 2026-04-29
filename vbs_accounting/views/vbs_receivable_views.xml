@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Read-only view of sale.order for receivables (công nợ) -->
+    <record id="view_vbs_receivable_list" model="ir.ui.view">
+        <field name="name">sale.order.receivable.list</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <list string="Công nợ" create="false" delete="false" edit="false">
+                <field name="name" string="Đơn hàng"/>
+                <field name="partner_id" string="Khách hàng"/>
+                <field name="date_order" string="Ngày đặt"/>
+                <field name="amount_total" widget="monetary" string="Tổng tiền"/>
+                <field name="amount_paid" widget="monetary" string="Đã thanh toán"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="payment_state" widget="badge"
+                       decoration-danger="payment_state == 'chua_tt'"
+                       decoration-warning="payment_state == 'tt_1_phan'"
+                       decoration-success="payment_state == 'tt_toan_bo'"
+                       string="Thanh toán"/>
+                <field name="fashion_state" widget="badge"
+                       decoration-info="fashion_state == 'dat_hang'"
+                       decoration-warning="fashion_state == 'dang_xu_ly'"
+                       decoration-success="fashion_state == 'hoan_thanh'"
+                       string="Trạng thái"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_vbs_receivable_search" model="ir.ui.view">
+        <field name="name">sale.order.receivable.search</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <search string="Tìm công nợ">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <separator/>
+                <filter string="Chưa thanh toán" name="chua_tt"
+                        domain="[('payment_state','=','chua_tt')]"/>
+                <filter string="Thanh toán 1 phần" name="tt_1_phan"
+                        domain="[('payment_state','=','tt_1_phan')]"/>
+                <group>
+                    <filter string="Khách hàng" name="group_partner" context="{'group_by':'partner_id'}"/>
+                    <filter string="Trạng thái TT" name="group_payment" context="{'group_by':'payment_state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vbs_receivable" model="ir.actions.act_window">
+        <field name="name">Công nợ</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list</field>
+        <field name="domain">[('payment_state','!=','tt_toan_bo'),('fashion_state','not in',['huy','hoan_thanh'])]</field>
+        <field name="view_ids" eval="[(5,), (0,0,{'view_mode':'list','view_id':ref('view_vbs_receivable_list')})]"/>
+        <field name="search_view_id" ref="view_vbs_receivable_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Không có công nợ nào</p>
+            <p>Tất cả đơn hàng đang hoạt động đã được thanh toán đủ.</p>
+        </field>
+    </record>
+
+</odoo>

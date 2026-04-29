@@ -1,0 +1,122 @@
+# Vietnamese translation for vbs_accounting
+# Copyright (C) VBS Tailor
+msgid ""
+msgstr ""
+"Project-Id-Version: VBS Kế toán 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-29 00:00+0000\n"
+"PO-Revision-Date: 2026-04-29 00:00+0000\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: vbs_accounting
+#: model:ir.model,name:vbs_accounting.model_vbs_expense_record
+msgid "Chi phí"
+msgstr "Chi phí"
+
+#. module: vbs_accounting
+#: model:ir.ui.menu,name:vbs_accounting.menu_root_accounting
+msgid "Kế toán"
+msgstr "Kế toán"
+
+#. module: vbs_accounting
+#: model:ir.ui.menu,name:vbs_accounting.menu_accounting_receivable
+msgid "Công nợ"
+msgstr "Công nợ"
+
+#. module: vbs_accounting
+#: model:ir.ui.menu,name:vbs_accounting.menu_accounting_revenue
+msgid "Doanh thu"
+msgstr "Doanh thu"
+
+#. module: vbs_accounting
+#: model:ir.ui.menu,name:vbs_accounting.menu_accounting_expense
+msgid "Chi phí"
+msgstr "Chi phí"
+
+#. module: vbs_accounting
+#: model:ir.actions.act_window,name:vbs_accounting.action_vbs_receivable
+msgid "Công nợ"
+msgstr "Công nợ"
+
+#. module: vbs_accounting
+#: model:ir.actions.act_window,name:vbs_accounting.action_vbs_revenue
+msgid "Doanh thu"
+msgstr "Doanh thu"
+
+#. module: vbs_accounting
+#: model:ir.actions.act_window,name:vbs_accounting.action_vbs_expense
+msgid "Chi phí"
+msgstr "Chi phí"
+
+#. module: vbs_accounting
+#: model:ir.model.fields,field_description:vbs_accounting.field_vbs_expense_record__name
+msgid "Mô tả chi phí"
+msgstr "Mô tả chi phí"
+
+#. module: vbs_accounting
+#: model:ir.model.fields,field_description:vbs_accounting.field_vbs_expense_record__date
+msgid "Ngày"
+msgstr "Ngày"
+
+#. module: vbs_accounting
+#: model:ir.model.fields,field_description:vbs_accounting.field_vbs_expense_record__amount
+msgid "Số tiền"
+msgstr "Số tiền"
+
+#. module: vbs_accounting
+#: model:ir.model.fields,field_description:vbs_accounting.field_vbs_expense_record__category
+msgid "Loại chi phí"
+msgstr "Loại chi phí"
+
+#. module: vbs_accounting
+#: model:ir.model.fields.selection,name:vbs_accounting.selection__vbs_expense_record__category__vai
+msgid "Chi phí vải"
+msgstr "Chi phí vải"
+
+#. module: vbs_accounting
+#: model:ir.model.fields.selection,name:vbs_accounting.selection__vbs_expense_record__category__gia_cong
+msgid "Gia công / CMT"
+msgstr "Gia công / CMT"
+
+#. module: vbs_accounting
+#: model:ir.model.fields.selection,name:vbs_accounting.selection__vbs_expense_record__category__nhan_vien
+msgid "Nhân viên"
+msgstr "Nhân viên"
+
+#. module: vbs_accounting
+#: model:ir.model.fields.selection,name:vbs_accounting.selection__vbs_expense_record__category__van_phong
+msgid "Văn phòng / Vận hành"
+msgstr "Văn phòng / Vận hành"
+
+#. module: vbs_accounting
+#: model:ir.model.fields.selection,name:vbs_accounting.selection__vbs_expense_record__category__khac
+msgid "Khác"
+msgstr "Khác"
+
+#. module: vbs_accounting
+#: model:ir.model.fields,field_description:vbs_accounting.field_vbs_expense_record__note
+msgid "Ghi chú"
+msgstr "Ghi chú"
+
+#. module: vbs_accounting
+#: model_terms:ir.ui.view,arch_db:vbs_accounting.view_vbs_expense_form
+msgid "Thông tin chi phí"
+msgstr "Thông tin chi phí"
+
+#. module: vbs_accounting
+#: model_terms:ir.ui.view,arch_db:vbs_accounting.view_vbs_expense_form
+msgid "Số tiền"
+msgstr "Số tiền"
+
+#. module: vbs_accounting
+#: model_terms:ir.ui.view,arch_db:vbs_accounting.view_vbs_receivable_list
+msgid "Công nợ"
+msgstr "Công nợ"
+
+#. module: vbs_accounting
+#: model_terms:ir.ui.view,arch_db:vbs_accounting.view_vbs_revenue_list
+msgid "Doanh thu"
+msgstr "Doanh thu"

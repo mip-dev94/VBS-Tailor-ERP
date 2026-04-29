@@ -1,0 +1,205 @@
+# Vietnamese translation for vbs_crm
+# Copyright (C) VBS Tailor
+msgid ""
+msgstr ""
+"Project-Id-Version: VBS CRM 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-29 00:00+0000\n"
+"PO-Revision-Date: 2026-04-29 00:00+0000\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: vbs_crm
+#: model:ir.model,name:vbs_crm.model_vbs_crm_lead
+msgid "Cơ hội / Lead CRM"
+msgstr "Cơ hội / Lead CRM"
+
+#. module: vbs_crm
+#: model:ir.ui.menu,name:vbs_crm.menu_root_crm
+msgid "CRM"
+msgstr "CRM"
+
+#. module: vbs_crm
+#: model:ir.ui.menu,name:vbs_crm.menu_crm_pipeline
+msgid "Pipeline"
+msgstr "Pipeline"
+
+#. module: vbs_crm
+#: model:ir.ui.menu,name:vbs_crm.menu_crm_leads_all
+msgid "Tất cả leads"
+msgstr "Tất cả leads"
+
+#. module: vbs_crm
+#: model:ir.ui.menu,name:vbs_crm.menu_crm_partner
+msgid "Khách hàng"
+msgstr "Khách hàng"
+
+#. module: vbs_crm
+#: model:ir.ui.menu,name:vbs_crm.menu_crm_report
+msgid "Báo cáo tỉ lệ chốt"
+msgstr "Báo cáo tỉ lệ chốt"
+
+#. module: vbs_crm
+#: model:ir.actions.act_window,name:vbs_crm.action_vbs_crm_pipeline
+msgid "Pipeline CRM"
+msgstr "Pipeline CRM"
+
+#. module: vbs_crm
+#: model:ir.actions.act_window,name:vbs_crm.action_vbs_crm_leads_all
+msgid "Tất cả leads"
+msgstr "Tất cả leads"
+
+#. module: vbs_crm
+#: model:ir.actions.act_window,name:vbs_crm.action_vbs_crm_report
+msgid "Báo cáo tỉ lệ chốt"
+msgstr "Báo cáo tỉ lệ chốt"
+
+#. module: vbs_crm
+#: model:ir.actions.act_window,name:vbs_crm.action_vbs_crm_partner
+msgid "Khách hàng"
+msgstr "Khách hàng"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__name
+msgid "Tên cơ hội"
+msgstr "Tên cơ hội"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__partner_id
+msgid "Khách hàng"
+msgstr "Khách hàng"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__partner_name
+msgid "Tên KH (chưa có hồ sơ)"
+msgstr "Tên KH (chưa có hồ sơ)"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__phone
+msgid "Số điện thoại"
+msgstr "Số điện thoại"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__stage
+msgid "Giai đoạn"
+msgstr "Giai đoạn"
+
+#. module: vbs_crm
+#: model:ir.model.fields.selection,name:vbs_crm.selection__vbs_crm_lead__stage__new
+msgid "Mới"
+msgstr "Mới"
+
+#. module: vbs_crm
+#: model:ir.model.fields.selection,name:vbs_crm.selection__vbs_crm_lead__stage__contacted
+msgid "Đã liên hệ"
+msgstr "Đã liên hệ"
+
+#. module: vbs_crm
+#: model:ir.model.fields.selection,name:vbs_crm.selection__vbs_crm_lead__stage__consulting
+msgid "Đang tư vấn"
+msgstr "Đang tư vấn"
+
+#. module: vbs_crm
+#: model:ir.model.fields.selection,name:vbs_crm.selection__vbs_crm_lead__stage__won
+msgid "Đã chốt đơn"
+msgstr "Đã chốt đơn"
+
+#. module: vbs_crm
+#: model:ir.model.fields.selection,name:vbs_crm.selection__vbs_crm_lead__stage__lost
+msgid "Không chốt được"
+msgstr "Không chốt được"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__source
+msgid "Nguồn khách hàng"
+msgstr "Nguồn khách hàng"
+
+#. module: vbs_crm
+#: model:ir.model.fields.selection,name:vbs_crm.selection__vbs_crm_lead__source__walk_in
+msgid "Khách vãng lai"
+msgstr "Khách vãng lai"
+
+#. module: vbs_crm
+#: model:ir.model.fields.selection,name:vbs_crm.selection__vbs_crm_lead__source__referral
+msgid "Giới thiệu"
+msgstr "Giới thiệu"
+
+#. module: vbs_crm
+#: model:ir.model.fields.selection,name:vbs_crm.selection__vbs_crm_lead__source__other
+msgid "Khác"
+msgstr "Khác"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__priority
+msgid "Ưu tiên"
+msgstr "Ưu tiên"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__user_id
+msgid "Nhân viên phụ trách"
+msgstr "Nhân viên phụ trách"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__date_open
+msgid "Ngày tạo"
+msgstr "Ngày tạo"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__date_deadline
+msgid "Hạn dự kiến"
+msgstr "Hạn dự kiến"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__expected_amount
+msgid "Doanh thu dự kiến"
+msgstr "Doanh thu dự kiến"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__note_need
+msgid "Nhu cầu khách hàng"
+msgstr "Nhu cầu khách hàng"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__lost_reason
+msgid "Lý do không chốt"
+msgstr "Lý do không chốt"
+
+#. module: vbs_crm
+#: model:ir.model.fields,field_description:vbs_crm.field_vbs_crm_lead__order_id
+msgid "Đơn hàng"
+msgstr "Đơn hàng"
+
+#. module: vbs_crm
+#: model_terms:ir.ui.view,arch_db:vbs_crm.view_vbs_crm_lead_form
+msgid "Chốt đơn"
+msgstr "Chốt đơn"
+
+#. module: vbs_crm
+#: model_terms:ir.ui.view,arch_db:vbs_crm.view_vbs_crm_lead_form
+msgid "Không chốt được"
+msgstr "Không chốt được"
+
+#. module: vbs_crm
+#: model_terms:ir.ui.view,arch_db:vbs_crm.view_vbs_crm_lead_form
+msgid "Nhu cầu khách hàng"
+msgstr "Nhu cầu khách hàng"
+
+#. module: vbs_crm
+#. odoo-python
+#: code:addons/vbs_crm/models/vbs_crm_lead.py:0
+msgid "Cần chọn Khách hàng hoặc nhập Tên KH trước khi chốt đơn."
+msgstr "Cần chọn Khách hàng hoặc nhập Tên KH trước khi chốt đơn."
+
+#. module: vbs_crm
+#. odoo-python
+#: code:addons/vbs_crm/models/vbs_crm_lead.py:0
+msgid "Vui lòng nhập Lý do không chốt trước khi đánh dấu thất bại."
+msgstr "Vui lòng nhập Lý do không chốt trước khi đánh dấu thất bại."
+
+#. module: vbs_crm
+#. odoo-python
+#: code:addons/vbs_crm/models/vbs_crm_lead.py:0
+msgid "Chưa có đơn hàng."
+msgstr "Chưa có đơn hàng."
