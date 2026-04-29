@@ -251,11 +251,18 @@ class SaleOrderLine(models.Model):
         return [main]
 
     def action_create_garments(self):
-        """Nút thủ công: tạo các lệnh sản xuất (vbs.garment) từ line này.
+        """Tạo LSX từ line — chỉ được gọi qua action_launch_production (≥70% thanh toán).
 
-        Idempotent — nếu line đã có garment_ids → raise UserError để user
-        xoá trước (xoá line cũng cascade xoá garment).
+        Guard server-side: kiểm tra can_start_production trên đơn hàng để chặn
+        mọi đường tắt (RPC, import, automation...).
         """
+        for line in self:
+            order = line.order_id
+            if not order.can_start_production:
+                raise UserError(_(
+                    'Cần thanh toán ít nhất 70%% giá trị đơn hàng trước khi tạo lệnh sản xuất.\n'
+                    'Đã thanh toán: %s / %s'
+                ) % (order.amount_paid, order.amount_total))
         Garment = self.env['vbs.garment']
         created = Garment.browse()
         for line in self:
