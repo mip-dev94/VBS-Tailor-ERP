@@ -119,6 +119,7 @@
                                 string="Nhảy lệnh sản xuất"
                                 class="btn btn-primary"
                                 icon="fa-industry"
+                                confirm="Xác nhận tạo lệnh sản xuất cho tất cả dòng chưa có LSX? Thao tác này không thể hoàn tác."
                                 invisible="not can_start_production"
                                 groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
                         <span class="text-muted ms-2"
