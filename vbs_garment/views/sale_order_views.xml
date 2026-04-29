@@ -240,11 +240,25 @@
                         </group>
                         <field name="note" string="Điều khoản &amp; điều kiện" placeholder="Nhập điều khoản..."/>
                     </page>
+                    <page string="Chữ ký khách hàng" name="vbs_signature">
+                        <group>
+                            <field name="signature" widget="signature" string="Chữ ký"
+                                   attrs="{'readonly': [('state', 'in', ['cancel'])]}"/>
+                            <field name="signed_by" string="Ký bởi"/>
+                            <field name="signed_on" string="Ngày ký"/>
+                        </group>
+                    </page>
                 </notebook>
             </xpath>
 
             <!-- Ẩn standard tabs khỏi notebook 1 bằng field-based xpath -->
+            <!-- Ẩn "Thông tin khác" gốc (đã tái tạo trong notebook 2) -->
             <xpath expr="//page[descendant::field[@name='client_order_ref']]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Ẩn "Chữ ký khách hàng" khỏi notebook 1 (đã chuyển xuống notebook 2) -->
+            <xpath expr="//page[descendant::field[@name='signature']]" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
 
