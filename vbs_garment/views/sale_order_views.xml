@@ -124,8 +124,8 @@
                         invisible="garment_count == 0"/>
             </xpath>
 
-            <!-- Tab đồ may (luôn hiển thị) + nút Nhảy lệnh SX -->
-            <page name="order_lines" position="after">
+            <!-- Notebook 1 — Tab Đồ may sau Thành phẩm -->
+            <xpath expr="//page[@name='order_lines']" position="after">
                 <page string="Đồ may (tổng hợp)" name="vbs_garments">
                     <div class="mb-2">
                         <button name="action_launch_production" type="object"
@@ -167,17 +167,48 @@
                         </list>
                     </field>
                 </page>
-                <page string="Thanh toán" name="vbs_payments">
-                    <field name="payment_ids">
-                        <list editable="bottom">
-                            <field name="date"/>
-                            <field name="amount"/>
-                            <field name="method"/>
-                            <field name="note"/>
-                        </list>
-                    </field>
-                </page>
-            </page>
+            </xpath>
+
+            <!-- Notebook 2 — Thanh toán + Thông tin khác (tách khỏi notebook đầu) -->
+            <xpath expr="//sheet//notebook" position="after">
+                <notebook>
+                    <page string="Thanh toán" name="vbs_payments">
+                        <field name="payment_ids">
+                            <list editable="bottom">
+                                <field name="date"/>
+                                <field name="amount"/>
+                                <field name="method"/>
+                                <field name="note"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Thông tin khác" name="vbs_other_info">
+                        <group>
+                            <group string="Thông tin đơn hàng">
+                                <field name="order_type"/>
+                                <field name="b2b_type" invisible="order_type != 'b2b'"/>
+                                <field name="client_order_ref" string="Mã đơn khách"/>
+                                <field name="user_id" string="Nhân viên bán"/>
+                            </group>
+                            <group string="Giao hàng &amp; Khác">
+                                <field name="validity_date"/>
+                                <field name="commitment_date" string="Ngày giao dự kiến"/>
+                                <field name="note" string="Ghi chú nội bộ"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+
+            <!-- Ẩn tab "Thông tin khác" gốc của Odoo (đã tái tạo trong notebook 2) -->
+            <xpath expr="//page[@name='other_info']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Ẩn statusbar chuẩn Odoo "Báo giá → Đơn bán hàng" — VBS dùng fashion_state -->
+            <field name="state" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
 
         </field>
     </record>
