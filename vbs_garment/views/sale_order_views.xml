@@ -200,11 +200,6 @@
                 </notebook>
             </xpath>
 
-            <!-- Ẩn tab "Thông tin khác" gốc của Odoo (đã tái tạo trong notebook 2) -->
-            <xpath expr="//page[@name='other_info']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-
             <!-- Ẩn statusbar chuẩn Odoo "Báo giá → Đơn bán hàng" — VBS dùng fashion_state -->
             <field name="state" position="attributes">
                 <attribute name="invisible">1</attribute>
