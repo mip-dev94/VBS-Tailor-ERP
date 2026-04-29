@@ -6,7 +6,7 @@
     'sequence': 15,
     'author': 'VBS',
     'summary': 'Quản lý sản phẩm B2C thành phẩm: catalog, tồn kho theo cửa hàng',
-    'depends': ['vbs_base', 'mail'],
+    'depends': ['vbs_base', 'vbs_fabric', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'data/vbs_product_sequence.xml',
