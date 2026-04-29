@@ -9,6 +9,7 @@
         'vbs_base',
         'vbs_fabric',
         'vbs_config',
+        'vbs_product',
         'vbs_planning',
         'sale',
         'mail',

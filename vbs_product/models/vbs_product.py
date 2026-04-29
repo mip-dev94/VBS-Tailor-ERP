@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-from odoo.addons.vbs_base.models.vbs_constants import GARMENT_TYPE
+from odoo.addons.vbs_base.models.vbs_constants import (
+    GARMENT_TYPE, GARMENT_CATEGORY, get_garment_category,
+)
 
 
 class VbsProduct(models.Model):
@@ -23,9 +25,18 @@ class VbsProduct(models.Model):
        tracking=True, index=True,
     )
 
-    garment_type = fields.Selection(
-        GARMENT_TYPE, string='Loại đồ', tracking=True, index=True,
+    garment_category = fields.Selection(
+        GARMENT_CATEGORY, string='Danh mục',
+        compute='_compute_garment_category', store=True, index=True,
     )
+    garment_type = fields.Selection(
+        GARMENT_TYPE, string='Loại đồ cụ thể', tracking=True, index=True,
+    )
+
+    @api.depends('garment_type')
+    def _compute_garment_category(self):
+        for rec in self:
+            rec.garment_category = get_garment_category(rec.garment_type)
     fabric_type_id = fields.Many2one(
         'vbs.fabric.type', string='Loại vải',
         ondelete='set null', index=True, tracking=True,

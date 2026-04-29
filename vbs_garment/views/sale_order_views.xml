@@ -122,11 +122,15 @@
                 <attribute name="optional">hide</attribute>
             </xpath>
 
-            <!-- Thêm cột loại đồ + hình thức + loại vải (3 filter tra giá) + LSX -->
+            <!-- 3 filter + sản phẩm catalog -->
             <xpath expr="//page[@name='order_lines']//list//field[@name='product_template_id']" position="after">
-                <field name="garment_type" optional="show"/>
-                <field name="set_type" string="Hình thức" optional="show"/>
+                <field name="garment_category" string="Loại đồ" optional="show"/>
+                <field name="set_type" string="Hình thức" optional="show"
+                       readonly="garment_category != 'ao'"/>
                 <field name="fabric_type_id" string="Loại vải" optional="show"/>
+                <field name="vbs_product_id" string="Sản phẩm catalog" optional="show"
+                       domain="[('garment_category', '=', garment_category), ('fabric_type_id', '=', fabric_type_id)]"
+                       context="{'default_garment_category': garment_category, 'default_fabric_type_id': fabric_type_id}"/>
                 <field name="garment_count" string="LSX" optional="show"/>
                 <button name="action_create_garments" type="object"
                         string="Tạo LSX" icon="fa-industry"

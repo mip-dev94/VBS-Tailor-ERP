@@ -32,6 +32,28 @@ GARMENT_TYPE = [
     ('gile', 'Gile (cũ)'),
 ]
 
+# 3 danh mục khách hàng chọn khi đặt hàng (filter cấp cao)
+GARMENT_CATEGORY = [
+    ('ao', 'Áo'),
+    ('quan', 'Quần'),
+    ('ao_khoac', 'Áo khoác'),
+]
+
+# Mapping garment_type → garment_category
+QUAN_TYPES = {'quan', 'quan_comple'}
+AO_KHOAC_TYPES = {'ao_khoac', 'gile', 'gile_sb', 'gile_dd'}
+
+
+def get_garment_category(garment_type):
+    if not garment_type:
+        return False
+    if garment_type in QUAN_TYPES:
+        return 'quan'
+    if garment_type in AO_KHOAC_TYPES:
+        return 'ao_khoac'
+    return 'ao'
+
+
 GARMENT_STATE = [
     ('luoc', 'Lược'),
     ('lan_2', 'Lần 2'),

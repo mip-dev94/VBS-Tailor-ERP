@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
 from odoo.exceptions import AccessError, UserError, ValidationError
-from odoo.addons.vbs_base.models.vbs_constants import GARMENT_TYPE
+from odoo.addons.vbs_base.models.vbs_constants import (
+    GARMENT_TYPE, GARMENT_CATEGORY, get_garment_category,
+)
 
 SET_TYPE = [
     ('le', 'Lẻ'),
@@ -272,19 +274,30 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    # --- 3 filter tra giá ---
+    garment_category = fields.Selection(
+        GARMENT_CATEGORY, string='Loại đồ',
+        help='Áo / Quần / Áo khoác — filter danh mục sản phẩm.',
+    )
     set_type = fields.Selection(
         SET_TYPE, string='Hình thức',
         default='le', required=True,
-        help='Lẻ → 1 lệnh sản xuất. Bộ 2 mảnh → 2 (áo + quần). Bộ 3 mảnh → 3 (áo + quần + gile).',
-    )
-    garment_type = fields.Selection(
-        GARMENT_TYPE, string='Loại đồ',
-        help='Loại đồ chính (phần áo khi là bộ). Để trống nếu là hàng thành phẩm B2C có sẵn.',
+        help='Lẻ / Bộ 2 mảnh / Bộ 3 mảnh. Chỉ Áo mới có Bộ 2 và Bộ 3.',
     )
     fabric_type_id = fields.Many2one(
         'vbs.fabric.type', string='Loại vải',
         ondelete='set null', index=True,
-        help='Chọn đủ Loại đồ + Hình thức + Loại vải để tự động tra giá.',
+    )
+    # --- Sản phẩm từ catalog vbs.product ---
+    vbs_product_id = fields.Many2one(
+        'vbs.product', string='Sản phẩm',
+        ondelete='set null', index=True,
+        help='Chọn từ catalog sản phẩm. Filter theo Loại đồ + Loại vải nếu đã chọn trước.',
+    )
+    # garment_type vẫn giữ để tương thích LSX, lấy từ vbs_product hoặc nhập tay
+    garment_type = fields.Selection(
+        GARMENT_TYPE, string='Loại đồ cụ thể',
+        help='Auto-fill từ sản phẩm. Dùng để tạo LSX đúng loại.',
     )
     garment_ids = fields.One2many(
         'vbs.garment', 'order_line_id',
@@ -295,9 +308,30 @@ class SaleOrderLine(models.Model):
         compute='_compute_garment_count',
     )
 
-    @api.onchange('garment_type', 'set_type', 'fabric_type_id')
+    @api.onchange('garment_category')
+    def _onchange_garment_category(self):
+        """Khi đổi danh mục: reset hình thức về Lẻ nếu không phải Áo."""
+        if self.garment_category != 'ao':
+            self.set_type = 'le'
+        self.vbs_product_id = False
+
+    @api.onchange('vbs_product_id')
+    def _onchange_vbs_product(self):
+        """Khi chọn sản phẩm: auto-fill giá, garment_type, fabric_type."""
+        if self.vbs_product_id:
+            p = self.vbs_product_id
+            self.price_unit = p.list_price or 0.0
+            self.garment_type = p.garment_type or False
+            if p.fabric_type_id and not self.fabric_type_id:
+                self.fabric_type_id = p.fabric_type_id
+            if p.garment_category and not self.garment_category:
+                self.garment_category = p.garment_category
+
+    @api.onchange('garment_category', 'set_type', 'fabric_type_id')
     def _onchange_pricing_lookup(self):
         """Tự động tra giá khi đủ 3 filter: loại đồ + hình thức + loại vải."""
+        if self.vbs_product_id:
+            return  # giá đã lấy từ product
         if self.garment_type and self.set_type and self.fabric_type_id:
             price = self.env['vbs.pricing.product'].lookup_price(
                 garment_type=self.garment_type,
