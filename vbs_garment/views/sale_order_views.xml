@@ -110,6 +110,11 @@
                 <attribute name="string">Đơn hàng</attribute>
             </xpath>
 
+            <!-- Ẩn cột Sản phẩm chuẩn Odoo (thay bằng vbs_product_id) -->
+            <xpath expr="//page[@name='order_lines']//list//field[@name='product_template_id']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+
             <!-- Thêm discount -->
             <xpath expr="//page[@name='order_lines']//list//field[@name='price_unit']" position="after">
                 <field name="discount" optional="show"/>
@@ -128,7 +133,7 @@
                 <field name="set_type" string="Hình thức" optional="show"
                        readonly="garment_category != 'ao'"/>
                 <field name="fabric_type_id" string="Loại vải" optional="show"/>
-                <field name="vbs_product_id" string="Sản phẩm catalog" optional="show"
+                <field name="vbs_product_id" string="Sản phẩm" optional="show"
                        domain="[('garment_category', '=', garment_category), ('fabric_type_id', '=', fabric_type_id)]"
                        context="{'default_garment_category': garment_category, 'default_fabric_type_id': fabric_type_id}"/>
                 <field name="garment_count" string="LSX" optional="show"/>
