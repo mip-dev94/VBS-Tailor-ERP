@@ -551,7 +551,7 @@
         <field name="domain">[('garment_type', 'in', ['ao_khoac', 'gile'])]</field>
         <field name="search_view_id" ref="view_vbs_garment_search"/>
         <field name="context">{'search_default_in_production': 1}</field>
-        <field name="view_ids" eval="[(0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
+        <field name="view_ids" eval="[(5,), (0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Chưa có lệnh sản xuất áo khoác</p>
         </field>
@@ -565,7 +565,7 @@
         <field name="domain">[('garment_type', 'in', ['quan', 'quan_comple'])]</field>
         <field name="search_view_id" ref="view_vbs_garment_search"/>
         <field name="context">{'search_default_in_production': 1}</field>
-        <field name="view_ids" eval="[(0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
+        <field name="view_ids" eval="[(5,), (0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Chưa có lệnh sản xuất quần</p>
         </field>
@@ -578,7 +578,7 @@
         <field name="view_mode">kanban,list,form</field>
         <field name="domain">[('production_type', '=', 'nhap')]</field>
         <field name="search_view_id" ref="view_vbs_garment_search"/>
-        <field name="view_ids" eval="[(0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
+        <field name="view_ids" eval="[(5,), (0,0,{'view_mode':'form','view_id':ref('view_vbs_garment_form_two_stage')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Chưa có bản thử đo</p>
             <p>Bản thử đo (prototype) để kiểm tra form dáng trước khi may chính thức.</p>
