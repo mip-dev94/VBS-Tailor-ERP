@@ -35,14 +35,27 @@
                 </button>
             </div>
 
-            <!-- Fashion state buttons + statusbar in header -->
+            <!-- Fashion state + dual confirm buttons in header -->
             <field name="state" position="before">
-                <button name="action_fashion_complete" type="object"
-                        string="Hoàn thành" class="oe_highlight"
-                        invisible="fashion_state != 'da_thanh_toan'"
-                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_office"/>
+                <!-- Nút xác nhận của Sale -->
+                <button name="action_sale_confirm" type="object"
+                        string="✓ Sale xác nhận" class="oe_highlight"
+                        invisible="fashion_state != 'dang_xu_ly' or sale_confirmed"
+                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale"/>
+                <!-- Nút xác nhận của Kế toán -->
+                <button name="action_accountant_confirm" type="object"
+                        string="✓ Kế toán xác nhận" class="oe_highlight"
+                        invisible="fashion_state != 'dang_xu_ly' or accountant_confirmed"
+                        groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+                <!-- Badge trạng thái xác nhận -->
+                <span class="badge rounded-pill text-bg-success ms-1"
+                      invisible="not sale_confirmed or fashion_state != 'dang_xu_ly'">Sale ✓</span>
+                <span class="badge rounded-pill text-bg-info ms-1"
+                      invisible="not accountant_confirmed or fashion_state != 'dang_xu_ly'">Kế toán ✓</span>
+                <field name="sale_confirmed" invisible="1"/>
+                <field name="accountant_confirmed" invisible="1"/>
                 <field name="fashion_state" widget="statusbar"
-                       statusbar_visible="dat_hang,dang_xu_ly,da_thanh_toan,hoan_thanh"/>
+                       statusbar_visible="dat_hang,dang_xu_ly,hoan_thanh"/>
             </field>
 
             <!-- Fields ẩn cho invisible conditions -->

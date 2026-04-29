@@ -17,11 +17,11 @@ B2B_TYPE = [
 FASHION_STATE = [
     ('dat_hang', 'Đặt hàng'),
     ('dang_xu_ly', 'Đang xử lý'),
-    ('da_thanh_toan', 'Đã thanh toán'),
     ('hoan_thanh', 'Hoàn thành'),
     ('huy', 'Huỷ'),
-    # Legacy — tồn tại trong DB cũ, migration tự chuyển sang da_thanh_toan
+    # Legacy — migration đã chuyển sang dang_xu_ly
     ('dang_lam', 'Đang làm (cũ)'),
+    ('da_thanh_toan', 'Đã thanh toán (cũ)'),
 ]
 
 PAYMENT_STATE = [
@@ -82,6 +82,14 @@ class SaleOrder(models.Model):
         help='True khi đã thanh toán ≥ 70% và đang ở trạng thái Đang xử lý',
     )
 
+    # --- Xác nhận kép (dual confirm) để chuyển Đang xử lý → Hoàn thành ---
+    sale_confirmed = fields.Boolean(
+        string='Sale đã xác nhận', default=False, tracking=True,
+    )
+    accountant_confirmed = fields.Boolean(
+        string='Kế toán đã xác nhận', default=False, tracking=True,
+    )
+
     pattern_count = fields.Integer(
         string='Số rập khách',
         compute='_compute_pattern_count',
@@ -132,16 +140,41 @@ class SaleOrder(models.Model):
     # --- Fashion state transitions ---
 
     def _auto_advance_fashion_state(self):
-        """Gọi từ vbs_payment_record sau create/write — auto chuyển dang_xu_ly → da_thanh_toan khi TT đủ."""
+        """Giữ để tương thích với vbs_payment_record (không còn tự động chuyển state)."""
+        pass
+
+    def _check_dual_confirm(self):
+        """Kiểm tra và tự động chuyển Đang xử lý → Hoàn thành khi cả 2 bên đã xác nhận."""
         for order in self:
-            if order.payment_state == 'tt_toan_bo' and order.fashion_state == 'dang_xu_ly':
-                order.write({'fashion_state': 'da_thanh_toan'})
+            if (order.fashion_state == 'dang_xu_ly'
+                    and order.sale_confirmed
+                    and order.accountant_confirmed):
+                order.write({'fashion_state': 'hoan_thanh'})
+                order.message_post(body=_(
+                    'Đơn hàng hoàn thành — đã được xác nhận bởi cả Sale và Kế toán.'
+                ))
+
+    def action_sale_confirm(self):
+        """Sale xác nhận đơn hàng sẵn sàng hoàn thành."""
+        for order in self.filtered(lambda o: o.fashion_state == 'dang_xu_ly'):
+            order.sale_confirmed = True
+            order.message_post(body=_('✓ Sale đã xác nhận.'))
+            order._check_dual_confirm()
+
+    def action_accountant_confirm(self):
+        """Kế toán xác nhận thanh toán và nghiệm thu."""
+        for order in self.filtered(lambda o: o.fashion_state == 'dang_xu_ly'):
+            order.accountant_confirmed = True
+            order.message_post(body=_('✓ Kế toán đã xác nhận.'))
+            order._check_dual_confirm()
 
     def action_confirm(self):
         """Override: sau khi confirm đơn, chuyển Đặt hàng → Đang xử lý."""
         result = super().action_confirm()
         self.filtered(lambda o: o.fashion_state == 'dat_hang').write({
             'fashion_state': 'dang_xu_ly',
+            'sale_confirmed': False,
+            'accountant_confirmed': False,
         })
         return result
 
@@ -160,16 +193,10 @@ class SaleOrder(models.Model):
                 raise UserError(_('Tất cả dòng đã có lệnh sản xuất hoặc chưa chọn loại đồ.'))
             lines.action_create_garments()
 
-    def action_fashion_complete(self):
-        """Đã thanh toán → Hoàn thành."""
-        self.filtered(lambda o: o.fashion_state == 'da_thanh_toan').write({
-            'fashion_state': 'hoan_thanh',
-        })
-
     def action_cancel(self):
         if not self.env.user.has_group('vbs_base.group_vbs_admin'):
             raise AccessError(_('Chỉ Quản trị viên VBS mới được huỷ đơn hàng.'))
-        self.write({'fashion_state': 'huy'})
+        self.write({'fashion_state': 'huy', 'sale_confirmed': False, 'accountant_confirmed': False})
         return super().action_cancel()
 
     def action_view_garments(self):

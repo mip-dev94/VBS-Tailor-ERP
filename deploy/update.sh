@@ -86,6 +86,8 @@ if [ -n "$MODULES" ]; then
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS cost_other numeric DEFAULT 0;
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS profit_amount numeric DEFAULT 0;
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS profit_margin_pct numeric DEFAULT 0;
+        ALTER TABLE sale_order ADD COLUMN IF NOT EXISTS sale_confirmed boolean DEFAULT false;
+        ALTER TABLE sale_order ADD COLUMN IF NOT EXISTS accountant_confirmed boolean DEFAULT false;
         CREATE TABLE IF NOT EXISTS vbs_expense_record (
             id serial PRIMARY KEY,
             name character varying NOT NULL,
