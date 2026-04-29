@@ -273,13 +273,18 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     set_type = fields.Selection(
-        SET_TYPE, string='Loại bộ',
+        SET_TYPE, string='Hình thức',
         default='le', required=True,
         help='Lẻ → 1 lệnh sản xuất. Bộ 2 mảnh → 2 (áo + quần). Bộ 3 mảnh → 3 (áo + quần + gile).',
     )
     garment_type = fields.Selection(
         GARMENT_TYPE, string='Loại đồ',
         help='Loại đồ chính (phần áo khi là bộ). Để trống nếu là hàng thành phẩm B2C có sẵn.',
+    )
+    fabric_type_id = fields.Many2one(
+        'vbs.fabric.type', string='Loại vải',
+        ondelete='set null', index=True,
+        help='Chọn đủ Loại đồ + Hình thức + Loại vải để tự động tra giá.',
     )
     garment_ids = fields.One2many(
         'vbs.garment', 'order_line_id',
@@ -289,6 +294,18 @@ class SaleOrderLine(models.Model):
         string='Số LSX',
         compute='_compute_garment_count',
     )
+
+    @api.onchange('garment_type', 'set_type', 'fabric_type_id')
+    def _onchange_pricing_lookup(self):
+        """Tự động tra giá khi đủ 3 filter: loại đồ + hình thức + loại vải."""
+        if self.garment_type and self.set_type and self.fabric_type_id:
+            price = self.env['vbs.pricing.product'].lookup_price(
+                garment_type=self.garment_type,
+                set_type=self.set_type,
+                fabric_type_id=self.fabric_type_id.id,
+            )
+            if price:
+                self.price_unit = price
 
     @api.depends('garment_ids')
     def _compute_garment_count(self):
