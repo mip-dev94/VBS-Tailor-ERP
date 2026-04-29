@@ -126,54 +126,57 @@ fi
 
 $COMPOSE up -d odoo db
 
-# Luôn kiểm tra và install các module mới nếu chưa có — bất kể git diff
-echo "    Kiểm tra module mới chưa install..."
-ALWAYS_CHECK="vbs_crm,vbs_accounting,vbs_product"
-FORCE_INSTALL=""
-IFS=',' read -ra CHECK_LIST <<< "$ALWAYS_CHECK"
-for mod in "${CHECK_LIST[@]}"; do
-    IS_INST=$($COMPOSE exec -T db psql -U odoo "$DB" -tAc \
-        "SELECT COUNT(*) FROM ir_module_module WHERE name='$mod' AND state='installed';" 2>/dev/null | tr -d '[:space:]' || echo "0")
-    if [ "${IS_INST}" = "0" ] || [ -z "${IS_INST}" ]; then
-        FORCE_INSTALL="${FORCE_INSTALL:+$FORCE_INSTALL,}$mod"
-        echo "    → Sẽ install: $mod"
+# Build danh sách modules cần xử lý: git-detected + always-check (nếu chưa installed)
+# Dùng psql trực tiếp vào DB (không qua Odoo) nên không bị ảnh hưởng bởi Odoo crash
+ALWAYS_CHECK="vbs_product,vbs_crm,vbs_accounting"
+INSTALL_MODS=""
+UPGRADE_MODS=""
+
+check_and_classify() {
+    local mod="$1"
+    local cnt
+    cnt=$($COMPOSE exec -T db psql -U odoo "$DB" -tAc \
+        "SELECT COUNT(*) FROM ir_module_module WHERE name='$mod' AND state='installed';" \
+        2>/dev/null | tr -d '[:space:]')
+    if [ "${cnt:-0}" = "0" ] || [ -z "$cnt" ]; then
+        INSTALL_MODS="${INSTALL_MODS:+$INSTALL_MODS,}$mod"
+        echo "    → Install mới: $mod"
+    else
+        UPGRADE_MODS="${UPGRADE_MODS:+$UPGRADE_MODS,}$mod"
+        echo "    → Upgrade: $mod"
     fi
+}
+
+# Always-check: đảm bảo các module này luôn được install nếu chưa có
+echo "    Kiểm tra module mới..."
+IFS=',' read -ra AC_LIST <<< "$ALWAYS_CHECK"
+for mod in "${AC_LIST[@]}"; do
+    check_and_classify "$mod"
 done
-if [ -n "$FORCE_INSTALL" ]; then
-    $COMPOSE exec -T odoo odoo -i "$FORCE_INSTALL" -d "$DB" --stop-after-init \
-        --logfile=/dev/stdout --log-level=warn
-    $COMPOSE restart odoo
+
+# Git-detected modules (không trùng với ALWAYS_CHECK)
+if [ -n "$MODULES" ] && [ "$MODULES" != "all" ]; then
+    IFS=',' read -ra MOD_LIST <<< "$MODULES"
+    for mod in "${MOD_LIST[@]}"; do
+        # Bỏ qua nếu đã có trong danh sách rồi
+        if echo "$ALWAYS_CHECK" | grep -qw "$mod"; then continue; fi
+        check_and_classify "$mod"
+    done
 fi
 
-if [ -n "$MODULES" ]; then
-    if [ "$MODULES" = "all" ]; then
-        echo "    Upgrade all modules..."
-        $COMPOSE exec -T odoo odoo -u all -d "$DB" --stop-after-init \
-            --logfile=/dev/stdout --log-level=warn
-    else
-        # Phân loại: module chưa installed → dùng -i, đã installed → dùng -u
-        INSTALL_MODS=""
-        UPGRADE_MODS=""
-        IFS=',' read -ra MOD_LIST <<< "$MODULES"
-        for mod in "${MOD_LIST[@]}"; do
-            IS_INSTALLED=$($COMPOSE exec -T db psql -U odoo "$DB" -tAc \
-                "SELECT COUNT(*) FROM ir_module_module WHERE name='$mod' AND state='installed';" 2>/dev/null || echo "0")
-            if [ "${IS_INSTALLED:-0}" = "0" ]; then
-                INSTALL_MODS="${INSTALL_MODS:+$INSTALL_MODS,}$mod"
-            else
-                UPGRADE_MODS="${UPGRADE_MODS:+$UPGRADE_MODS,}$mod"
-            fi
-        done
-        ODOO_ARGS=""
-        [ -n "$INSTALL_MODS" ] && ODOO_ARGS="$ODOO_ARGS -i $INSTALL_MODS" && echo "    Install mới: $INSTALL_MODS"
-        [ -n "$UPGRADE_MODS" ] && ODOO_ARGS="$ODOO_ARGS -u $UPGRADE_MODS" && echo "    Upgrade: $UPGRADE_MODS"
-        $COMPOSE exec -T odoo odoo $ODOO_ARGS -d "$DB" --stop-after-init \
-            --logfile=/dev/stdout --log-level=warn
-    fi
-    $COMPOSE restart odoo
-else
-    $COMPOSE restart odoo
+# Chạy Odoo 1 lần duy nhất với tất cả args
+if [ "${MODULES}" = "all" ]; then
+    echo "    Upgrade all modules..."
+    $COMPOSE exec -T odoo odoo -u all -d "$DB" --stop-after-init \
+        --logfile=/dev/stdout --log-level=warn
+elif [ -n "$INSTALL_MODS" ] || [ -n "$UPGRADE_MODS" ]; then
+    ODOO_ARGS=""
+    [ -n "$INSTALL_MODS" ] && ODOO_ARGS="$ODOO_ARGS -i $INSTALL_MODS"
+    [ -n "$UPGRADE_MODS" ] && ODOO_ARGS="$ODOO_ARGS -u $UPGRADE_MODS"
+    $COMPOSE exec -T odoo odoo $ODOO_ARGS -d "$DB" --stop-after-init \
+        --logfile=/dev/stdout --log-level=warn
 fi
+$COMPOSE restart odoo
 
 echo
 echo "=== Update xong ==="
