@@ -6,18 +6,46 @@
               sequence="13"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
 
-    <menuitem id="menu_vbs_product"
-              name="Sản phẩm"
+    <menuitem id="menu_vbs_product_b2b_ban"
+              name="B2B — Bán thành phẩm"
+              parent="menu_root_product"
+              action="action_vbs_product_b2b_ban"
+              sequence="10"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+    <menuitem id="menu_vbs_product_b2b_gia_cong"
+              name="B2B — Gia công CMT"
+              parent="menu_root_product"
+              action="action_vbs_product_b2b_gia_cong"
+              sequence="20"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+    <menuitem id="menu_vbs_product_b2c"
+              name="B2C — Thành phẩm"
+              parent="menu_root_product"
+              action="action_vbs_product_b2c"
+              sequence="30"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+    <menuitem id="menu_vbs_product_nhap"
+              name="Nháp / Mẫu"
+              parent="menu_root_product"
+              action="action_vbs_product_nhap"
+              sequence="40"
+              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
+
+    <menuitem id="menu_vbs_product_all"
+              name="Tất cả"
               parent="menu_root_product"
               action="action_vbs_product"
-              sequence="10"
+              sequence="50"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
 
     <menuitem id="menu_vbs_product_stock"
               name="Tồn kho sản phẩm"
               parent="menu_root_product"
               action="action_vbs_product_stock"
-              sequence="20"
+              sequence="60"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
 
 </odoo>

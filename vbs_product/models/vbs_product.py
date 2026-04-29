@@ -14,6 +14,15 @@ class VbsProduct(models.Model):
     code = fields.Char(string='Mã SP', readonly=True, copy=False, index=True, default='New')
     sku = fields.Char(string='SKU', index=True, tracking=True, help='Mã quản kho nội bộ / barcode.')
 
+    product_type = fields.Selection([
+        ('b2b_ban', 'B2B — Bán thành phẩm'),
+        ('b2b_gia_cong', 'B2B — Gia công CMT'),
+        ('b2c', 'B2C — Thành phẩm'),
+        ('nhap', 'Nháp / Mẫu'),
+    ], string='Loại sản phẩm', required=True, default='b2c',
+       tracking=True, index=True,
+    )
+
     garment_type = fields.Selection(
         GARMENT_TYPE, string='Loại đồ', tracking=True, index=True,
     )

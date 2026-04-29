@@ -53,6 +53,13 @@
                         <span class="text-muted me-2">
                             <field name="code" readonly="1"/>
                         </span>
+                        <div class="mb-1">
+                            <field name="product_type" widget="badge"
+                                   decoration-primary="product_type == 'b2b_ban'"
+                                   decoration-warning="product_type == 'b2b_gia_cong'"
+                                   decoration-success="product_type == 'b2c'"
+                                   decoration-muted="product_type == 'nhap'"/>
+                        </div>
                         <h1><field name="name" placeholder="Tên sản phẩm..."/></h1>
                         <div class="text-muted">
                             <field name="sku" placeholder="SKU / mã nội bộ..."/>
@@ -61,6 +68,7 @@
 
                     <group>
                         <group string="Thuộc tính sản phẩm">
+                            <field name="product_type"/>
                             <field name="garment_type"/>
                             <field name="fabric_type_id"/>
                             <field name="size"/>
@@ -136,6 +144,11 @@
             <list string="Sản phẩm">
                 <field name="code"/>
                 <field name="name"/>
+                <field name="product_type" widget="badge"
+                       decoration-primary="product_type == 'b2b_ban'"
+                       decoration-warning="product_type == 'b2b_gia_cong'"
+                       decoration-success="product_type == 'b2c'"
+                       decoration-muted="product_type == 'nhap'"/>
                 <field name="garment_type"/>
                 <field name="size" optional="show"/>
                 <field name="color" optional="show"/>
@@ -162,10 +175,11 @@
         <field name="name">vbs.product.kanban</field>
         <field name="model">vbs.product</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="state">
+            <kanban default_group_by="product_type">
                 <field name="id"/>
                 <field name="name"/>
                 <field name="code"/>
+                <field name="product_type"/>
                 <field name="list_price"/>
                 <field name="cost_price"/>
                 <field name="profit_margin_pct"/>
@@ -214,15 +228,18 @@
                 <field name="garment_type"/>
                 <field name="fabric_type_id"/>
                 <separator/>
+                <filter string="B2B Bán" name="b2b_ban" domain="[('product_type','=','b2b_ban')]"/>
+                <filter string="B2B Gia công" name="b2b_gia_cong" domain="[('product_type','=','b2b_gia_cong')]"/>
+                <filter string="B2C" name="b2c" domain="[('product_type','=','b2c')]"/>
+                <filter string="Nháp / Mẫu" name="nhap" domain="[('product_type','=','nhap')]"/>
+                <separator/>
                 <filter string="Nháp" name="draft" domain="[('state','=','draft')]"/>
                 <filter string="Sẵn bán" name="ready" domain="[('state','=','ready')]"/>
-                <filter string="Đã bán" name="sold" domain="[('state','=','sold')]"/>
-                <filter string="Ngừng bán" name="archived" domain="[('state','=','archived')]"/>
-                <separator/>
                 <filter string="Còn hàng" name="has_stock" domain="[('total_available','>',0)]"/>
                 <filter string="Biên LN ≥ 30%" name="high_margin"
                         domain="[('profit_margin_pct','>=',30)]"/>
                 <group>
+                    <filter string="Loại SP" name="group_product_type" context="{'group_by': 'product_type'}"/>
                     <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Loại đồ" name="group_garment_type" context="{'group_by': 'garment_type'}"/>
                     <filter string="Loại vải" name="group_fabric" context="{'group_by': 'fabric_type_id'}"/>
@@ -232,13 +249,61 @@
     </record>
 
     <record id="action_vbs_product" model="ir.actions.act_window">
-        <field name="name">Sản phẩm</field>
+        <field name="name">Tất cả sản phẩm</field>
         <field name="res_model">vbs.product</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="search_view_id" ref="view_vbs_product_search"/>
         <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">Chưa có sản phẩm B2C nào</p>
+            <p class="o_view_nocontent_smiling_face">Chưa có sản phẩm nào</p>
             <p>Tạo sản phẩm thủ công hoặc publish từ đồ may đã hoàn thiện.</p>
+        </field>
+    </record>
+
+    <record id="action_vbs_product_b2b_ban" model="ir.actions.act_window">
+        <field name="name">B2B — Bán thành phẩm</field>
+        <field name="res_model">vbs.product</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('product_type','=','b2b_ban')]</field>
+        <field name="context">{'default_product_type': 'b2b_ban'}</field>
+        <field name="search_view_id" ref="view_vbs_product_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có sản phẩm B2B Bán nào</p>
+        </field>
+    </record>
+
+    <record id="action_vbs_product_b2b_gia_cong" model="ir.actions.act_window">
+        <field name="name">B2B — Gia công CMT</field>
+        <field name="res_model">vbs.product</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('product_type','=','b2b_gia_cong')]</field>
+        <field name="context">{'default_product_type': 'b2b_gia_cong'}</field>
+        <field name="search_view_id" ref="view_vbs_product_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có sản phẩm B2B Gia công nào</p>
+        </field>
+    </record>
+
+    <record id="action_vbs_product_b2c" model="ir.actions.act_window">
+        <field name="name">B2C — Thành phẩm</field>
+        <field name="res_model">vbs.product</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('product_type','=','b2c')]</field>
+        <field name="context">{'default_product_type': 'b2c'}</field>
+        <field name="search_view_id" ref="view_vbs_product_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có sản phẩm B2C nào</p>
+        </field>
+    </record>
+
+    <record id="action_vbs_product_nhap" model="ir.actions.act_window">
+        <field name="name">Nháp / Mẫu</field>
+        <field name="res_model">vbs.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('product_type','=','nhap')]</field>
+        <field name="context">{'default_product_type': 'nhap'}</field>
+        <field name="search_view_id" ref="view_vbs_product_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Chưa có sản phẩm nháp nào</p>
         </field>
     </record>
 
