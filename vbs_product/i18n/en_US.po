@@ -240,8 +240,8 @@ msgstr "Product & Store"
 #: model:ir.ui.menu,name:vbs_product.menu_root_product
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_form
 #: model_terms:ir.ui.view,arch_db:vbs_product.view_vbs_product_list
-msgid "Sản phẩm B2C"
-msgstr "B2C Products"
+msgid "Sản phẩm"
+msgstr "Products"
 
 #. module: vbs_product
 #: model:ir.model.fields.selection,name:vbs_product.selection__vbs_product__state__ready

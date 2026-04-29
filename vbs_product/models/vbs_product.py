@@ -6,7 +6,7 @@ from odoo.addons.vbs_base.models.vbs_constants import GARMENT_TYPE
 
 class VbsProduct(models.Model):
     _name = 'vbs.product'
-    _description = 'Sản phẩm B2C'
+    _description = 'Sản phẩm'
     _inherit = ['mail.thread', 'mail.activity.mixin', 'image.mixin']
     _order = 'name, id'
 
