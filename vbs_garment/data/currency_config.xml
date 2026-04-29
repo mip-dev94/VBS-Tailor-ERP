@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo noupdate="0">
     <!-- Đổi symbol tiền tệ: hiển thị tên rõ ràng thay vì ký hiệu -->
     <record id="base.VND" model="res.currency">
         <field name="symbol">VNĐ</field>

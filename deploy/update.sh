@@ -70,6 +70,12 @@ $COMPOSE up -d db
 echo "    Chờ DB healthy..."
 $COMPOSE exec -T db pg_isready -U odoo -d "$DB" || sleep 5
 
+# Force-update currency symbols — chạy mọi lần deploy, idempotent
+$COMPOSE exec -T db psql -U odoo "$DB" -c "
+    UPDATE res_currency SET symbol = 'VNĐ' WHERE name = 'VND';
+    UPDATE res_currency SET symbol = 'USD' WHERE name = 'USD';
+" 2>&1 || true
+
 if [ -n "$MODULES" ]; then
     # Patch schema trước khi start Odoo — tránh crash khi có stored field mới
     # mà column chưa tồn tại trong DB (chicken-and-egg). IF NOT EXISTS = idempotent.
