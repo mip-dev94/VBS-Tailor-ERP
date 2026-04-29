@@ -317,21 +317,27 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('vbs_product_id')
     def _onchange_vbs_product(self):
-        """Khi chọn sản phẩm: auto-fill giá, garment_type, fabric_type."""
+        """Khi chọn sản phẩm: auto-fill giá theo set_type, garment_type, fabric_type."""
         if self.vbs_product_id:
             p = self.vbs_product_id
-            self.price_unit = p.list_price or 0.0
+            self.price_unit = p.get_price_for_set_type(self.set_type or 'le')
             self.garment_type = p.garment_type or False
             if p.fabric_type_id and not self.fabric_type_id:
                 self.fabric_type_id = p.fabric_type_id
             if p.garment_category and not self.garment_category:
                 self.garment_category = p.garment_category
 
+    @api.onchange('set_type')
+    def _onchange_set_type_reprice(self):
+        """Khi đổi hình thức: cập nhật lại giá từ sản phẩm nếu đã chọn."""
+        if self.vbs_product_id:
+            self.price_unit = self.vbs_product_id.get_price_for_set_type(self.set_type or 'le')
+
     @api.onchange('garment_category', 'set_type', 'fabric_type_id')
     def _onchange_pricing_lookup(self):
         """Tự động tra giá khi đủ 3 filter: loại đồ + hình thức + loại vải."""
         if self.vbs_product_id:
-            return  # giá đã lấy từ product
+            return  # giá đã lấy từ product qua _onchange_vbs_product / _onchange_set_type_reprice
         if self.garment_type and self.set_type and self.fabric_type_id:
             price = self.env['vbs.pricing.product'].lookup_price(
                 garment_type=self.garment_type,

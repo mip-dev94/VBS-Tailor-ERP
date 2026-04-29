@@ -52,11 +52,30 @@ class VbsProduct(models.Model):
         default=lambda self: self.env.company.currency_id,
     )
 
-    # --- Giá bán ---
+    # --- Giá bán theo hình thức ---
     list_price = fields.Monetary(
-        string='Giá bán', required=True, tracking=True,
+        string='Giá lẻ', required=True, tracking=True,
         currency_field='currency_id',
+        help='Giá cho 1 món lẻ.',
     )
+    price_bo_2 = fields.Monetary(
+        string='Giá bộ 2 mảnh', tracking=True,
+        currency_field='currency_id',
+        help='Giá trọn bộ 2 mảnh (áo + quần). Chỉ áp dụng cho Áo.',
+    )
+    price_bo_3 = fields.Monetary(
+        string='Giá bộ 3 mảnh', tracking=True,
+        currency_field='currency_id',
+        help='Giá trọn bộ 3 mảnh (áo + quần + gile). Chỉ áp dụng cho Áo.',
+    )
+
+    def get_price_for_set_type(self, set_type):
+        """Trả giá đúng theo hình thức đặt hàng."""
+        if set_type == 'bo_2' and self.price_bo_2:
+            return self.price_bo_2
+        if set_type == 'bo_3' and self.price_bo_3:
+            return self.price_bo_3
+        return self.list_price
 
     # --- Giá vốn chi tiết ---
     cost_fabric = fields.Monetary(

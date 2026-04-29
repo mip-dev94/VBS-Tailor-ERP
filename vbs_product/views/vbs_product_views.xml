@@ -75,9 +75,13 @@
                             <field name="color"/>
                             <field name="weight_grams"/>
                         </group>
-                        <group string="Giá bán">
+                        <group string="Giá bán theo hình thức">
                             <field name="currency_id" invisible="1"/>
-                            <field name="list_price" widget="monetary"/>
+                            <field name="list_price" widget="monetary" string="Giá lẻ"/>
+                            <field name="price_bo_2" widget="monetary"
+                                   invisible="garment_category != 'ao'"/>
+                            <field name="price_bo_3" widget="monetary"
+                                   invisible="garment_category != 'ao'"/>
                             <field name="profit_amount" widget="monetary" readonly="1"
                                    groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
                             <field name="profit_margin_pct" readonly="1"
