@@ -126,54 +126,52 @@ fi
 
 $COMPOSE up -d odoo db
 
-# Build danh sách modules cần xử lý: git-detected + always-check (nếu chưa installed)
-# Dùng psql trực tiếp vào DB (không qua Odoo) nên không bị ảnh hưởng bởi Odoo crash
-ALWAYS_CHECK="vbs_product,vbs_crm,vbs_accounting"
+# Build danh sách install/upgrade — inline, không dùng function để tránh bash scoping bug
 INSTALL_MODS=""
 UPGRADE_MODS=""
 
-check_and_classify() {
-    local mod="$1"
-    local cnt
-    cnt=$($COMPOSE exec -T db psql -U odoo "$DB" -tAc \
-        "SELECT COUNT(*) FROM ir_module_module WHERE name='$mod' AND state='installed';" \
-        2>/dev/null | tr -d '[:space:]')
-    if [ "${cnt:-0}" = "0" ] || [ -z "$cnt" ]; then
-        INSTALL_MODS="${INSTALL_MODS:+$INSTALL_MODS,}$mod"
-        echo "    → Install mới: $mod"
+_classify_mod() {
+    # $1 = tên module
+    local _cnt
+    _cnt=$($COMPOSE exec -T db psql -U odoo "$DB" -tAc \
+        "SELECT COUNT(*) FROM ir_module_module WHERE name='$1' AND state='installed';" \
+        2>/dev/null | tr -d '[:space:]' || echo "0")
+    if [ "${_cnt:-0}" != "1" ]; then
+        INSTALL_MODS="${INSTALL_MODS:+${INSTALL_MODS},}$1"
+        echo "    → Install mới: $1"
     else
-        UPGRADE_MODS="${UPGRADE_MODS:+$UPGRADE_MODS,}$mod"
-        echo "    → Upgrade: $mod"
+        UPGRADE_MODS="${UPGRADE_MODS:+${UPGRADE_MODS},}$1"
+        echo "    → Upgrade: $1"
     fi
 }
 
-# Always-check: đảm bảo các module này luôn được install nếu chưa có
-echo "    Kiểm tra module mới..."
-IFS=',' read -ra AC_LIST <<< "$ALWAYS_CHECK"
-for mod in "${AC_LIST[@]}"; do
-    check_and_classify "$mod"
+# Luôn kiểm tra 3 module này mỗi deploy
+echo "    Kiểm tra module bắt buộc..."
+for _m in vbs_product vbs_crm vbs_accounting; do
+    _classify_mod "$_m"
 done
 
-# Git-detected modules (không trùng với ALWAYS_CHECK)
+# Git-detected modules
 if [ -n "$MODULES" ] && [ "$MODULES" != "all" ]; then
-    IFS=',' read -ra MOD_LIST <<< "$MODULES"
-    for mod in "${MOD_LIST[@]}"; do
-        # Bỏ qua nếu đã có trong danh sách rồi
-        if echo "$ALWAYS_CHECK" | grep -qw "$mod"; then continue; fi
-        check_and_classify "$mod"
+    IFS=',' read -ra _MOD_LIST <<< "$MODULES"
+    for _m in "${_MOD_LIST[@]}"; do
+        case ",$INSTALL_MODS,$UPGRADE_MODS," in
+            *",$_m,"*) continue ;;  # đã có rồi
+        esac
+        _classify_mod "$_m"
     done
 fi
 
-# Chạy Odoo 1 lần duy nhất với tất cả args
+# Chạy Odoo 1 lần với toàn bộ args
 if [ "${MODULES}" = "all" ]; then
     echo "    Upgrade all modules..."
     $COMPOSE exec -T odoo odoo -u all -d "$DB" --stop-after-init \
         --logfile=/dev/stdout --log-level=warn
 elif [ -n "$INSTALL_MODS" ] || [ -n "$UPGRADE_MODS" ]; then
-    ODOO_ARGS=""
-    [ -n "$INSTALL_MODS" ] && ODOO_ARGS="$ODOO_ARGS -i $INSTALL_MODS"
-    [ -n "$UPGRADE_MODS" ] && ODOO_ARGS="$ODOO_ARGS -u $UPGRADE_MODS"
-    $COMPOSE exec -T odoo odoo $ODOO_ARGS -d "$DB" --stop-after-init \
+    _ARGS=""
+    [ -n "$INSTALL_MODS" ] && _ARGS="$_ARGS -i $INSTALL_MODS" && echo "    Install: $INSTALL_MODS"
+    [ -n "$UPGRADE_MODS" ] && _ARGS="$_ARGS -u $UPGRADE_MODS" && echo "    Upgrade: $UPGRADE_MODS"
+    $COMPOSE exec -T odoo odoo $_ARGS -d "$DB" --stop-after-init \
         --logfile=/dev/stdout --log-level=warn
 fi
 $COMPOSE restart odoo
