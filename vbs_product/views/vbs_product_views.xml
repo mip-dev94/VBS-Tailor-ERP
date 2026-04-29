@@ -69,7 +69,8 @@
                     <group>
                         <group string="Thuộc tính sản phẩm">
                             <field name="product_type"/>
-                            <field name="garment_type"/>
+                            <field name="garment_category"/>
+                            <field name="garment_type" string="Loại chi tiết"/>
                             <field name="fabric_type_id"/>
                             <field name="size"/>
                             <field name="color"/>

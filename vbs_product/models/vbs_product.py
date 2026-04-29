@@ -26,17 +26,19 @@ class VbsProduct(models.Model):
     )
 
     garment_category = fields.Selection(
-        GARMENT_CATEGORY, string='Danh mục',
-        compute='_compute_garment_category', store=True, index=True,
+        GARMENT_CATEGORY, string='Loại đồ',
+        required=False, tracking=True, index=True,
     )
     garment_type = fields.Selection(
-        GARMENT_TYPE, string='Loại đồ cụ thể', tracking=True, index=True,
+        GARMENT_TYPE, string='Loại chi tiết', tracking=True, index=True,
+        help='Tùy chọn — dùng khi cần chỉ định cụ thể (Áo dài SB, Sơ mi Tux...).',
     )
 
-    @api.depends('garment_type')
-    def _compute_garment_category(self):
-        for rec in self:
-            rec.garment_category = get_garment_category(rec.garment_type)
+    @api.onchange('garment_type')
+    def _onchange_garment_type_suggest_category(self):
+        """Gợi ý category khi chọn loại chi tiết."""
+        if self.garment_type and not self.garment_category:
+            self.garment_category = get_garment_category(self.garment_type)
     fabric_type_id = fields.Many2one(
         'vbs.fabric.type', string='Loại vải',
         ondelete='set null', index=True, tracking=True,
