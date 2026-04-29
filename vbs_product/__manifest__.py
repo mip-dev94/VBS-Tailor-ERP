@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'VBS Sản phẩm B2C',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'category': 'VBS',
     'sequence': 15,
     'author': 'VBS',
@@ -14,7 +14,7 @@
         'views/vbs_product_stock_views.xml',
         'views/vbs_product_menus.xml',
     ],
-    'installable': False,
+    'installable': True,
     'application': True,
     'license': 'LGPL-3',
 }

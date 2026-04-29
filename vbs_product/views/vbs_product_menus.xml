@@ -2,7 +2,7 @@
 <odoo>
 
     <menuitem id="menu_root_product"
-              name="Sản phẩm B2C"
+              name="Sản phẩm"
               sequence="13"
               groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_sale,vbs_base.group_vbs_office"/>
 

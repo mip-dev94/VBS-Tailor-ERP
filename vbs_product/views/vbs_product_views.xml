@@ -5,7 +5,7 @@
         <field name="name">vbs.product.form</field>
         <field name="model">vbs.product</field>
         <field name="arch" type="xml">
-            <form string="Sản phẩm B2C">
+            <form string="Sản phẩm">
                 <header>
                     <button name="action_mark_ready" type="object"
                             string="Đánh dấu sẵn bán" class="oe_highlight"
@@ -17,6 +17,36 @@
                            statusbar_visible="draft,ready,sold,archived"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_mark_ready" icon="fa-check-circle"
+                                invisible="state != 'draft'">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="total_available" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">Khả dụng</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-percent"
+                                type="button" disabled="1"
+                                invisible="profit_margin_pct == 0">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"
+                                      decoration-success="profit_margin_pct >= 30"
+                                      decoration-warning="profit_margin_pct &gt;= 10 and profit_margin_pct &lt; 30"
+                                      decoration-danger="profit_margin_pct &lt; 10">
+                                    <field name="profit_margin_pct"
+                                           decoration-success="profit_margin_pct >= 30"
+                                           decoration-warning="profit_margin_pct &gt;= 10 and profit_margin_pct &lt; 30"
+                                           decoration-danger="profit_margin_pct &lt; 10"
+                                           nolabel="1"/>%
+                                </span>
+                                <span class="o_stat_text">Biên LN</span>
+                            </div>
+                        </button>
+                    </div>
+
                     <field name="image_1920" widget="image" class="oe_avatar"
                            options="{'preview_image': 'image_128'}"/>
                     <div class="oe_title">
@@ -24,23 +54,58 @@
                             <field name="code" readonly="1"/>
                         </span>
                         <h1><field name="name" placeholder="Tên sản phẩm..."/></h1>
+                        <div class="text-muted">
+                            <field name="sku" placeholder="SKU / mã nội bộ..."/>
+                        </div>
                     </div>
+
                     <group>
-                        <group string="Thuộc tính">
+                        <group string="Thuộc tính sản phẩm">
                             <field name="garment_type"/>
                             <field name="fabric_type_id"/>
                             <field name="size"/>
                             <field name="color"/>
+                            <field name="weight_grams"/>
                         </group>
-                        <group string="Giá">
+                        <group string="Giá bán">
                             <field name="currency_id" invisible="1"/>
                             <field name="list_price" widget="monetary"/>
-                            <field name="cost_price" widget="monetary"
+                            <field name="profit_amount" widget="monetary" readonly="1"
+                                   groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+                            <field name="profit_margin_pct" readonly="1"
+                                   decoration-success="profit_margin_pct >= 30"
+                                   decoration-warning="profit_margin_pct &gt;= 10 and profit_margin_pct &lt; 30"
+                                   decoration-danger="profit_margin_pct &lt; 10 and profit_margin_pct != 0"
                                    groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
                             <field name="total_available" readonly="1"/>
                         </group>
                     </group>
+
                     <notebook>
+                        <page string="Giá vốn" name="costing"
+                              groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant">
+                            <group>
+                                <group string="Chi phí cấu thành">
+                                    <field name="cost_fabric" widget="monetary"/>
+                                    <field name="cost_labor" widget="monetary"/>
+                                    <field name="cost_other" widget="monetary"/>
+                                    <div colspan="2" class="mt-2">
+                                        <button name="action_fill_cost_from_breakdown"
+                                                type="object" string="→ Tính giá vốn từ breakdown"
+                                                class="btn btn-secondary btn-sm"/>
+                                    </div>
+                                </group>
+                                <group string="Tổng kết">
+                                    <field name="cost_price" widget="monetary"/>
+                                    <field name="profit_amount" widget="monetary" readonly="1"/>
+                                    <field name="profit_margin_pct" readonly="1"
+                                           decoration-success="profit_margin_pct >= 30"
+                                           decoration-warning="profit_margin_pct &gt;= 10 and profit_margin_pct &lt; 30"
+                                           decoration-danger="profit_margin_pct &lt; 10 and profit_margin_pct != 0"/>
+                                </group>
+                            </group>
+                        </page>
+
                         <page string="Tồn kho" name="stock">
                             <field name="stock_ids">
                                 <list editable="bottom">
@@ -53,8 +118,9 @@
                                 </list>
                             </field>
                         </page>
+
                         <page string="Mô tả" name="description">
-                            <field name="detail" placeholder="Mô tả chi tiết cho landing..."/>
+                            <field name="detail" placeholder="Mô tả chi tiết sản phẩm..."/>
                         </page>
                     </notebook>
                 </sheet>
@@ -67,14 +133,21 @@
         <field name="name">vbs.product.list</field>
         <field name="model">vbs.product</field>
         <field name="arch" type="xml">
-            <list string="Sản phẩm B2C">
+            <list string="Sản phẩm">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="garment_type"/>
                 <field name="size" optional="show"/>
                 <field name="color" optional="show"/>
-                <field name="list_price" widget="monetary"/>
+                <field name="list_price" widget="monetary" string="Giá bán"/>
                 <field name="currency_id" column_invisible="1"/>
+                <field name="cost_price" widget="monetary" optional="hide"
+                       groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
+                <field name="profit_margin_pct" optional="show" string="Biên LN (%)"
+                       decoration-success="profit_margin_pct >= 30"
+                       decoration-warning="profit_margin_pct &gt;= 10 and profit_margin_pct &lt; 30"
+                       decoration-danger="profit_margin_pct &lt; 10 and profit_margin_pct != 0"
+                       groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant"/>
                 <field name="total_available" string="Khả dụng"/>
                 <field name="state" widget="badge"
                        decoration-info="state == 'draft'"
@@ -94,8 +167,12 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="list_price"/>
+                <field name="cost_price"/>
+                <field name="profit_margin_pct"/>
                 <field name="currency_id"/>
                 <field name="total_available"/>
+                <field name="state"/>
+                <field name="garment_type"/>
                 <field name="image_128"/>
                 <templates>
                     <t t-name="card">
@@ -107,11 +184,16 @@
                             <div class="oe_kanban_details flex-grow-1">
                                 <strong><field name="name"/></strong>
                                 <div class="text-muted small"><field name="code"/></div>
-                                <div>
-                                    <field name="list_price" widget="monetary"/>
+                                <div class="mt-1">
+                                    <span class="fw-bold">
+                                        <field name="list_price" widget="monetary"/>
+                                    </span>
                                 </div>
-                                <div class="text-muted small">
+                                <div class="text-muted small mt-1">
                                     Khả dụng: <field name="total_available"/>
+                                    <t t-if="record.profit_margin_pct.raw_value">
+                                        · LN: <field name="profit_margin_pct"/>%
+                                    </t>
                                 </div>
                             </div>
                         </div>
@@ -128,6 +210,7 @@
             <search string="Tìm sản phẩm">
                 <field name="name"/>
                 <field name="code"/>
+                <field name="sku"/>
                 <field name="garment_type"/>
                 <field name="fabric_type_id"/>
                 <separator/>
@@ -137,6 +220,8 @@
                 <filter string="Ngừng bán" name="archived" domain="[('state','=','archived')]"/>
                 <separator/>
                 <filter string="Còn hàng" name="has_stock" domain="[('total_available','>',0)]"/>
+                <filter string="Biên LN ≥ 30%" name="high_margin"
+                        domain="[('profit_margin_pct','>=',30)]"/>
                 <group>
                     <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Loại đồ" name="group_garment_type" context="{'group_by': 'garment_type'}"/>
@@ -147,7 +232,7 @@
     </record>
 
     <record id="action_vbs_product" model="ir.actions.act_window">
-        <field name="name">Sản phẩm B2C</field>
+        <field name="name">Sản phẩm</field>
         <field name="res_model">vbs.product</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="search_view_id" ref="view_vbs_product_search"/>

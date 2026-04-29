@@ -12,6 +12,7 @@ class VbsProduct(models.Model):
 
     name = fields.Char(string='Tên sản phẩm', required=True, tracking=True)
     code = fields.Char(string='Mã SP', readonly=True, copy=False, index=True, default='New')
+    sku = fields.Char(string='SKU', index=True, tracking=True, help='Mã quản kho nội bộ / barcode.')
 
     garment_type = fields.Selection(
         GARMENT_TYPE, string='Loại đồ', tracking=True, index=True,
@@ -22,21 +23,74 @@ class VbsProduct(models.Model):
     )
     size = fields.Char(string='Kích cỡ', tracking=True)
     color = fields.Char(string='Màu sắc', tracking=True)
+    weight_grams = fields.Integer(string='Trọng lượng (g)', tracking=True)
     detail = fields.Text(string='Mô tả chi tiết')
 
+    # --- Tiền tệ ---
     currency_id = fields.Many2one(
         'res.currency', string='Tiền tệ',
         default=lambda self: self.env.company.currency_id,
     )
+
+    # --- Giá bán ---
     list_price = fields.Monetary(
         string='Giá bán', required=True, tracking=True,
         currency_field='currency_id',
     )
+
+    # --- Giá vốn chi tiết ---
+    cost_fabric = fields.Monetary(
+        string='Chi phí vải', tracking=True,
+        currency_field='currency_id',
+        help='Chi phí nguyên liệu vải (tính cho 1 sản phẩm).',
+    )
+    cost_labor = fields.Monetary(
+        string='Chi phí gia công', tracking=True,
+        currency_field='currency_id',
+        help='Chi phí nhân công / gia công CMT.',
+    )
+    cost_other = fields.Monetary(
+        string='Chi phí khác', tracking=True,
+        currency_field='currency_id',
+        help='Phụ kiện, vận chuyển, chi phí chung khác.',
+    )
     cost_price = fields.Monetary(
         string='Giá vốn', tracking=True,
         currency_field='currency_id',
+        help='Tổng giá vốn. Có thể nhập tay hoặc tính từ breakdown bên dưới.',
     )
 
+    # --- Lợi nhuận (tính từ list_price - cost_price) ---
+    profit_amount = fields.Monetary(
+        string='Lợi nhuận', compute='_compute_profit', store=True,
+        currency_field='currency_id',
+    )
+    profit_margin_pct = fields.Float(
+        string='Biên lợi nhuận (%)', compute='_compute_profit', store=True,
+        digits=(5, 1),
+        help='(Giá bán - Giá vốn) / Giá bán × 100',
+    )
+
+    @api.depends('list_price', 'cost_price')
+    def _compute_profit(self):
+        for rec in self:
+            profit = (rec.list_price or 0.0) - (rec.cost_price or 0.0)
+            rec.profit_amount = profit
+            rec.profit_margin_pct = (
+                profit / rec.list_price * 100.0 if rec.list_price else 0.0
+            )
+
+    def action_fill_cost_from_breakdown(self):
+        """Đặt Giá vốn = tổng chi phí vải + gia công + khác."""
+        for rec in self:
+            total = (rec.cost_fabric or 0.0) + (rec.cost_labor or 0.0) + (rec.cost_other or 0.0)
+            rec.cost_price = total
+            rec.message_post(body=_(
+                'Giá vốn được tính từ breakdown: vải %(f)s + gia công %(l)s + khác %(o)s = %(t)s',
+                f=rec.cost_fabric, l=rec.cost_labor, o=rec.cost_other, t=total,
+            ))
+
+    # --- Trạng thái ---
     state = fields.Selection([
         ('draft', 'Nháp'),
         ('ready', 'Sẵn bán'),
@@ -44,11 +98,9 @@ class VbsProduct(models.Model):
         ('archived', 'Ngừng bán'),
     ], string='Trạng thái', default='draft', required=True, tracking=True, index=True)
 
-    # source_garment_id is added by vbs_garment bridge extension to avoid
-    # circular dep (vbs_contact → vbs_garment would pull vbs_product).
-
     active = fields.Boolean(default=True)
 
+    # --- Tồn kho ---
     stock_ids = fields.One2many(
         'vbs.product.stock', 'product_id',
         string='Tồn kho theo cửa hàng',

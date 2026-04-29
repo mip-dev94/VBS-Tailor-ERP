@@ -79,6 +79,13 @@ if [ -n "$MODULES" ]; then
         ALTER TABLE vbs_fabric_order_line ADD COLUMN IF NOT EXISTS date_arrived date;
         ALTER TABLE vbs_fabric_order     ADD COLUMN IF NOT EXISTS arrived_line_count integer DEFAULT 0;
         ALTER TABLE vbs_fabric_order     ADD COLUMN IF NOT EXISTS pending_line_count integer DEFAULT 0;
+        ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS sku character varying;
+        ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS weight_grams integer DEFAULT 0;
+        ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS cost_fabric numeric DEFAULT 0;
+        ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS cost_labor numeric DEFAULT 0;
+        ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS cost_other numeric DEFAULT 0;
+        ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS profit_amount numeric DEFAULT 0;
+        ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS profit_margin_pct numeric DEFAULT 0;
     " 2>&1 || true
 fi
 
@@ -90,8 +97,23 @@ if [ -n "$MODULES" ]; then
         $COMPOSE exec -T odoo odoo -u all -d "$DB" --stop-after-init \
             --logfile=/dev/stdout --log-level=warn
     else
-        echo "    Upgrade $MODULES..."
-        $COMPOSE exec -T odoo odoo -u "$MODULES" -d "$DB" --stop-after-init \
+        # Phân loại: module chưa installed → dùng -i, đã installed → dùng -u
+        INSTALL_MODS=""
+        UPGRADE_MODS=""
+        IFS=',' read -ra MOD_LIST <<< "$MODULES"
+        for mod in "${MOD_LIST[@]}"; do
+            IS_INSTALLED=$($COMPOSE exec -T db psql -U odoo "$DB" -tAc \
+                "SELECT COUNT(*) FROM ir_module_module WHERE name='$mod' AND state='installed';" 2>/dev/null || echo "0")
+            if [ "${IS_INSTALLED:-0}" = "0" ]; then
+                INSTALL_MODS="${INSTALL_MODS:+$INSTALL_MODS,}$mod"
+            else
+                UPGRADE_MODS="${UPGRADE_MODS:+$UPGRADE_MODS,}$mod"
+            fi
+        done
+        ODOO_ARGS=""
+        [ -n "$INSTALL_MODS" ] && ODOO_ARGS="$ODOO_ARGS -i $INSTALL_MODS" && echo "    Install mới: $INSTALL_MODS"
+        [ -n "$UPGRADE_MODS" ] && ODOO_ARGS="$ODOO_ARGS -u $UPGRADE_MODS" && echo "    Upgrade: $UPGRADE_MODS"
+        $COMPOSE exec -T odoo odoo $ODOO_ARGS -d "$DB" --stop-after-init \
             --logfile=/dev/stdout --log-level=warn
     fi
     $COMPOSE restart odoo
