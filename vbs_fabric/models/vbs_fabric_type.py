@@ -6,7 +6,6 @@ class VbsFabricType(models.Model):
     _name = 'vbs.fabric.type'
     _description = 'Danh mục loại vải'
     _order = 'fabric_brand, name'
-    _rec_name = 'display_name'
 
     code = fields.Char(
         string='Mã vải',
@@ -35,12 +34,8 @@ class VbsFabricType(models.Model):
 
     active = fields.Boolean(default=True)
 
-    display_name = fields.Char(
-        compute='_compute_display_name',
-        store=True,
-    )
-
     def _compute_display_name(self):
+        """Hiển thị: Hãng — Mã — Tên (vd: Drago — DR001 — Vải len)."""
         for r in self:
             parts = [r.code, r.name]
             if r.fabric_brand:
