@@ -60,9 +60,15 @@ class SaleOrder(models.Model):
         string='Lịch sử thanh toán',
     )
 
-    amount_paid = fields.Float(
-        string='Đã thanh toán (VND)',
+    amount_paid = fields.Monetary(
+        string='Đã thanh toán',
         compute='_compute_payment_state', store=True,
+        currency_field='currency_id',
+    )
+    amount_remaining = fields.Monetary(
+        string='Còn lại',
+        compute='_compute_payment_state', store=True,
+        currency_field='currency_id',
     )
 
     garment_ids = fields.One2many(
@@ -130,6 +136,7 @@ class SaleOrder(models.Model):
         for order in self:
             paid = sum(order.payment_ids.mapped('amount'))
             order.amount_paid = paid
+            order.amount_remaining = max(0.0, (order.amount_total or 0.0) - paid)
             if paid <= 0:
                 order.payment_state = 'chua_tt'
             elif paid < order.amount_total:

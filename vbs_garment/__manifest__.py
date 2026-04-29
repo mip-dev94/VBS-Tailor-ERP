@@ -20,6 +20,7 @@
         'data/vbs_sequence_data.xml',
         'data/mail_activity_type_data.xml',
         'data/ir_cron.xml',
+        'data/currency_config.xml',
         'wizard/vbs_garment_cancel_wizard_views.xml',
         'views/vbs_garment_views.xml',
         'views/planning_slot_ext_views.xml',

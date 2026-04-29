@@ -63,19 +63,30 @@
                 <field name="can_start_production" invisible="1"/>
             </field>
 
-            <!-- Loại đơn + tiền tệ (qua pricelist) + thanh toán info -->
+            <!-- Loại đơn + tiền tệ + thanh toán rõ ràng (3 dòng) -->
             <field name="partner_id" position="after">
                 <field name="order_type"/>
-                <field name="pricelist_id" string="Tiền tệ" options="{'no_create': True}"
-                       domain="[('active', '=', True)]"/>
                 <field name="b2b_type" invisible="order_type != 'b2b'"
                        required="order_type == 'b2b'"/>
                 <field name="payment_state" widget="badge"
                        decoration-danger="payment_state == 'chua_tt'"
                        decoration-warning="payment_state == 'tt_1_phan'"
                        decoration-success="payment_state == 'tt_toan_bo'"/>
-                <field name="amount_paid" widget="monetary"
+                <field name="currency_id" invisible="1"/>
+                <field name="amount_total" string="Tổng đơn" readonly="1" widget="monetary"
                        options="{'currency_field': 'currency_id'}"/>
+                <field name="amount_paid" string="Đã thanh toán" readonly="1" widget="monetary"
+                       options="{'currency_field': 'currency_id'}"/>
+                <field name="amount_remaining" string="Còn lại" readonly="1" widget="monetary"
+                       options="{'currency_field': 'currency_id'}"
+                       decoration-danger="amount_remaining &gt; 0"
+                       decoration-success="amount_remaining == 0"/>
+            </field>
+
+            <!-- Đổi tên pricelist_id gốc thành Tiền tệ (tránh duplicate) -->
+            <field name="pricelist_id" position="attributes">
+                <attribute name="string">Tiền tệ</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
             </field>
 
             <!-- Bỏ Payment Terms — VBS Tailor quản lý thanh toán theo record -->
@@ -169,7 +180,7 @@
                 </page>
             </xpath>
 
-            <!-- Notebook 2 — Thanh toán + Thông tin khác (tách khỏi notebook đầu) -->
+            <!-- Notebook 2 — chỉ Thanh toán -->
             <xpath expr="//sheet//notebook" position="after">
                 <notebook>
                     <page string="Thanh toán" name="vbs_payments">
@@ -181,21 +192,6 @@
                                 <field name="note"/>
                             </list>
                         </field>
-                    </page>
-                    <page string="Thông tin khác" name="vbs_other_info">
-                        <group>
-                            <group string="Thông tin đơn hàng">
-                                <field name="order_type"/>
-                                <field name="b2b_type" invisible="order_type != 'b2b'"/>
-                                <field name="client_order_ref" string="Mã đơn khách"/>
-                                <field name="user_id" string="Nhân viên bán"/>
-                            </group>
-                            <group string="Giao hàng &amp; Khác">
-                                <field name="validity_date"/>
-                                <field name="commitment_date" string="Ngày giao dự kiến"/>
-                                <field name="note" string="Ghi chú nội bộ"/>
-                            </group>
-                        </group>
                     </page>
                 </notebook>
             </xpath>
