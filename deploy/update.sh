@@ -126,6 +126,25 @@ fi
 
 $COMPOSE up -d odoo db
 
+# Luôn kiểm tra và install các module mới nếu chưa có — bất kể git diff
+echo "    Kiểm tra module mới chưa install..."
+ALWAYS_CHECK="vbs_crm,vbs_accounting,vbs_product"
+FORCE_INSTALL=""
+IFS=',' read -ra CHECK_LIST <<< "$ALWAYS_CHECK"
+for mod in "${CHECK_LIST[@]}"; do
+    IS_INST=$($COMPOSE exec -T db psql -U odoo "$DB" -tAc \
+        "SELECT COUNT(*) FROM ir_module_module WHERE name='$mod' AND state='installed';" 2>/dev/null | tr -d '[:space:]' || echo "0")
+    if [ "${IS_INST}" = "0" ] || [ -z "${IS_INST}" ]; then
+        FORCE_INSTALL="${FORCE_INSTALL:+$FORCE_INSTALL,}$mod"
+        echo "    → Sẽ install: $mod"
+    fi
+done
+if [ -n "$FORCE_INSTALL" ]; then
+    $COMPOSE exec -T odoo odoo -i "$FORCE_INSTALL" -d "$DB" --stop-after-init \
+        --logfile=/dev/stdout --log-level=warn
+    $COMPOSE restart odoo
+fi
+
 if [ -n "$MODULES" ]; then
     if [ "$MODULES" = "all" ]; then
         echo "    Upgrade all modules..."
