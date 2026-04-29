@@ -89,6 +89,12 @@ if [ -n "$MODULES" ]; then
         ALTER TABLE sale_order ADD COLUMN IF NOT EXISTS sale_confirmed boolean DEFAULT false;
         ALTER TABLE sale_order ADD COLUMN IF NOT EXISTS accountant_confirmed boolean DEFAULT false;
         ALTER TABLE sale_order ADD COLUMN IF NOT EXISTS amount_remaining numeric DEFAULT 0;
+        ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS garment_type character varying;
+        ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS set_type character varying DEFAULT 'le';
+        ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS fabric_type_id integer;
+        UPDATE vbs_pricing_product SET garment_type = product_type WHERE garment_type IS NULL AND product_type IS NOT NULL;
+        UPDATE vbs_pricing_product SET set_type = 'le' WHERE set_type IS NULL;
+        ALTER TABLE vbs_pricing_product DROP CONSTRAINT IF EXISTS vbs_pricing_product_unique_product_type;
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS product_type character varying DEFAULT 'b2c';
         CREATE TABLE IF NOT EXISTS vbs_expense_record (
             id serial PRIMARY KEY,

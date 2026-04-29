@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- ============ PRICING PRODUCT (Bảng giá gia công) ============ -->
     <record id="view_vbs_pricing_product_list" model="ir.ui.view">
         <field name="name">vbs.pricing.product.list</field>
         <field name="model">vbs.pricing.product</field>
         <field name="arch" type="xml">
             <list string="Bảng giá gia công" editable="bottom">
-                <field name="product_type"/>
-                <field name="labor_cost"/>
+                <field name="garment_type"/>
+                <field name="set_type"/>
+                <field name="fabric_type_id" optional="show"/>
+                <field name="labor_cost" string="Phí gia công (VNĐ)"/>
                 <field name="note" optional="show"/>
             </list>
+        </field>
+    </record>
+
+    <record id="view_vbs_pricing_product_search" model="ir.ui.view">
+        <field name="name">vbs.pricing.product.search</field>
+        <field name="model">vbs.pricing.product</field>
+        <field name="arch" type="xml">
+            <search string="Tìm bảng giá">
+                <field name="garment_type"/>
+                <field name="fabric_type_id"/>
+                <separator/>
+                <filter string="Lẻ" name="le" domain="[('set_type','=','le')]"/>
+                <filter string="Bộ 2 mảnh" name="bo_2" domain="[('set_type','=','bo_2')]"/>
+                <filter string="Bộ 3 mảnh" name="bo_3" domain="[('set_type','=','bo_3')]"/>
+                <separator/>
+                <filter string="Tất cả loại vải" name="no_fabric" domain="[('fabric_type_id','=',False)]"/>
+                <group>
+                    <filter string="Loại đồ" name="group_garment" context="{'group_by':'garment_type'}"/>
+                    <filter string="Hình thức" name="group_set" context="{'group_by':'set_type'}"/>
+                    <filter string="Loại vải" name="group_fabric" context="{'group_by':'fabric_type_id'}"/>
+                </group>
+            </search>
         </field>
     </record>
 
@@ -18,9 +41,11 @@
         <field name="name">Bảng giá gia công</field>
         <field name="res_model">vbs.pricing.product</field>
         <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_vbs_pricing_product_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Chưa có bảng giá nào</p>
-            <p>Nhập phí gia công cho từng loại sản phẩm.</p>
+            <p>Nhập phí gia công theo công thức: <b>Loại đồ × Hình thức × Loại vải = Giá</b></p>
+            <p>Dùng <b>Action → Import</b> để upload từ file Excel (.xlsx).</p>
         </field>
     </record>
 

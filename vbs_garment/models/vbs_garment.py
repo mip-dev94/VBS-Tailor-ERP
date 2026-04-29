@@ -572,18 +572,30 @@ class VbsGarment(models.Model):
                 )
 
     def action_compute_price(self):
-        """Admin trigger: tính giá = vải × mét + gia công + phụ phí.
-        Sau đó cộng dồn tất cả garment trong cùng order line → ghi vào price_unit.
+        """Tính giá = vải × mét + gia công (tra bảng 3 chiều) + phụ phí.
+        Lookup: garment_type × set_type × fabric_type → labor_cost.
         """
         self.ensure_one()
+
+        # Chi phí vải = giá/mét × số mét
         fabric_cost = 0.0
         if self.fabric_id and self.fabric_meters:
             fabric_cost = self.fabric_id.price_per_meter * self.fabric_meters
 
-        pricing = self.env['vbs.pricing.product'].search([
-            ('product_type', '=', self.garment_type),
-        ], limit=1)
-        labor_cost = pricing.labor_cost if pricing else 0.0
+        # Tra bảng giá 3 chiều với fallback
+        set_type = 'le'
+        if self.order_line_id:
+            set_type = self.order_line_id.set_type or 'le'
+
+        fabric_type_id = self.fabric_id.fabric_type_id.id if (
+            self.fabric_id and self.fabric_id.fabric_type_id
+        ) else False
+
+        labor_cost = self.env['vbs.pricing.product'].lookup_price(
+            garment_type=self.garment_type,
+            set_type=set_type,
+            fabric_type_id=fabric_type_id,
+        )
 
         surcharge = self.price_surcharge or 0.0
 
