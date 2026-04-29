@@ -199,8 +199,8 @@
                     <field name="fabric_order_ids" readonly="1">
                         <list>
                             <field name="name" string="Số phiếu"/>
-                            <field name="order_date" string="Ngày đặt"/>
-                            <field name="partner_id" string="Nhà cung cấp"/>
+                            <field name="date_order" string="Ngày đặt"/>
+                            <field name="partner_ids" string="Nhà cung cấp" widget="many2many_tags"/>
                             <field name="state" widget="badge"
                                    decoration-info="state == 'draft'"
                                    decoration-warning="state == 'confirmed'"
