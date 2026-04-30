@@ -93,6 +93,25 @@ class VbsCrmLead(models.Model):
     order_count = fields.Integer(
         string='Số đơn hàng', compute='_compute_order_count',
     )
+    # Order summary related fields (visible khi đã chốt)
+    order_amount_total = fields.Monetary(
+        related='order_id.amount_total', string='Tổng đơn',
+        currency_field='order_currency_id', readonly=True,
+    )
+    order_amount_paid = fields.Monetary(
+        related='order_id.amount_paid', string='Đã thanh toán',
+        currency_field='order_currency_id', readonly=True,
+    )
+    order_currency_id = fields.Many2one(
+        related='order_id.currency_id', string='Tiền tệ đơn', readonly=True,
+    )
+    order_fashion_state = fields.Selection(
+        related='order_id.fashion_state', string='Trạng thái VBS', readonly=True,
+    )
+    order_payment_state = fields.Selection(
+        related='order_id.payment_state', string='Trạng thái TT', readonly=True,
+    )
+
     active = fields.Boolean(default=True)
 
     @api.depends('order_id')

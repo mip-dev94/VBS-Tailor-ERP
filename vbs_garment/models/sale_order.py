@@ -107,6 +107,17 @@ class SaleOrder(models.Model):
         compute='_compute_fabric_order_count',
     )
 
+    # Counts cho smart buttons (Phase 4)
+    contact_log_count = fields.Integer(
+        string='Số liên hệ', compute='_compute_contact_log_count',
+    )
+    payment_count = fields.Integer(
+        string='Số bản ghi TT', compute='_compute_payment_count',
+    )
+    expense_count = fields.Integer(
+        string='Số chi phí', compute='_compute_expense_count',
+    )
+
     pattern_count = fields.Integer(
         string='Số rập khách',
         compute='_compute_pattern_count',
@@ -120,6 +131,20 @@ class SaleOrder(models.Model):
     def _compute_fabric_order_count(self):
         for order in self:
             order.fabric_order_count = len(order.fabric_order_ids)
+
+    def _compute_contact_log_count(self):
+        Log = self.env['vbs.contact.log']
+        for order in self:
+            order.contact_log_count = Log.search_count([('order_id', '=', order.id)])
+
+    def _compute_payment_count(self):
+        for order in self:
+            order.payment_count = len(order.payment_ids)
+
+    def _compute_expense_count(self):
+        Expense = self.env['vbs.expense.record']
+        for order in self:
+            order.expense_count = Expense.search_count([('sale_order_id', '=', order.id)])
 
     @api.depends('amount_paid', 'amount_total', 'fashion_state')
     def _compute_can_start_production(self):
@@ -240,6 +265,39 @@ class SaleOrder(models.Model):
             'view_mode': 'list,form',
             'domain': [('order_id', '=', self.id)],
             'context': {'default_order_id': self.id},
+        }
+
+    def action_view_contact_logs(self):
+        self.ensure_one()
+        return {
+            'name': _('Lịch sử liên hệ'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'vbs.contact.log',
+            'view_mode': 'list,form',
+            'domain': [('order_id', '=', self.id)],
+            'context': {'default_order_id': self.id, 'default_partner_id': self.partner_id.id},
+        }
+
+    def action_view_payments(self):
+        self.ensure_one()
+        return {
+            'name': _('Lịch sử thanh toán'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'vbs.payment.record',
+            'view_mode': 'list,form',
+            'domain': [('order_id', '=', self.id)],
+            'context': {'default_order_id': self.id},
+        }
+
+    def action_view_expenses(self):
+        self.ensure_one()
+        return {
+            'name': _('Chi phí'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'vbs.expense.record',
+            'view_mode': 'list,form',
+            'domain': [('sale_order_id', '=', self.id)],
+            'context': {'default_sale_order_id': self.id},
         }
 
     def action_view_fabric_orders(self):

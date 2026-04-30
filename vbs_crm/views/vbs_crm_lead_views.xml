@@ -65,6 +65,27 @@
                         <page string="Nhu cầu khách hàng" name="need">
                             <field name="note_need" placeholder="Ghi chú nhu cầu, loại đồ muốn may, ngân sách, thời hạn..."/>
                         </page>
+                        <page string="Đơn hàng đã chốt" name="order_summary"
+                              invisible="not order_id">
+                            <group>
+                                <group string="Thông tin đơn">
+                                    <field name="order_currency_id" invisible="1"/>
+                                    <field name="order_id" readonly="1"/>
+                                    <field name="order_amount_total" widget="monetary"/>
+                                    <field name="order_amount_paid" widget="monetary"/>
+                                </group>
+                                <group string="Trạng thái">
+                                    <field name="order_fashion_state" widget="badge"
+                                           decoration-info="order_fashion_state == 'dat_hang'"
+                                           decoration-warning="order_fashion_state == 'dang_xu_ly'"
+                                           decoration-success="order_fashion_state == 'hoan_thanh'"/>
+                                    <field name="order_payment_state" widget="badge"
+                                           decoration-danger="order_payment_state == 'chua_tt'"
+                                           decoration-warning="order_payment_state == 'tt_1_phan'"
+                                           decoration-success="order_payment_state == 'tt_toan_bo'"/>
+                                </group>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
                 <chatter/>
