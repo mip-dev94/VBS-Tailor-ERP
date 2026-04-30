@@ -11,8 +11,9 @@ class PlanningSlotExt(models.Model):
     garment_id = fields.Many2one(
         'vbs.garment',
         string='Đồ may',
-        ondelete='set null',
+        ondelete='cascade',
         index=True,
+        help='Xoá garment → cascade xoá slot. Slot tự do (không link garment) không bị ảnh hưởng.',
     )
 
     garment_partner_id = fields.Many2one(

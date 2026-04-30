@@ -162,8 +162,18 @@ class SaleOrder(models.Model):
     # --- Fashion state transitions ---
 
     def _auto_advance_fashion_state(self):
-        """Giữ để tương thích với vbs_payment_record (không còn tự động chuyển state)."""
-        pass
+        """Trigger từ vbs.payment.record sau create/write.
+        Khi payment_state = tt_toan_bo và accountant chưa confirm → auto-confirm.
+        """
+        for order in self:
+            if (order.payment_state == 'tt_toan_bo'
+                    and not order.accountant_confirmed
+                    and order.fashion_state == 'dang_xu_ly'):
+                order.write({'accountant_confirmed': True})
+                order.message_post(body=_(
+                    '✓ Kế toán tự xác nhận — đơn hàng đã thanh toán đủ 100%.'
+                ))
+                order._check_dual_confirm()
 
     def _check_dual_confirm(self):
         """Kiểm tra và tự động chuyển Đang xử lý → Hoàn thành khi cả 2 bên đã xác nhận."""
@@ -427,6 +437,8 @@ class SaleOrderLine(models.Model):
                     'detail': line.name or '',
                     'sequence': (idx + 1) * 10,
                 })
+            # Auto-tạo fabric_order_line draft cho line nếu có fabric_type
+            line._auto_create_fabric_lines()
         if not created:
             return True
         return {
@@ -436,6 +448,48 @@ class SaleOrderLine(models.Model):
             'view_mode': 'list,form',
             'domain': [('id', 'in', created.ids)],
         }
+
+    def _auto_create_fabric_lines(self):
+        """Tạo vbs.fabric.order.line draft cho mỗi garment vừa sinh — link sale_order_line_id.
+        Aggregate vào 1 vbs.fabric.order draft theo (partner=fabric supplier, ngày).
+        """
+        self.ensure_one()
+        if not self.fabric_type_id:
+            return
+        FabricOrder = self.env['vbs.fabric.order']
+        FabricLine = self.env['vbs.fabric.order.line']
+        # Tìm/tạo draft order theo ngày + partner (nhà cung cấp)
+        # Nếu fabric_type không có nhà cung cấp default → tạo order partner=False
+        today = fields.Date.context_today(self)
+        draft = FabricOrder.search([
+            ('state', '=', 'draft'),
+            ('date_order', '=', today),
+            ('sale_order_id', '=', self.order_id.id),
+        ], limit=1)
+        if not draft:
+            draft = FabricOrder.create({
+                'date_order': today,
+                'sale_order_id': self.order_id.id,
+                'state': 'draft',
+            })
+        # Tạo line cho mỗi garment chưa có fabric_line
+        partner = self.order_id.partner_id
+        if not partner:
+            return  # cần partner để tạo line
+        for g in self.garment_ids.filtered(lambda x: not x.fabric_line_id):
+            new_line = FabricLine.create({
+                'order_id': draft.id,
+                'partner_id': partner.id,
+                'sale_order_id': self.order_id.id,
+                'sale_order_line_id': self.id,
+                'garment_id': g.id,
+                'fabric_type_id': self.fabric_type_id.id,
+                'fabric_brand': self.fabric_type_id.fabric_brand or '',
+                'fabric_code': self.fabric_type_id.code or '',
+                'sapo_code': self.order_id.name or '',
+                'quantity': g.fabric_meters or 0.0,
+            })
+            g.fabric_line_id = new_line
 
     def action_compute_line_price(self):
         """Tính giá tất cả LSX trong dòng này → cộng dồn vào price_unit."""
