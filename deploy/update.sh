@@ -102,6 +102,12 @@ if [ -n "$MODULES" ]; then
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS garment_category character varying;
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS price_bo_2 numeric DEFAULT 0;
         ALTER TABLE vbs_product ADD COLUMN IF NOT EXISTS price_bo_3 numeric DEFAULT 0;
+        -- Phase 1 refactor: Sale + CRM data hub
+        ALTER TABLE vbs_fabric_order_line ADD COLUMN IF NOT EXISTS sale_order_id integer;
+        ALTER TABLE vbs_fabric_order_line ADD COLUMN IF NOT EXISTS sale_order_line_id integer;
+        ALTER TABLE vbs_expense_record ADD COLUMN IF NOT EXISTS sale_order_id integer;
+        ALTER TABLE vbs_expense_record ADD COLUMN IF NOT EXISTS garment_id integer;
+        ALTER TABLE vbs_expense_record ADD COLUMN IF NOT EXISTS fabric_order_id integer;
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS garment_type character varying;
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS set_type character varying DEFAULT 'le';
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS fabric_type_id integer;

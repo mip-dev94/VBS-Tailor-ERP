@@ -196,22 +196,21 @@ class VbsGarment(models.Model):
         tracking=True,
     )
 
-    fabric_order_id = fields.Many2one(
-        'vbs.fabric.order',
-        string='Đơn đặt vải',
-        help='Liên kết đơn đặt vải tương ứng',
-        tracking=True,
-        index=True,
-        ondelete='set null',
-    )
-
+    # Dòng vải cụ thể là source of truth, fabric_order_id auto-derived từ line
     fabric_line_id = fields.Many2one(
         'vbs.fabric.order.line',
         string='Dòng đặt vải',
         ondelete='set null',
         index=True,
-        help='Dòng vải cụ thể đã đặt cho đồ này',
+        help='Dòng vải cụ thể đã đặt cho đồ này — source of truth cho fabric link',
         copy=False,
+    )
+
+    fabric_order_id = fields.Many2one(
+        'vbs.fabric.order',
+        string='Đơn đặt vải',
+        related='fabric_line_id.order_id', store=True, readonly=True,
+        help='Auto-derived từ fabric_line_id.order_id',
     )
 
     fabric_arrived = fields.Boolean(
@@ -348,17 +347,10 @@ class VbsGarment(models.Model):
         if pattern:
             self.pattern_id = pattern
 
-    @api.depends('fabric_line_id.arrived', 'fabric_order_id.state')
+    @api.depends('fabric_line_id.arrived')
     def _compute_fabric_arrived(self):
         for g in self:
-            if g.fabric_line_id:
-                # Per-line tracking (mới): dùng arrived trên từng dòng vải
-                g.fabric_arrived = g.fabric_line_id.arrived
-            elif g.fabric_order_id:
-                # Fallback: toàn bộ đơn da_ve
-                g.fabric_arrived = g.fabric_order_id.state == 'da_ve'
-            else:
-                g.fabric_arrived = False
+            g.fabric_arrived = bool(g.fabric_line_id and g.fabric_line_id.arrived)
 
     @api.depends('garment_type', 'partner_id')
     def _compute_name(self):

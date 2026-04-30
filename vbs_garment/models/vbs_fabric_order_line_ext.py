@@ -21,6 +21,22 @@ _GARMENT_DESC_MAP = {
 class VbsFabricOrderLineExt(models.Model):
     _inherit = 'vbs.fabric.order.line'
 
+    # M2O links lên Sale (data hub) — thay thế sapo_code Char
+    sale_order_id = fields.Many2one(
+        'sale.order',
+        string='Đơn hàng',
+        ondelete='set null',
+        index=True,
+        help='Đơn hàng yêu cầu đặt vải này.',
+    )
+    sale_order_line_id = fields.Many2one(
+        'sale.order.line',
+        string='Dòng đơn',
+        ondelete='set null',
+        index=True,
+        help='Dòng cụ thể trong đơn hàng.',
+    )
+
     garment_id = fields.Many2one(
         'vbs.garment',
         string='Đồ may',
@@ -79,6 +95,12 @@ class VbsFabricOrderLineExt(models.Model):
             return
         if g.partner_id:
             self.partner_id = g.partner_id
+        # Link M2O lên sale
+        if g.order_id and not self.sale_order_id:
+            self.sale_order_id = g.order_id
+        if g.order_line_id and not self.sale_order_line_id:
+            self.sale_order_line_id = g.order_line_id
+        # Giữ sapo_code Char cho legacy
         if g.order_id and not self.sapo_code:
             self.sapo_code = g.order_id.name
         if g.ref and not self.garment_ref:
@@ -93,3 +115,12 @@ class VbsFabricOrderLineExt(models.Model):
                 self.fabric_code = g.fabric_id.code
         if g.fabric_meters and not self.quantity:
             self.quantity = g.fabric_meters
+
+    @api.onchange('sale_order_id')
+    def _onchange_sale_order_id(self):
+        """Khi chọn đơn hàng → auto-fill khách + sapo_code legacy."""
+        if self.sale_order_id:
+            if not self.partner_id and self.sale_order_id.partner_id:
+                self.partner_id = self.sale_order_id.partner_id
+            if not self.sapo_code:
+                self.sapo_code = self.sale_order_id.name

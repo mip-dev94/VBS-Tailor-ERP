@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import api, fields, models
 
 EXPENSE_CATEGORY = [
     ('vai', 'Chi phí vải'),
@@ -37,3 +37,30 @@ class VbsExpenseRecord(models.Model):
     )
     note = fields.Text(string='Ghi chú')
     active = fields.Boolean(default=True)
+
+    # --- Cost allocation (optional links lên data hub) ---
+    sale_order_id = fields.Many2one(
+        'sale.order', string='Đơn hàng',
+        ondelete='set null', index=True,
+        help='Phân bổ chi phí cho đơn hàng cụ thể.',
+    )
+    garment_id = fields.Many2one(
+        'vbs.garment', string='Đồ may',
+        ondelete='set null', index=True,
+        help='Phân bổ chi phí cho 1 lệnh sản xuất.',
+    )
+    fabric_order_id = fields.Many2one(
+        'vbs.fabric.order', string='Lệnh đặt vải',
+        ondelete='set null', index=True,
+        help='Phân bổ chi phí cho 1 lệnh đặt vải.',
+    )
+
+    @api.onchange('garment_id')
+    def _onchange_garment_id_fill_order(self):
+        if self.garment_id and self.garment_id.order_id and not self.sale_order_id:
+            self.sale_order_id = self.garment_id.order_id
+
+    @api.onchange('fabric_order_id')
+    def _onchange_fabric_order_fill_sale(self):
+        if self.fabric_order_id and self.fabric_order_id.sale_order_id and not self.sale_order_id:
+            self.sale_order_id = self.fabric_order_id.sale_order_id

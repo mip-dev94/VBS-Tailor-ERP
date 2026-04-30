@@ -43,12 +43,27 @@ class VbsContactLog(models.Model):
         ondelete='set null',
     )
 
+    # Direct M2O đến sale.order — không qua garment để cho phép log bất kỳ liên hệ nào
     order_id = fields.Many2one(
-        related='garment_id.order_id',
+        'sale.order',
         string='Đơn hàng',
-        store=True,
-        readonly=True,
+        index=True,
+        ondelete='set null',
+        tracking=True,
+        help='Đơn hàng liên quan. Tự fill khi chọn đồ may, hoặc chọn trực tiếp.',
     )
+
+    @api.onchange('garment_id')
+    def _onchange_garment_id_fill_order(self):
+        """Khi chọn đồ may → auto-fill order_id từ garment.order_id."""
+        if self.garment_id and self.garment_id.order_id and not self.order_id:
+            self.order_id = self.garment_id.order_id
+
+    @api.onchange('order_id')
+    def _onchange_order_id_fill_partner(self):
+        """Khi chọn đơn → auto-fill khách hàng nếu chưa có."""
+        if self.order_id and not self.partner_id:
+            self.partner_id = self.order_id.partner_id
 
     noi_dung = fields.Char(
         string='Nội dung liên hệ',
