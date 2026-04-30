@@ -8,10 +8,15 @@
         <field name="inherit_id" ref="vbs_fabric.view_vbs_fabric_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='line_ids']/list/field[@name='garment_ref']" position="before">
+                <field name="sale_order_id" optional="show"/>
+                <field name="sale_order_line_id" optional="hide"/>
                 <field name="garment_id" optional="show"/>
                 <field name="pattern_id" optional="hide"/>
             </xpath>
             <xpath expr="//field[@name='line_ids']/form//field[@name='garment_ref']" position="before">
+                <field name="sale_order_id" options="{'no_create': True}"/>
+                <field name="sale_order_line_id" options="{'no_create': True}"
+                       domain="[('order_id', '=', sale_order_id)]"/>
                 <field name="garment_id"/>
                 <field name="pattern_id" readonly="1"/>
             </xpath>

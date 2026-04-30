@@ -18,6 +18,18 @@
                             <field name="amount" widget="monetary"/>
                         </group>
                     </group>
+                    <group string="Phân bổ chi phí (optional)">
+                        <group>
+                            <field name="sale_order_id"
+                                   options="{'no_create': True}"/>
+                            <field name="garment_id"
+                                   options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="fabric_order_id"
+                                   options="{'no_create': True}"/>
+                        </group>
+                    </group>
                     <group string="Ghi chú">
                         <field name="note" nolabel="1" placeholder="Ghi chú thêm..."/>
                     </group>
@@ -39,6 +51,9 @@
                        decoration-primary="category == 'gia_cong'"
                        decoration-info="category == 'nhan_vien'"
                        decoration-muted="category == 'van_phong'"/>
+                <field name="sale_order_id" optional="show"/>
+                <field name="garment_id" optional="hide"/>
+                <field name="fabric_order_id" optional="hide"/>
                 <field name="amount" widget="monetary" sum="Tổng chi phí"/>
                 <field name="currency_id" column_invisible="1"/>
             </list>

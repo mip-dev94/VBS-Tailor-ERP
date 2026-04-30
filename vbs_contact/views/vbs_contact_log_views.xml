@@ -10,7 +10,8 @@
                   decoration-muted="tinh_trang == 'da_lien_he'">
                 <field name="date_contact"/>
                 <field name="partner_id"/>
-                <field name="garment_id" optional="show"/>
+                <field name="order_id" optional="show"/>
+                <field name="garment_id" optional="hide"/>
                 <field name="noi_dung"/>
                 <field name="ket_qua"/>
                 <field name="tinh_trang" widget="badge"
@@ -36,9 +37,11 @@
                         <group string="Thông tin liên hệ">
                             <field name="date_contact"/>
                             <field name="partner_id"/>
+                            <field name="order_id"
+                                   domain="[('partner_id', '=', partner_id)]"
+                                   options="{'no_create': True}"/>
                             <field name="garment_id"
                                    domain="[('partner_id', '=', partner_id)]"/>
-                            <field name="order_id" readonly="1"/>
                             <field name="user_id"/>
                         </group>
                         <group string="Nội dung &amp; Kết quả">
@@ -63,6 +66,7 @@
         <field name="arch" type="xml">
             <search string="Tìm nhật ký liên hệ">
                 <field name="partner_id"/>
+                <field name="order_id"/>
                 <field name="noi_dung"/>
                 <field name="garment_id"/>
                 <separator/>
