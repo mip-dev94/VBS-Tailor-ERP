@@ -108,6 +108,10 @@ if [ -n "$MODULES" ]; then
         ALTER TABLE vbs_expense_record ADD COLUMN IF NOT EXISTS sale_order_id integer;
         ALTER TABLE vbs_expense_record ADD COLUMN IF NOT EXISTS garment_id integer;
         ALTER TABLE vbs_expense_record ADD COLUMN IF NOT EXISTS fabric_order_id integer;
+        -- Phase 2: related fields trên vbs.garment
+        ALTER TABLE vbs_garment ADD COLUMN IF NOT EXISTS vbs_product_id integer;
+        ALTER TABLE vbs_garment ADD COLUMN IF NOT EXISTS line_set_type character varying;
+        ALTER TABLE vbs_garment ADD COLUMN IF NOT EXISTS line_garment_category character varying;
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS garment_type character varying;
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS set_type character varying DEFAULT 'le';
         ALTER TABLE vbs_pricing_product ADD COLUMN IF NOT EXISTS fabric_type_id integer;

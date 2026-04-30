@@ -294,11 +294,19 @@ class SaleOrderLine(models.Model):
         ondelete='set null', index=True,
         help='Chọn từ catalog sản phẩm. Filter theo Loại đồ + Loại vải nếu đã chọn trước.',
     )
-    # garment_type vẫn giữ để tương thích LSX, lấy từ vbs_product hoặc nhập tay
+    # garment_type: source of truth từ vbs_product nếu có (readonly), nếu không cho nhập tay
     garment_type = fields.Selection(
         GARMENT_TYPE, string='Loại đồ cụ thể',
-        help='Auto-fill từ sản phẩm. Dùng để tạo LSX đúng loại.',
+        compute='_compute_garment_type', store=True, readonly=False,
+        help='Tự lấy từ vbs.product nếu chọn sản phẩm. Có thể nhập tay nếu chưa có product.',
     )
+
+    @api.depends('vbs_product_id', 'vbs_product_id.garment_type')
+    def _compute_garment_type(self):
+        for line in self:
+            if line.vbs_product_id and line.vbs_product_id.garment_type:
+                line.garment_type = line.vbs_product_id.garment_type
+            # Nếu không có product → giữ giá trị hiện tại (cho phép manual)
     garment_ids = fields.One2many(
         'vbs.garment', 'order_line_id',
         string='Lệnh sản xuất',
@@ -317,11 +325,10 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('vbs_product_id')
     def _onchange_vbs_product(self):
-        """Khi chọn sản phẩm: auto-fill giá theo set_type, garment_type, fabric_type."""
+        """Khi chọn sản phẩm: auto-fill giá + fabric_type + category. garment_type compute tự động."""
         if self.vbs_product_id:
             p = self.vbs_product_id
             self.price_unit = p.get_price_for_set_type(self.set_type or 'le')
-            self.garment_type = p.garment_type or False
             if p.fabric_type_id and not self.fabric_type_id:
                 self.fabric_type_id = p.fabric_type_id
             if p.garment_category and not self.garment_category:

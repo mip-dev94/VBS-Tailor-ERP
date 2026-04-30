@@ -54,11 +54,27 @@ class VbsGarment(models.Model):
         index=True,
     )
 
+    # Related fields từ order_line: truy ngược lên data hub (sale)
+    vbs_product_id = fields.Many2one(
+        'vbs.product', string='Sản phẩm catalog',
+        related='order_line_id.vbs_product_id', store=True, readonly=True,
+        index=True,
+    )
+    line_set_type = fields.Selection(
+        related='order_line_id.set_type', store=True, readonly=True,
+        string='Hình thức đơn',
+    )
+    line_garment_category = fields.Selection(
+        related='order_line_id.garment_category', store=True, readonly=True,
+        string='Danh mục đơn',
+    )
+
     garment_type = fields.Selection(
         GARMENT_TYPE,
         string='Loại đồ',
         required=True,
         tracking=True,
+        help='Loại đồ cụ thể của LSX này. Khi line là bộ → có thể khác với line.garment_type (vd áo + quần + gile).',
     )
 
     production_type = fields.Selection([
