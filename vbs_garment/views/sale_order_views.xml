@@ -34,23 +34,19 @@
                     <field name="pattern_count" widget="statinfo" string="Rập khách"/>
                 </button>
                 <button name="action_view_fabric_orders" type="object"
-                        class="oe_stat_button" icon="fa-shopping-cart"
-                        invisible="fabric_order_count == 0">
+                        class="oe_stat_button" icon="fa-shopping-cart">
                     <field name="fabric_order_count" widget="statinfo" string="Đặt vải"/>
                 </button>
                 <button name="action_view_contact_logs" type="object"
-                        class="oe_stat_button" icon="fa-phone"
-                        invisible="contact_log_count == 0">
+                        class="oe_stat_button" icon="fa-phone">
                     <field name="contact_log_count" widget="statinfo" string="Liên hệ"/>
                 </button>
                 <button name="action_view_payments" type="object"
-                        class="oe_stat_button" icon="fa-money"
-                        invisible="payment_count == 0">
+                        class="oe_stat_button" icon="fa-money">
                     <field name="payment_count" widget="statinfo" string="Thanh toán"/>
                 </button>
                 <button name="action_view_expenses" type="object"
                         class="oe_stat_button" icon="fa-credit-card"
-                        invisible="expense_count == 0"
                         groups="vbs_base.group_vbs_admin,vbs_base.group_vbs_accountant">
                     <field name="expense_count" widget="statinfo" string="Chi phí"/>
                 </button>
